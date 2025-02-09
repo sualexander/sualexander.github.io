@@ -1,7 +1,343 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+  <script type="module" crossorigin src="/sualexander.github.io/assets/index-D8gVfoGa.js"></script>
+  <link rel="stylesheet" crossorigin href="/sualexander.github.io/assets/index-zCes93-q.css">
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+    <header class="sticky-header">
+    <nav>
+        <a href="/" class="logo">
+            <div class="container">
+                <span style="--i:1;">ALEXANDER SU</span>
+                <span style="--i:2;">ALEXANDER SU</span>
+                <span style="--i:3;">ALEXANDER SU</span>
+                <span style="--i:4;">ALEXANDER SU</span>
+                <span style="--i:5;">ALEXANDER SU</span>
+                <span style="--i:6;">ALEXANDER SU</span>
+                <span style="--i:7;">ALEXANDER SU</span>
+                <span style="--i:8;">ALEXANDER SU</span>
+                <span style="--i:9;">ALEXANDER SU</span>
+                <span style="--i:10;">ALEXANDER SU</span>
+                <span style="--i:11;">ALEXANDER SU</span>
+                <span style="--i:12;">ALEXANDER SU</span>
+            </div>
+        </a>
+        <div class="links">
+            <a href="">HOME</a>
+            <a href="">ABOUT</a>
+            <a href="">CONTACT</a>
+        </div>
+    </nav>
+</header>
+
+<style>
+    .sticky-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #141019e7;
+        z-index: 10;
+    }
+
+    .sticky-header nav {
+        height: 100px;
+        padding: 0 4%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+        margin-left: 30px;
+    }
+    .logo .container {
+        transform-style: preserve-3d;
+        animation: rotate 25s linear infinite;
+    }
+    .logo span {
+        position: absolute;
+        white-space: nowrap;
+        transform-style: preserve-3d;
+        transform: translate(-50%, -50%) rotateX(calc(var(--i) * 30deg)) translateZ(25px);
+        font-size: 1em;
+        color: color-mix(in hsl, 
+        #aff2ff calc(50% + 50% * cos(calc(var(--i) * 30deg))), 
+        #aeaeff calc(50% - 50% * cos(calc(var(--i) * 30deg)))
+    );
+        background: linear-gradient(90deg, transparent, rgb(0, 0, 0), transparent);
+        line-height: 0.7em;
+    }
+    @keyframes rotate {
+        0% { transform: perspective(200px) rotateX(0deg) rotate(25deg); }
+        100% { transform: perspective(200px) rotateX(360deg) rotate(25deg); }
+    }
+
+    .links {
+        display: flex;
+        gap: 3vw;
+        align-items: center;
+        position: relative;
+    }
+
+    .links a {
+        color: #ffffff;
+        font-size: 18px;
+        text-decoration: none;
+        position: relative;
+        background: linear-gradient(to right, rgb(0, 195, 255), rgb(65, 58, 255), rgb(8, 195, 255));
+        background-size: 200% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        transition: all 0.3s ease;
+        --gradient-width: 0px;
+    }
+    .links a:hover {
+        transform: scale(1.2);
+        color: transparent;
+        animation: gradientPan var(--animation-duration, 2s) linear infinite;
+        font-weight: 500;
+    }
+    .links a::before {
+        content: '';
+        position: absolute;
+        width: 110%;
+        height: 2px;
+        left: -5%;
+        bottom: -5px;
+        background: white;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s ease-out;
+    }
+    .links a:hover::before {
+        transform: scaleX(1);
+    }
+    @keyframes gradientPan {
+        to { background-position: var(--gradient-width, 100%) center; }
+    }
+</style>
+
+    <main>
+        <div class="slideshow">
+            <div class="hover left"></div>
+            <div class="hover right"></div>
+            <img class="slideshow-nav left" src="/sualexander.github.io/assets/chevron-left-Zp_tKixK.png">
+            <img class="slideshow-nav right" src="/sualexander.github.io/assets/chevron-right-C7TtSoWZ.png">
+            <div class="slides">
+                <a href="" class="slide active">
+                    <img src="/sualexander.github.io/assets/Wireframe-B1I-oev7.jpg">
+                </a>
+                <a href="" class="slide">
+                    <img src="/sualexander.github.io/assets/keyboard-CfVSkCl3.jpg">
+                </a>
+            </div>
+            <img class="scroll-arrow" src="/sualexander.github.io/assets/chevron-right-C7TtSoWZ.png">
+        </div>
+        <div class="gallery">
+            <div class="gallery-block">
+                <button class="gallery-header">
+                    <img class="arrow" src="/sualexander.github.io/assets/chevron-right-C7TtSoWZ.png">
+                    <p>2024 &#8722; 2025</p>
+                </button>
+                <div class="gallery-grid">
+                    <a href="" class="gallery-item">
+                        <div class="overlay"></div>
+                        <div class="gallery-text">
+                            <p class="gallery-title">Bababooey</p>
+                            <p class="gallery-subtitle">Game Jam</p>
+                        </div>
+                        <img src="/sualexander.github.io/assets/Wireframe-B1I-oev7.jpg">
+                        <img src="/sualexander.github.io/assets/keyboard-CfVSkCl3.jpg">
+                    </a>
+                    <a href="" class="gallery-item wide">
+                        <div class="overlay"></div>
+                        <div class="gallery-text">
+                            <p class="gallery-title">Bababooey</p>
+                            <p class="gallery-subtitle">Game Jam</p>
+                        </div>
+                        <img src="/sualexander.github.io/assets/Wireframe-B1I-oev7.jpg">
+                        <img src="/sualexander.github.io/assets/keyboard-CfVSkCl3.jpg">
+                    </a>
+                    <a href="" class="gallery-item">
+                        <div class="overlay"></div>
+                        <div class="gallery-text">
+                            <p class="gallery-title">Bababooey</p>
+                            <p class="gallery-subtitle">Game Jam</p>
+                        </div>
+                        <img src="/sualexander.github.io/assets/Wireframe-B1I-oev7.jpg">
+                    </a>
+                    <a href="" class="gallery-item">
+                        <div class="overlay"></div>
+                        <div class="gallery-text">
+                            <p class="gallery-title">Bababooey</p>
+                            <p class="gallery-subtitle">Game Jam</p>
+                        </div>
+                        <img src="/sualexander.github.io/assets/Wireframe-B1I-oev7.jpg">
+                    </a>
+                    <a href="" class="gallery-item">
+                        <div class="overlay"></div>
+                        <div class="gallery-text">
+                            <p class="gallery-title">Bababooey</p>
+                            <p class="gallery-subtitle">Game Jam</p>
+                        </div>
+                        <img src="/sualexander.github.io/assets/Wireframe-B1I-oev7.jpg">
+                    </a>
+                    <a href="" class="gallery-item">
+                        <div class="overlay"></div>
+                        <div class="gallery-text">
+                            <p class="gallery-title">Bababooey</p>
+                            <p class="gallery-subtitle">Game Jam</p>
+                        </div>
+                        <img src="/sualexander.github.io/assets/Wireframe-B1I-oev7.jpg">
+                    </a>
+                </div>
+            </div>
+            <div class="gallery-block">
+                <button class="gallery-header">
+                    <img class="arrow" src="/sualexander.github.io/assets/chevron-right-C7TtSoWZ.png">
+                    <p>2022 &#8722; 2023</p>
+                </button>
+                <div class="gallery-grid">
+                    <a href="" class="gallery-item">
+                        <div class="overlay"></div>
+                        <div class="gallery-text">
+                            <p class="gallery-title">Bababooey</p>
+                            <p class="gallery-subtitle">Game Jam</p>
+                        </div>
+                        <img src="/sualexander.github.io/assets/Wireframe-B1I-oev7.jpg">
+                    </a>
+                </div>
+            </div>
+            <div class="gallery-block">
+                <button class="gallery-header">
+                    <img class="arrow" src="/sualexander.github.io/assets/chevron-right-C7TtSoWZ.png">
+                    <p>A long time ago</p>
+                </button>
+                <div class="gallery-grid">
+                    <a href="" class="gallery-item">
+                        <div class="overlay"></div>
+                        <div class="gallery-text">
+                            <p class="gallery-title">Bababooey</p>
+                            <p class="gallery-subtitle">Game Jam</p>
+                        </div>
+                        <img src="/sualexander.github.io/assets/Wireframe-B1I-oev7.jpg">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+    <nav>
+		<div class="copyright">
+			<span style="--i:0">&copy; &nbsp;</span>
+			<span style="--i:1">2</span>
+			<span style="--i:2">0</span>
+			<span style="--i:3">2</span>
+			<span style="--i:4">5 &nbsp;</span>
+			<span style="--i:5">A</span>
+			<span style="--i:6">L</span>
+			<span style="--i:7">E</span>
+			<span style="--i:8">X</span>
+			<span style="--i:9">A</span>
+			<span style="--i:10">N</span>
+			<span style="--i:11">D</span>
+			<span style="--i:12">E</span>
+			<span style="--i:13">R &nbsp;</span>
+			<span style="--i:14">S</span>
+			<span style="--i:15">U</span>
+		</div>
+        <div class="social-media">
+            <a href="https://sualexander.itch.io" target="_blank" rel="noopener noreferrer">
+                <img style="mask-image: url('/sualexander.github.io/assets/itch-ChVStNW1.png');">
+            </a>
+			<a href="https://github.com/sualexander" target="_blank" rel="noopener noreferrer">
+                <img style="mask-image: url('/sualexander.github.io/assets/github-BsLkggKK.png');">
+            </a>
+			<a href="https://www.youtube.com/@alexandersu9397" target="_blank" rel="noopener noreferrer">
+                <img style="mask-image: url('/sualexander.github.io/assets/youtube-qXmAa7Xs.png');">
+            </a>
+			<a href="https://www.linkedin.com/in/alexander-su-b9701824a" target="_blank" rel="noopener noreferrer">
+                <img style="mask-image: url('/sualexander.github.io/assets/linkedin-r0MfKeB5.png');">
+            </a>
+        </div>
+    </nav>
+</footer>
+
+<style>
+    .footer {
+        background-color: #141019b3;
+    }
+
+    .footer nav {
+		height: 80px;
+        padding: 0 4%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+	.footer .copyright {
+		display: flex;
+		align-items: center;
+	}
+    .footer span {
+		pointer-events: none;
+		position: relative;
+		display: inline-block;
+		font-size: 16px;
+		color: #fff;
+		animation: flip 5s infinite;
+		animation-delay: calc(.15s * var(--i))
+    }
+	@keyframes flip {
+		0%,80% { transform: rotateY(360deg) }
+	}
+
+    .social-media {
+        display: flex;
+        gap: 2vw;
+		align-items: center;
+    }
+
+	.social-media a {
+		height: 40%;
+		display: flex;
+		position: relative;
+	}
+
+	.social-media img {
+		height: 100%;
+		padding: 15px; /*hack for mask artifacts*/
+		mask-size: contain;
+		mask-repeat: no-repeat;
+		mask-position: center;
+		background: rgb(224, 224, 224);
+		transition: all 0.5s ease;
+	}
+	.social-media img:hover {
+		transform: scale(1.1);
+		background: linear-gradient(to bottom, rgb(0, 200, 255), rgb(146, 13, 255), rgb(0, 200, 255));
+		background-size: 100% 400%;
+		animation: gradientPan2 3s linear infinite;
+	}
+	@keyframes gradientPan2 {
+		0% { background-position: center 0%; }
+		100% { background-position: center 130%; }
+	}
+</style>
+
 </body>
 </html>
