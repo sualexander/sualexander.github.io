@@ -1,7 +1,116 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+</head>
 <body>
-<h1>Error</h1>
-<p>I am error.</p>
+    <div class="wrapper">
+        <p class="error-code">ERROR 404</p>
+        <p class="error-message">You're in the wrong part of town, best leave now</p>
+        <button>
+            <a href="/">Go Back Home</p>
+        </button>
+    </div>
 </body>
 </html>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: "Press Start 2P", sans-serif;
+        font-weight: 400;
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    body::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: 
+        radial-gradient(
+            circle at 30% 50%,
+            rgba(65, 162, 197, 0.3) 0%,
+            rgba(14, 30, 45, 0) 50%
+        ),
+        radial-gradient(
+            circle at 70% 50%,
+            rgba(87, 18, 108, 0.2) 0%,
+            rgba(14, 30, 45, 0) 50%
+        ),
+        radial-gradient(
+            circle at 50% 30%,
+            rgba(15, 38, 91, 0.3) 0%,
+            rgba(14, 30, 45, 0) 50%
+        );
+        animation: 
+            flowEffect 69s ease-in-out infinite,
+            pulseEffect 42s ease-in-out infinite;
+        transform-origin: center;
+        z-index: -1;
+    }
+    @keyframes flowEffect {
+        0% { transform: rotate(0deg) scale(1); }
+        33% { transform: rotate(120deg) scale(1.2); }
+        66% { transform: rotate(240deg) scale(0.8); }
+        100% { transform: rotate(360deg) scale(1); }
+    }
+    @keyframes pulseEffect {
+        0%, 100% { filter: brightness(0.9) saturate(1); }
+        50% { filter: brightness(1) saturate(1.25); }
+        85% { filter: brightness(0.5) saturate(1); }
+    }
+
+    .wrapper {
+        text-align: center;
+    }
+
+    .error-code {
+        margin-top: 10%;
+        margin-bottom: 2%;
+        color: white;
+        font-size: 8em;
+        font-weight: 600;
+        pointer-events: none;
+    }
+    
+    .error-message {
+        color: rgb(180, 180, 180);
+        font-size: 2em;
+        pointer-events: none;
+    }
+
+    .wrapper button {
+        margin: 4%;
+        padding: 1% 2%;
+        border-radius: 20px;
+        border-color: transparent;
+        background-color: rgba(117, 117, 117, 0.395);
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .wrapper button:hover {
+        background-color: rgba(255, 255, 255, 0.059);
+    }
+    .wrapper button a {
+        font-family: "Press Start 2P", sans-serif;
+        text-decoration: none;
+        color: white;
+        font-size: 1.2em;
+    }
+</style>
