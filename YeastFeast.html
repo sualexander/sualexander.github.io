@@ -8,8 +8,8 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" crossorigin href="/assets/YeastFeast-5mjAmdoZ.css">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+  <link rel="stylesheet" crossorigin href="/assets/YeastFeast-Dfr37TDV.css">
 </head>
 <body>
     <header class="sticky-header">
@@ -31,7 +31,7 @@
             </div>
         </a>
         <div class="links">
-            <a href="">HOME</a>
+            <a href="/#.gallery">HOME</a>
             <a href="">ABOUT</a>
             <a href="">CONTACT</a>
         </div>
@@ -130,7 +130,62 @@
 </style>
 
     <main>
-        <h1>YeastFeast</h1>
+        <div class="banner">
+            <div class="title">
+                <div class="name"></div>
+                <div class="subtitle"></div>
+            </div>
+            <img src="/assets/banner-B6oU2IhB.png">
+        </div>
+        <div class="content">
+            <div class="content-header">
+                <div class="title">
+                    <div class="morph">
+                        <span id="text1"></span>
+                        <span id="text2"></span>
+                    </div>
+                    <svg id="filters">
+                        <defs>
+                            <filter id="threshold">
+                                <feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0
+                                                        0 1 0 0 0
+                                                        0 0 1 0 0
+                                                        0 0 0 255 -140" />
+                            </filter>
+                        </defs>
+                    </svg>
+                    <p class="subtitle">A delicious adventure</p>
+                </div>
+                <div class="download-links">                   
+                    <p>DOWNLOAD - DOWNLOAD -</p>
+                    <a href="">Exe</a>
+                    <a href="">Itch Page</a>
+                </div>
+            </div>
+            <div class="screenshot one">
+                <img src="/assets/banner-B6oU2IhB.png">
+                <p>Yeastin and feastin over here</p>
+            </div>
+            <div class="screenshot two">
+                <img src="/assets/banner-B6oU2IhB.png">
+                <p>Yeastin and feastin over here</p>
+            </div>
+            <div class="screenshot three">
+                <img src="/assets/banner-B6oU2IhB.png">
+                <p>Yeastin and feastin over here</p>
+            </div>
+            <div class="nav-buttons">
+    <a class="nav-button" href="/">
+        <img class="chev-left" src="/assets/chevron-left-Zp_tKixK.png">
+        The Past
+    </a>
+    <a class="nav-button" href="/">
+        Christmas
+        <img class="chev-right" src="/assets/chevron-right-C7TtSoWZ.png">
+    </a>
+</div>
+            <div class="grid-container"></div>
+        </div>       
     </main>
 
     <footer class="footer">
@@ -233,3 +288,301 @@
 </style>
 </body>
 </html>
+
+<script>
+    class TypeWriter {
+        constructor(element, words, loop, options = {}) {
+            this.element = element;
+            this.words = words;
+            this.loop = loop;
+            this.part = '';
+            this.i = 0;
+            this.offset = 0;
+            this.skipCount = 0;
+            this.skipDelay = 50;
+            this.forwards = true;
+            this.intervalId = null;
+            this.speed = options.speed;
+        }
+
+        start() {
+            this.intervalID = setInterval(() => {
+                if (this.forwards) {
+                    if (this.offset >= this.words[this.i].length) {
+                        ++this.skipCount;
+                        if (this.skipCount == this.skipDelay) {
+                            this.forwards = false;
+                            this.skipCount = 0;
+                        } else if (!this.loop && (this.i === this.words.length - 1)) {
+                            this.element.setAttribute('data-text', this.part);
+                            this.element.style.animation = "glitch 1.3s linear infinite";
+                            clearInterval(this.intervalID);
+                        }
+                    }
+                } else {
+                    if (this.offset == 0) {
+                        this.forwards = true;
+                        this.i++;
+                        this.offset = 0;
+                        if (this.i >= this.words.length) {
+                            this.i = 0;
+                        }
+                    }
+                }
+
+                this.part = this.words[this.i].substr(0, this.offset);
+                if (this.skipCount == 0) {
+                    if (this.forwards) {
+                        this.offset++;
+                    } else {
+                        this.offset--;
+                    }
+                }
+                this.element.textContent = this.part;
+            }, this.speed);
+        }
+    }   
+
+    document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+            const titleWriter = new TypeWriter(
+                document.querySelector('.name'),
+                ["YEAST FEAST"],
+                false,
+                {speed: 100}
+            );
+        titleWriter.start();
+        }, 500);
+
+        setTimeout(() => {
+            const subtitleWriter = new TypeWriter(
+                document.querySelector('.subtitle'),
+                ["Made during Global Game Jam 2025", "A game about growing yeast, breaking bread", "A game about feeding your demons"],
+                true,
+                {speed: 40}
+            );
+            subtitleWriter.start();
+        }, 2000);
+
+        const banner = document.querySelector('.banner');
+        const mainTitle = banner.querySelector('.title');
+        const contentTitle = document.querySelector('.content .title');
+
+        const bannerFadeStart = banner.offsetHeight * 0;
+        const bannerFadeEnd = banner.offsetHeight * 0.45;
+        const contentFadeStart = banner.offsetHeight * 0.55;
+        const contentFadeEnd = banner.offsetHeight * 0.85;
+
+        window.addEventListener('scroll', () => {
+            const scale = window.scrollY * 0.0005 + 1;
+            document.querySelector('.banner img').style.transform = `scale(${scale})`;
+
+            if (scrollY <= bannerFadeEnd) {
+                const bannerProgress = Math.max(0, Math.min(1, (scrollY - bannerFadeStart) / (bannerFadeEnd - bannerFadeStart)));
+                mainTitle.style.transform = `translateY(${scrollY * 1.2}px)`;
+                mainTitle.style.opacity = 1 - bannerProgress;
+            } else {
+                mainTitle.style.opacity = 0;
+            }
+
+            if (scrollY >= contentFadeStart) {
+                const contentProgress = Math.max(0, Math.min(1, (scrollY - contentFadeStart) / (contentFadeEnd - contentFadeStart)));
+                const offset = banner.offsetHeight * 0.3;
+                contentTitle.style.transform = `translateY(${-offset + (contentProgress * offset)}px)`;
+                contentTitle.style.opacity = contentProgress;
+            } else {
+                contentTitle.style.opacity = 0;
+            }
+        });
+    });
+
+    //Pixel Grid
+    const PIXEL_SIZE = 32;
+    const container = document.querySelector('.grid-container');
+    let animationFrame;
+    let pixels = [];
+    let pixelStates = [];
+
+    class PixelState {
+        constructor() {
+            this.nextUpdateTime = 0;
+            this.updateInterval = Math.random() * 2000;
+            this.hueOffset = Math.random() * 360;
+            this.saturationOffset = Math.random() * 1;
+            this.lightnessOffset = Math.random() * 1;
+        }
+
+        shouldUpdate(timestamp) {
+            if (timestamp >= this.nextUpdateTime) {
+                this.nextUpdateTime = timestamp + this.updateInterval;
+                this.updateInterval = Math.random() * 1000 + 2000;
+                return true;
+            }
+            return false;
+        }
+        getColor(timestamp, row, col) {
+            const hue = 0 + this.hueOffset;
+            
+            const saturation = 60 + this.saturationOffset;
+            
+            const baseLightness = 50 + Math.sin(timestamp / 2400 + (row - col * .2) / 64) * 24;
+            const lightness = (baseLightness + this.lightnessOffset) % 50;
+            return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+        }
+        randomize() {
+            this.hueOffset = Math.random() * 15;
+            this.saturationOffset = Math.random() * 20;
+            this.lightnessOffset = Math.random() * 2;
+        }
+    }
+
+    function updateGrid() {
+        const cols = Math.ceil(window.innerWidth / PIXEL_SIZE);
+        const rows = Math.ceil(window.innerHeight / PIXEL_SIZE);
+        
+        container.style.gridTemplateColumns = `repeat(${cols}, ${PIXEL_SIZE}px)`;
+        container.style.gridTemplateRows = `repeat(${rows}, ${PIXEL_SIZE}px)`;
+
+        const totalPixels = rows * cols;
+
+        while (pixels.length < totalPixels) {
+            const pixel = document.createElement('div');
+            pixel.className = 'pixel';
+            container.appendChild(pixel);
+            pixels.push(pixel);
+            pixelStates.push(new PixelState());
+        }       
+        while (pixels.length > totalPixels) {
+            const pixel = pixels.pop();
+            pixelStates.pop();
+            container.removeChild(pixel);
+        }
+    }
+
+    function animate(timestamp) {
+        const cols = Math.ceil(window.innerWidth / PIXEL_SIZE);
+        
+        pixels.forEach((pixel, index) => {
+            const state = pixelStates[index];
+            const row = Math.floor(index / cols);
+            const col = index % cols;
+            
+            if (state.shouldUpdate(timestamp)) {
+                state.randomize();
+            }
+            
+            pixel.style.backgroundColor = state.getColor(timestamp, row, col);
+        });
+        
+        animationFrame = requestAnimationFrame(animate);
+    }
+
+    updateGrid();
+    animate(0);
+
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(updateGrid, 10);
+    });
+
+    //Morph
+    const elts = {
+        text1: document.getElementById("text1"),
+        text2: document.getElementById("text2")
+    };
+
+    const texts = [
+        "YEAST FEAST",
+        "FEAST OF YEAST"
+    ];
+
+    const morphTime = 1;
+    const cooldownTime = 0.25;
+
+    let textIndex = texts.length - 1;
+    let time = new Date();
+    let morph = 0;
+    let cooldown = cooldownTime;
+
+    elts.text1.textContent = texts[textIndex % texts.length];
+    elts.text2.textContent = texts[(textIndex + 1) % texts.length];
+
+    function doMorph() {
+        morph -= cooldown;
+        cooldown = 0;
+
+        let fraction = morph / morphTime;
+
+        if (fraction > 1) {
+            cooldown = cooldownTime;
+            fraction = 1;
+        }
+
+        setMorph(fraction);
+    }
+
+    function setMorph(fraction) {
+        elts.text2.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
+        elts.text2.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+
+        fraction = 1 - fraction;
+        elts.text1.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
+        elts.text1.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+
+        elts.text1.textContent = texts[textIndex % texts.length];
+        elts.text2.textContent = texts[(textIndex + 1) % texts.length];
+    }
+
+    function doCooldown() {
+        morph = 0;
+
+        elts.text2.style.filter = "";
+        elts.text2.style.opacity = "100%";
+
+        elts.text1.style.filter = "";
+        elts.text1.style.opacity = "0%";
+    }
+
+    function animateMorph() {
+        requestAnimationFrame(animateMorph);
+
+        let newTime = new Date();
+        let shouldIncrementIndex = cooldown > 0;
+        let dt = (newTime - time) / 1000;
+        time = newTime;
+
+        cooldown -= dt;
+
+        if (cooldown <= 0) {
+            if (shouldIncrementIndex) {
+                textIndex++;
+            }
+
+            doMorph();
+        } else {
+            doCooldown();
+        }
+    }
+
+    animateMorph();
+
+    //Circle Text
+    const text = document.querySelector('.download-links p');
+    text.innerHTML = text.textContent.replace(/\S/g,"<span>$&</span>");
+    const elements = document.querySelectorAll('.download-links span');
+    for (let i = 0; i < elements.length; ++i)
+    {
+        elements[i].style.transform = "rotate("+i*20+"deg)";
+    }
+
+    document.querySelectorAll('.download-links a').forEach(link => {
+        link.addEventListener('mouseenter', () => {
+            text.style.animationPlayState = 'paused';
+        });
+        link.addEventListener('mouseleave', () => {
+            text.style.animationPlayState = 'running';
+        });
+    });
+
+</script>
