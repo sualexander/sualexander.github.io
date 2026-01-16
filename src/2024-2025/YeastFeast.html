@@ -50,7 +50,7 @@
 
     .sticky-header nav {
         height: 100px;
-        padding: 0 4%;
+        padding: 0 clamp(20px, 4%, 50px) 0 60px;
         display: flex;
         justify-content: space-between;
     }
@@ -86,7 +86,7 @@
 
     .links {
         display: flex;
-        gap: 3vw;
+        gap: clamp(10px, 3vw, 50px);
         align-items: center;
         position: relative;
     }
@@ -189,7 +189,7 @@
     </main>
 
     <footer class="footer">
-    <nav>
+    	<nav>
 		<div class="copyright">
 			<span style="--i:0">&copy; &nbsp;</span>
 			<span style="--i:1">2</span>
@@ -208,57 +208,57 @@
 			<span style="--i:14">S</span>
 			<span style="--i:15">U</span>
 		</div>
-        <div class="social-media">
-            <a href="https://sualexander.itch.io" target="_blank" rel="noopener noreferrer">
-                <img style="mask-image: url('/assets/Home/itch.png');">
-            </a>
-			<a href="https://github.com/sualexander" target="_blank" rel="noopener noreferrer">
-                <img style="mask-image: url('/assets/Home/github.png');">
-            </a>
-			<a href="https://www.youtube.com/@alexandersu9397" target="_blank" rel="noopener noreferrer">
-                <img style="mask-image: url('/assets/Home/youtube.png');">
-            </a>
-			<a href="https://www.linkedin.com/in/alexander-su-b9701824a" target="_blank" rel="noopener noreferrer">
-                <img style="mask-image: url('/assets/Home/linkedin.png');">
-            </a>
-        </div>
-    </nav>
+	<div class="social-media">
+		<a href="https://sualexander.itch.io" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/itch.png');">
+		</a>
+		<a href="https://github.com/sualexander" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/github.png');">
+		</a>
+		<a href="https://www.youtube.com/@alexandersu9397" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/youtube.png');">
+		</a>
+		<a href="https://www.linkedin.com/in/alexander-su-b9701824a" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/linkedin.png');">
+		</a>
+		</div>
+	</nav>
 </footer>
 
 <style>
-    .footer {
-        background-color: #141019b3;
-    }
+	.footer {
+		background-color: #141019b3;
+	}
 
-    .footer nav {
+	.footer nav {
 		height: 80px;
-        padding: 0 4%;
-        display: flex;
-        justify-content: space-between;
-    }
+		padding: 0 3% 0 2%;
+		display: flex;
+		justify-content: space-between;
+	}
 
 	.footer .copyright {
 		display: flex;
 		align-items: center;
 	}
-    .footer span {
+	.footer span {
 		pointer-events: none;
 		position: relative;
 		display: inline-block;
 		font-size: 16px;
 		color: #fff;
-		animation: flip 5s infinite;
-		animation-delay: calc(.15s * var(--i))
-    }
+		animation: flip 10s infinite;
+		animation-delay: calc(0.08s * var(--i))
+	}
 	@keyframes flip {
 		0%,80% { transform: rotateY(360deg) }
 	}
 
-    .social-media {
-        display: flex;
-        gap: 2vw;
+	.social-media {
+		display: flex;
+		gap: 2vw;
 		align-items: center;
-    }
+	}
 
 	.social-media a {
 		height: 40%;

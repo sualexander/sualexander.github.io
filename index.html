@@ -9,8 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="/assets/index-CxiC5zSy.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-CX1g-AA_.css">
+  <script type="module" crossorigin src="/assets/index-CZ7rA4rW.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-Cc9Duv9l.css">
 </head>
 <body>
     <header class="sticky-header">
@@ -51,7 +51,7 @@
 
     .sticky-header nav {
         height: 100px;
-        padding: 0 4%;
+        padding: 0 clamp(20px, 4%, 50px) 0 60px;
         display: flex;
         justify-content: space-between;
     }
@@ -87,7 +87,7 @@
 
     .links {
         display: flex;
-        gap: 3vw;
+        gap: clamp(10px, 3vw, 50px);
         align-items: center;
         position: relative;
     }
@@ -132,16 +132,12 @@
 
     <main>
         <div class="slideshow">
-            <div class="hover left"></div>
-            <div class="hover right"></div>
-            <img class="slideshow-nav left" src="/assets/Home/chevron-left.png">
-            <img class="slideshow-nav right" src="/assets/Home/chevron-right.png">
             <div class="slides">
-                <a href="" class="slide active">
-                    <img src="/assets/Home/Wireframe.jpg">
+                <a href="" class="slide">
+                    <img src="/assets/ALongTimeAgo/FoundMenagerie/TrumpetFlower.jpg">
                 </a>
                 <a href="" class="slide">
-                    <img src="/assets/Home/keyboard.jpg">
+                    <img src="/assets/2025/FishingWithJJ/Cave.jpg">
                 </a>
             </div>
             <img class="scroll-arrow" src="/assets/Home/chevron-right.png">
@@ -156,10 +152,10 @@
                     <a href="" class="gallery-item">
                         <div class="overlay"></div>
                         <div class="gallery-text">
-                            <p class="gallery-title">Game Engine</p>
-                            <p class="gallery-subtitle">Game</p>
+                            <p class="gallery-title">Game Engine (WIP)</p>
+                            <p class="gallery-subtitle">Project</p>
                         </div>
-                        <img data-src="/assets/Home/Wireframe.jpg">
+                        <img data-src="/assets/Loading.jpg">
                     </a>
                 </div>
             </div>
@@ -175,17 +171,18 @@
                             <p class="gallery-title">Parting Thoughts</p>
                             <p class="gallery-subtitle">Game</p>
                         </div>
-                        <img data-src="/assets/Home/Wireframe.jpg">
-                        <img data-src="/assets/Home/keyboard.jpg">
+                        <img data-src="/assets/2025/PartingThoughts/Train.jpg">
+			<img data-src="/assets/2025/PartingThoughts/Forest.jpg">
+			<img data-src="/assets/2025/PartingThoughts/Hand.jpg">
+			<img data-src="/assets/2025/PartingThoughts/Garden.jpg">
                     </a>
                     <a href="" class="gallery-item">
                         <div class="overlay"></div>
                         <div class="gallery-text">
-                            <p class="gallery-title">PPU</p>
+                            <p class="gallery-title">PPU Emulator</p>
                             <p class="gallery-subtitle">Game</p>
                         </div>
-                        <img data-src="/assets/Home/Wireframe.jpg">
-                        <img data-src="/assets/Home/keyboard.jpg">
+                        <img data-src="/assets/2025/PPUEmulator/Temp.jpg">
                     </a>
                     <a href="" class="gallery-item">
                         <div class="overlay"></div>
@@ -193,7 +190,7 @@
                             <p class="gallery-title">3D Viewer</p>
                             <p class="gallery-subtitle">Project</p>
                         </div>
-                        <img data-src="/assets/Home/Wireframe.jpg">
+                        <img data-src="/assets/2025/3DViewer/Temp.jpg">
                     </a>
                     <a href="" class="gallery-item">
                         <div class="overlay"></div>
@@ -201,7 +198,7 @@
                             <p class="gallery-title">Unicorn</p>
                             <p class="gallery-subtitle">Game</p>
                         </div>
-                        <img data-src="/assets/Home/Wireframe.jpg">
+                        <img data-src="/assets/2025/Unicorn/Temp.jpg">
                     </a>
                     <a href="" class="gallery-item">
                         <div class="overlay"></div>
@@ -210,6 +207,10 @@
                             <p class="gallery-subtitle">Game Jam</p>
                         </div>
                         <img data-src="/assets/2025/FishingWithJJ/Spawn.jpg">
+			<img data-src="/assets/2025/FishingWithJJ/Lake.jpg">
+			<img data-src="/assets/2025/FishingWithJJ/Hell.jpg">
+			<img data-src="/assets/2025/FishingWithJJ/Shop.jpg">
+			<img data-src="/assets/2025/FishingWithJJ/Cave.jpg">
                     </a>
                     <a href="src/2024-2025/Guan.html" class="gallery-item wide">
                         <div class="overlay"></div>
@@ -539,7 +540,7 @@
     </main>
 
     <footer class="footer">
-    <nav>
+    	<nav>
 		<div class="copyright">
 			<span style="--i:0">&copy; &nbsp;</span>
 			<span style="--i:1">2</span>
@@ -558,57 +559,57 @@
 			<span style="--i:14">S</span>
 			<span style="--i:15">U</span>
 		</div>
-        <div class="social-media">
-            <a href="https://sualexander.itch.io" target="_blank" rel="noopener noreferrer">
-                <img style="mask-image: url('/assets/Home/itch.png');">
-            </a>
-			<a href="https://github.com/sualexander" target="_blank" rel="noopener noreferrer">
-                <img style="mask-image: url('/assets/Home/github.png');">
-            </a>
-			<a href="https://www.youtube.com/@alexandersu9397" target="_blank" rel="noopener noreferrer">
-                <img style="mask-image: url('/assets/Home/youtube.png');">
-            </a>
-			<a href="https://www.linkedin.com/in/alexander-su-b9701824a" target="_blank" rel="noopener noreferrer">
-                <img style="mask-image: url('/assets/Home/linkedin.png');">
-            </a>
-        </div>
-    </nav>
+	<div class="social-media">
+		<a href="https://sualexander.itch.io" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/itch.png');">
+		</a>
+		<a href="https://github.com/sualexander" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/github.png');">
+		</a>
+		<a href="https://www.youtube.com/@alexandersu9397" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/youtube.png');">
+		</a>
+		<a href="https://www.linkedin.com/in/alexander-su-b9701824a" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/linkedin.png');">
+		</a>
+		</div>
+	</nav>
 </footer>
 
 <style>
-    .footer {
-        background-color: #141019b3;
-    }
+	.footer {
+		background-color: #141019b3;
+	}
 
-    .footer nav {
+	.footer nav {
 		height: 80px;
-        padding: 0 4%;
-        display: flex;
-        justify-content: space-between;
-    }
+		padding: 0 3% 0 2%;
+		display: flex;
+		justify-content: space-between;
+	}
 
 	.footer .copyright {
 		display: flex;
 		align-items: center;
 	}
-    .footer span {
+	.footer span {
 		pointer-events: none;
 		position: relative;
 		display: inline-block;
 		font-size: 16px;
 		color: #fff;
-		animation: flip 5s infinite;
-		animation-delay: calc(.15s * var(--i))
-    }
+		animation: flip 10s infinite;
+		animation-delay: calc(0.08s * var(--i))
+	}
 	@keyframes flip {
 		0%,80% { transform: rotateY(360deg) }
 	}
 
-    .social-media {
-        display: flex;
-        gap: 2vw;
+	.social-media {
+		display: flex;
+		gap: 2vw;
 		align-items: center;
-    }
+	}
 
 	.social-media a {
 		height: 40%;
