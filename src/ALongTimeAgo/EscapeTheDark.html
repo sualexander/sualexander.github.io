@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Escape The Dark</title>
+
+
+	<style>
+		.wave-top {
+			clip-path: url(#waveClip);
+			margin-top: -140px;
+			padding-top: 140px;
+		}
+		.wave-top-2 {
+			clip-path: url(#waveClip2);
+			margin-top: -140px;
+			padding-top: 140px;
+		}
+
+		@keyframes fire {
+			from { background-position: 0 0; }
+			to { background-position: -1800% 0; }
+		}
+		.fire {
+			background-image: url('/assets/ALongTimeAgo/EscapeTheDark/FireSheet.png');
+			background-size: 1800% 100%;
+			animation: fire 2s steps(18) infinite;
+			aspect-ratio: 8 / 11;
+			height: 300px;
+			position: relative;
+		}
+		.fire::after {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 400%;
+			height: 400%;
+			transform: translate(-50%, -50%);
+			background: radial-gradient(circle, rgba(255, 148, 25, 0.3) 0%, rgba(255, 64, 0, 0.15) 30%, transparent 60%);
+			animation: glow 2s ease-in-out infinite;
+			pointer-events: none;
+		}
+		@keyframes glow {
+			0%, 100% { opacity: 0.1; transform: translate(-50%, -50%) scale(0.8); }
+			50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.15); }
+		}
+		@keyframes paintings {
+			from { background-position: 0 0; }
+			to { background-position: -500% 0; }
+		}
+		.paintings {
+			background-image: url('/assets/ALongTimeAgo/EscapeTheDark/CavePaintings.png');
+			background-size: 500% 100%;
+			animation: paintings 12s steps(5) infinite;
+			aspect-ratio: 55 / 31;
+			height: 350px;
+			box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.5);
+		}
+	</style>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Faculty+Glyphic&display=swap" rel="stylesheet">
+  <link rel="stylesheet" crossorigin href="/assets/baseStyle-Dd8O5InU.css">
+</head>
+
+<body style="font-family: 'Faculty Glyphic', sans-serif; font-weight: 400;">
+	<header class="sticky-header">
+    <nav>
+        <a href="/" class="logo">
+            <div class="container">
+                <span style="--i:1;">ALEXANDER SU</span>
+                <span style="--i:2;">ALEXANDER SU</span>
+                <span style="--i:3;">ALEXANDER SU</span>
+                <span style="--i:4;">ALEXANDER SU</span>
+                <span style="--i:5;">ALEXANDER SU</span>
+                <span style="--i:6;">ALEXANDER SU</span>
+                <span style="--i:7;">ALEXANDER SU</span>
+                <span style="--i:8;">ALEXANDER SU</span>
+                <span style="--i:9;">ALEXANDER SU</span>
+                <span style="--i:10;">ALEXANDER SU</span>
+                <span style="--i:11;">ALEXANDER SU</span>
+                <span style="--i:12;">ALEXANDER SU</span>
+            </div>
+        </a>
+        <div class="links">
+            <a href="/#.gallery">HOME</a>
+            <a href="">ABOUT</a>
+            <a href="">CONTACT</a>
+        </div>
+    </nav>
+</header>
+
+<style>
+    .sticky-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #141019e7;
+        z-index: 10;
+    }
+
+    .sticky-header nav {
+        height: 100px;
+        padding: 0 clamp(20px, 4%, 50px) 0 60px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+        margin-left: 30px;
+    }
+    .logo .container {
+        transform-style: preserve-3d;
+        animation: rotate 25s linear infinite;
+    }
+    .logo span {
+        position: absolute;
+        white-space: nowrap;
+        transform-style: preserve-3d;
+        transform: translate(-50%, -50%) rotateX(calc(var(--i) * 30deg)) translateZ(25px);
+        font-size: 1em;
+        color: color-mix(in hsl, 
+        #aff2ff calc(50% + 50% * cos(calc(var(--i) * 30deg))), 
+        #aeaeff calc(50% - 50% * cos(calc(var(--i) * 30deg)))
+    );
+        background: linear-gradient(90deg, transparent, rgb(0, 0, 0), transparent);
+        line-height: 0.7em;
+    }
+    @keyframes rotate {
+        0% { transform: perspective(200px) rotateX(0deg) rotate(25deg); }
+        100% { transform: perspective(200px) rotateX(360deg) rotate(25deg); }
+    }
+
+    .links {
+        display: flex;
+        gap: clamp(10px, 3vw, 50px);
+        align-items: center;
+        position: relative;
+    }
+
+    .links a {
+        color: #ffffff;
+        font-size: 18px;
+        text-decoration: none;
+        position: relative;
+        background: linear-gradient(to right, rgb(0, 195, 255), rgb(65, 58, 255), rgb(8, 195, 255));
+        background-size: 200% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        transition: all 0.3s ease;
+        --gradient-width: 0px;
+    }
+    .links a:hover {
+        transform: scale(1.2);
+        color: transparent;
+        animation: gradientPan var(--animation-duration, 2s) linear infinite;
+        font-weight: 500;
+    }
+    .links a::before {
+        content: '';
+        position: absolute;
+        width: 110%;
+        height: 2px;
+        left: -5%;
+        bottom: -5px;
+        background: white;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s ease-out;
+    }
+    .links a:hover::before {
+        transform: scaleX(1);
+    }
+    @keyframes gradientPan {
+        to { background-position: var(--gradient-width, 100%) center; }
+    }
+</style>
+
+<script>
+	const stickyHeader = document.querySelector('.sticky-header');
+	window.addEventListener('scroll', () => {
+		const opacity = Math.max(0.8, 1 - window.scrollY / 2400);
+		stickyHeader.style.backgroundColor = `rgba(20, 16, 25, ${opacity * 0.9})`;
+	});
+
+	document.querySelectorAll('.links a').forEach(link => {
+		const width = link.offsetWidth;
+		link.style.setProperty('--gradient-width', `${width * 2}px`);
+		link.style.setProperty('--animation-duration', `${width * 0.025}s`);
+	});
+</script>
+
+	<main>
+		<svg width="0" height="0" style="position: absolute;">
+			<defs>
+				<clipPath id="waveClip" clipPathUnits="objectBoundingBox">
+					<path d="M0,0.02 C0.25,0.22 0.75,0 1,0.08 L1,1 L0,1 Z"/>
+				</clipPath>
+				<clipPath id="waveClip2" clipPathUnits="objectBoundingBox">
+					<path d="M0,0.14 C0.35,0.04 0.65,0.16 1,0.06 L1,1 L0,1 Z"/>
+				</clipPath>
+			</defs>
+		</svg>
+
+		<section class="section" style="background-image: url('/assets/ALongTimeAgo/EscapeTheDark/Fire.jpg'); --height: 900px; justify-content: flex-start; padding: 60px 4vw;">
+			<div class="section-overlay" style="--overlay: 0.1"></div>
+
+			<div class="section-text" style="flex-direction: column; align-items: flex-start; gap: 12px">
+				<h1 style="font-size: clamp(38px, 6vw, 60px); font-weight: 750;">Escape The Dark</h1>
+				<p style="font-size: clamp(14px, 2.3vw, 22px); padding: 1px; color: #ffffffe9">2020 | Running Out</p>
+				<div style="height: 180px;"></div>
+				<p style="font-size: clamp(10px, 1.2vw, 14px); color: #fffffff8">Aiden Schiller, Alex Su, Micha Rand, Rhea Madhogarhia, Rohan Madhogarhia</p>
+				<i style="font-size: clamp(10px, 1.2vw, 14px); color: #ffffffc8">Created for the 2020 HW Game Jam</i>
+			</div>
+		</section>
+
+		<section class="section wave-top" style="background-image: url('/assets/ALongTimeAgo/EscapeTheDark/End.jpg'); --height: auto; flex-direction: column; text-align: center; font-size: 1.1em">
+			<div class="section-overlay" style="--overlay: 0.8"></div>
+			<div class="section-text" style="width: 100%; justify-content: center; padding: 60px">
+				<p style="max-width: 700px;">
+					We interpreted the theme as a dying torch <b>running out</b> of fuel, along with the literal goal of <b>running out</b> of the cave system.
+					Unlit campfires scattered throughout the map allowed you to relight your torch and served as soft checkpoints to retreat to, 
+					although we didn't finish implementing an actual fail-state for being in the dark too long. 
+					Other than that, it's straightforward platforming with some doors and levers thrown in there for good measure.
+				</p>
+			</div>
+
+			<div class="section-text" style="width: 100%; min-height: 400px; justify-content: center; gap: 60px; padding: 40px;">
+				<p style="max-width: 500px">
+					These cave paintings scattered throughout tell the tale of an ancient people that once inhabited these depths.
+					A light smattering of environmental storytelling but really there just to break up the monotony of the single texture cave walls.
+				</p>
+				<div class="paintings"></div>
+			</div>
+
+			<div class="section-text" style="width: 100%; min-height: 400px; justify-content: center; gap: 60px; padding: 40px;">
+				<div class="fire"></div>
+				<p style="max-width: 600px;">
+					I remember struggling surprisingly hard with the sprite animations in Unity even for a first attempt.
+					Getting collisions to behave and the fires to actually illuminate the scene was also a pain.
+					It was certainly a different time for programming back then before ChatGPT snuck up on everyone.
+				</p>
+			</div>
+
+			<div style="height: 60px;"></div>
+		</section>
+
+		<section class="section wave-top-2" style="background-image: url('/assets/ALongTimeAgo/EscapeTheDark/Title.jpg'); --height: auto; flex-direction: column;">
+			<div class="section-overlay" style="--overlay: 0.2"></div>
+
+			<div style="width: 100%; max-width: 850px; aspect-ratio: 16/9; z-index: 1;">
+				<iframe
+					width="100%"
+					height="100%"
+					src="https://www.youtube.com/embed/iNX4EOyGSsQ?loop=1&playlist=iNX4EOyGSsQ&rel=0"
+					allowfullscreen
+					style="border: none; box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.4);">
+				</iframe>
+			</div>
+
+			<a href="https://sualexander.itch.io/escape-the-dark" target="_blank" class="button" style="z-index: 1; margin-top: 30px; padding: 12px 30px; background-color: #fb5d5c; font-size: 1.2em;">
+				Play on itch.io
+			</a>
+
+			<div style="width: 100%; z-index: 1;">
+				<div class="nav-buttons">
+	<a class="nav-button" href="/src/ALongTimeAgo/Gravity.html">
+		<img class="chev-left" src="/assets/Home/chevron-left.png">
+		<span>Gravity</span>
+	</a>
+	<a class="nav-button" href="/src/ALongTimeAgo/FirstSteps.html">
+		<span>First Steps</span>
+		<img class="chev-right" src="/assets/Home/chevron-right.png">
+	</a>
+</div>
+
+<style>
+	.nav-buttons {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		padding: 3%;
+	}
+
+	.nav-button {
+		white-space: nowrap;
+		text-decoration: none;
+		color: rgb(255, 255, 255);
+		font-size: clamp(24px, 2.5vw, 36px);
+		display: flex;
+		align-items: center;
+		transition: all 0.3s ease;
+	}
+	.nav-button:hover {
+		opacity: 0.7;
+	}
+	.nav-button img {
+		height: clamp(36px, 3.5vw, 48px);
+		padding: 0 5%;
+	}
+	.nav-button span {
+		transform: translateY(-0.08em);
+	}
+
+	.chev-left,
+	.chev-right {
+		transition: all 0.3s ease;
+	}
+
+	.nav-button:hover .chev-left {
+		animation: bounceLeft 1.6s ease-in-out infinite;
+	}
+
+	.nav-button:hover .chev-right {
+		animation: bounceRight 1.6s ease-in-out infinite;
+	}
+
+	@keyframes bounceLeft {
+		0%	{ transform: translateX(0); }
+		25%	{ transform: translateX(-16%); }
+		40%	{ transform: translateX(-5%); }
+		65%	{ transform: translateX(-12%); }
+		85%	{ transform: translateX(-3%); }
+		100%	{ transform: translateX(0); }
+	}
+
+	@keyframes bounceRight {
+		0%	{ transform: translateX(0); }
+		25%	{ transform: translateX(16%); }
+		40%	{ transform: translateX(5%); }
+		65%	{ transform: translateX(12%); }
+		85%	{ transform: translateX(3%); }
+		100%	{ transform: translateX(0); }
+	}
+</style>
+			</div>
+		</section>
+	</main>
+
+	<footer class="footer">
+    	<nav>
+		<div class="copyright">
+			<span style="--i:0">&copy; &nbsp;</span>
+			<span style="--i:1">2</span>
+			<span style="--i:2">0</span>
+			<span style="--i:3">2</span>
+			<span style="--i:4">6 &nbsp;</span>
+			<span style="--i:5">A</span>
+			<span style="--i:6">L</span>
+			<span style="--i:7">E</span>
+			<span style="--i:8">X</span>
+			<span style="--i:9">A</span>
+			<span style="--i:10">N</span>
+			<span style="--i:11">D</span>
+			<span style="--i:12">E</span>
+			<span style="--i:13">R &nbsp;</span>
+			<span style="--i:14">S</span>
+			<span style="--i:15">U</span>
+		</div>
+	<div class="social-media">
+		<a href="https://sualexander.itch.io" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/itch.png');">
+		</a>
+		<a href="https://github.com/sualexander" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/github.png');">
+		</a>
+		<a href="https://www.youtube.com/@alexandersu9397" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/youtube.png');">
+		</a>
+		<a href="https://www.linkedin.com/in/alexander-su-b9701824a" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/linkedin.png');">
+		</a>
+		</div>
+	</nav>
+</footer>
+
+<script>
+	document.querySelectorAll('.social-media img').forEach(img => {
+		const computedStyle = window.getComputedStyle(img);
+		const maskImage = computedStyle.maskImage;
+		const imageUrl = maskImage.replace(/^url\(['"](.+)['"]\)$/, '$1');
+
+		const temp = new Image();
+		temp.src = imageUrl;
+		temp.onload = () => {
+			const aspectRatio = temp.naturalWidth / temp.naturalHeight;
+			img.style.width = `${32 * aspectRatio}px`;
+		};
+	});
+</script>
+
+<style>
+	.footer {
+		background-color: #141019b3;
+	}
+
+	.footer nav {
+		height: 80px;
+		padding: 0 3% 0 2%;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.footer .copyright {
+		display: flex;
+		align-items: center;
+	}
+	.footer span {
+		pointer-events: none;
+		position: relative;
+		display: inline-block;
+		font-size: 16px;
+		font-weight: 400;
+		color: #fff;
+		animation: flip 10s infinite;
+		animation-delay: calc(0.08s * var(--i))
+	}
+	@keyframes flip {
+		0%,80% { transform: rotateY(360deg) }
+	}
+
+	.social-media {
+		display: flex;
+		gap: 2vw;
+		align-items: center;
+	}
+
+	.social-media a {
+		height: 40%;
+		display: flex;
+		position: relative;
+	}
+
+	.social-media img {
+		height: 100%;
+		padding: 15px; /*hack for mask artifacts*/
+		mask-size: contain;
+		mask-repeat: no-repeat;
+		mask-position: center;
+		background: rgb(224, 224, 224);
+		transition: all 0.5s ease;
+	}
+	.social-media img:hover {
+		transform: scale(1.1);
+		background: linear-gradient(to bottom, rgb(0, 200, 255), rgb(146, 13, 255), rgb(0, 200, 255));
+		background-size: 100% 400%;
+		animation: gradientPan2 3s linear infinite;
+	}
+	@keyframes gradientPan2 {
+		0% { background-position: center 0%; }
+		100% { background-position: center 130%; }
+	}
+</style>
+</body>
+</html>

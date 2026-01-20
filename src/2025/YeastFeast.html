@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
-  <link rel="stylesheet" crossorigin href="/assets/gameStyles-Dfr37TDV.css">
+  <link rel="stylesheet" crossorigin href="/assets/YeastFeast-Dfr37TDV.css">
 </head>
 <body>
     <header class="sticky-header">
@@ -129,6 +129,20 @@
     }
 </style>
 
+<script>
+	const stickyHeader = document.querySelector('.sticky-header');
+	window.addEventListener('scroll', () => {
+		const opacity = Math.max(0.8, 1 - window.scrollY / 2400);
+		stickyHeader.style.backgroundColor = `rgba(20, 16, 25, ${opacity * 0.9})`;
+	});
+
+	document.querySelectorAll('.links a').forEach(link => {
+		const width = link.offsetWidth;
+		link.style.setProperty('--gradient-width', `${width * 2}px`);
+		link.style.setProperty('--animation-duration', `${width * 0.025}s`);
+	});
+</script>
+
     <main>
         <div class="banner">
             <div class="title">
@@ -175,15 +189,75 @@
                 <p>Yeastin and feastin over here</p>
             </div>
             <div class="nav-buttons">
-    <a class="nav-button" href="/">
-        <img class="chev-left" src="/assets/Home/chevron-left.png">
-        The Past
-    </a>
-    <a class="nav-button" href="/">
-        Christmas
-        <img class="chev-right" src="/assets/Home/chevron-right.png">
-    </a>
+	<a class="nav-button" href="/">
+		<img class="chev-left" src="/assets/Home/chevron-left.png">
+		<span>The Past</span>
+	</a>
+	<a class="nav-button" href="/">
+		<span>Christmas</span>
+		<img class="chev-right" src="/assets/Home/chevron-right.png">
+	</a>
 </div>
+
+<style>
+	.nav-buttons {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		padding: 3%;
+	}
+
+	.nav-button {
+		white-space: nowrap;
+		text-decoration: none;
+		color: rgb(255, 255, 255);
+		font-size: clamp(24px, 2.5vw, 36px);
+		display: flex;
+		align-items: center;
+		transition: all 0.3s ease;
+	}
+	.nav-button:hover {
+		opacity: 0.7;
+	}
+	.nav-button img {
+		height: clamp(36px, 3.5vw, 48px);
+		padding: 0 5%;
+	}
+	.nav-button span {
+		transform: translateY(-0.08em);
+	}
+
+	.chev-left,
+	.chev-right {
+		transition: all 0.3s ease;
+	}
+
+	.nav-button:hover .chev-left {
+		animation: bounceLeft 1.6s ease-in-out infinite;
+	}
+
+	.nav-button:hover .chev-right {
+		animation: bounceRight 1.6s ease-in-out infinite;
+	}
+
+	@keyframes bounceLeft {
+		0%	{ transform: translateX(0); }
+		25%	{ transform: translateX(-16%); }
+		40%	{ transform: translateX(-5%); }
+		65%	{ transform: translateX(-12%); }
+		85%	{ transform: translateX(-3%); }
+		100%	{ transform: translateX(0); }
+	}
+
+	@keyframes bounceRight {
+		0%	{ transform: translateX(0); }
+		25%	{ transform: translateX(16%); }
+		40%	{ transform: translateX(5%); }
+		65%	{ transform: translateX(12%); }
+		85%	{ transform: translateX(3%); }
+		100%	{ transform: translateX(0); }
+	}
+</style>
             <div class="grid-container"></div>
         </div>       
     </main>
@@ -195,7 +269,7 @@
 			<span style="--i:1">2</span>
 			<span style="--i:2">0</span>
 			<span style="--i:3">2</span>
-			<span style="--i:4">5 &nbsp;</span>
+			<span style="--i:4">6 &nbsp;</span>
 			<span style="--i:5">A</span>
 			<span style="--i:6">L</span>
 			<span style="--i:7">E</span>
@@ -225,6 +299,21 @@
 	</nav>
 </footer>
 
+<script>
+	document.querySelectorAll('.social-media img').forEach(img => {
+		const computedStyle = window.getComputedStyle(img);
+		const maskImage = computedStyle.maskImage;
+		const imageUrl = maskImage.replace(/^url\(['"](.+)['"]\)$/, '$1');
+
+		const temp = new Image();
+		temp.src = imageUrl;
+		temp.onload = () => {
+			const aspectRatio = temp.naturalWidth / temp.naturalHeight;
+			img.style.width = `${32 * aspectRatio}px`;
+		};
+	});
+</script>
+
 <style>
 	.footer {
 		background-color: #141019b3;
@@ -246,6 +335,7 @@
 		position: relative;
 		display: inline-block;
 		font-size: 16px;
+		font-weight: 400;
 		color: #fff;
 		animation: flip 10s infinite;
 		animation-delay: calc(0.08s * var(--i))

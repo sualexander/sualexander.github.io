@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="/assets/index-CZ7rA4rW.js"></script>
+  <script type="module" crossorigin src="/assets/index-Btmp6AWv.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/index-Cc9Duv9l.css">
 </head>
 <body>
@@ -130,6 +130,20 @@
     }
 </style>
 
+<script>
+	const stickyHeader = document.querySelector('.sticky-header');
+	window.addEventListener('scroll', () => {
+		const opacity = Math.max(0.8, 1 - window.scrollY / 2400);
+		stickyHeader.style.backgroundColor = `rgba(20, 16, 25, ${opacity * 0.9})`;
+	});
+
+	document.querySelectorAll('.links a').forEach(link => {
+		const width = link.offsetWidth;
+		link.style.setProperty('--gradient-width', `${width * 2}px`);
+		link.style.setProperty('--animation-duration', `${width * 0.025}s`);
+	});
+</script>
+
     <main>
         <div class="slideshow">
             <div class="slides">
@@ -203,14 +217,10 @@
                     <a href="" class="gallery-item">
                         <div class="overlay"></div>
                         <div class="gallery-text">
-                            <p class="gallery-title">Fishing With JJ</p>
-                            <p class="gallery-subtitle">Game Jam</p>
+                            <p class="gallery-title">Space Trading</p>
+                            <p class="gallery-subtitle">Game</p>
                         </div>
-                        <img data-src="/assets/2025/FishingWithJJ/Spawn.jpg">
-			<img data-src="/assets/2025/FishingWithJJ/Lake.jpg">
-			<img data-src="/assets/2025/FishingWithJJ/Hell.jpg">
-			<img data-src="/assets/2025/FishingWithJJ/Shop.jpg">
-			<img data-src="/assets/2025/FishingWithJJ/Cave.jpg">
+                        <img data-src="/assets/Loading.jpg">
                     </a>
                     <a href="src/2024-2025/Guan.html" class="gallery-item wide">
                         <div class="overlay"></div>
@@ -224,6 +234,17 @@
 			<img data-src="/assets/2025/Guan/Arms.jpg">
 			<img data-src="/assets/2025/Guan/Bar.jpg">
 			<img data-src="/assets/2025/Guan/End.jpg">
+                    </a>
+                    <a href="" class="gallery-item">
+                        <div class="overlay"></div>
+                        <div class="gallery-text">
+                            <p class="gallery-title">Fishing With JJ</p>
+                            <p class="gallery-subtitle">Game Jam</p>
+                        </div>
+                        <img data-src="/assets/2025/FishingWithJJ/Spawn.jpg">
+			<img data-src="/assets/2025/FishingWithJJ/Lake.jpg">
+			<img data-src="/assets/2025/FishingWithJJ/Hell.jpg">
+			<img data-src="/assets/2025/FishingWithJJ/Cave.jpg">
                     </a>
                     <a href="src/2025/YeastFeast.html" class="gallery-item">
                         <div class="overlay"></div>
@@ -351,6 +372,16 @@
                             <p class="gallery-subtitle">Game</p>
                         </div>
                         <img data-src="/assets/2023/Blink/Eye.jpg">
+			<img data-src="/assets/2023/Blink/RedChair.jpg">
+			<img data-src="/assets/2023/Blink/Jungle.jpg">
+			<img data-src="/assets/2023/Blink/Bread.jpg">
+			<img data-src="/assets/2023/Blink/Spawn.jpg">
+			<img data-src="/assets/2023/Blink/Corridor.jpg">
+			<img data-src="/assets/2023/Blink/Apollo.jpg">
+			<img data-src="/assets/2023/Blink/Crack.jpg">
+			<img data-src="/assets/2023/Blink/Canyon.jpg">
+			<img data-src="/assets/2023/Blink/DoublePedestal.jpg">
+			<img data-src="/assets/2023/Blink/Aarnav.jpg">
                     </a>
                     <a href="" class="gallery-item">
                         <div class="overlay"></div>
@@ -494,7 +525,7 @@
                         <img data-src="/assets/ALongTimeAgo/TheGreatDerby/Title.jpg">
                         <img data-src="/assets/ALongTimeAgo/TheGreatDerby/Game.jpg">
                     </a>
-                    <a href="" class="gallery-item">
+                    <a href="/src/ALongTimeAgo/Sumusic.html" class="gallery-item">
                         <div class="overlay"></div>
                         <div class="gallery-text">
                             <p class="gallery-title">Sumusic</p>
@@ -506,7 +537,7 @@
 			<img data-src="/assets/ALongTimeAgo/Sumusic/Wallpaper.jpg">
 			<img data-src="/assets/ALongTimeAgo/Sumusic/Onward.jpg">
                     </a>
-                    <a href="" class="gallery-item">
+                    <a href="/src/ALongTimeAgo/Gravity.html" class="gallery-item">
                         <div class="overlay"></div>
                         <div class="gallery-text">
                             <p class="gallery-title">Gravity</p>
@@ -514,7 +545,7 @@
                         </div>
                         <img data-src="/assets/ALongTimeAgo/Gravity/Gravity.jpg">
                     </a>
-                    <a href="" class="gallery-item">
+                    <a href="/src/ALongTimeAgo/EscapeTheDark.html" class="gallery-item">
                         <div class="overlay"></div>
                         <div class="gallery-text">
                             <p class="gallery-title">Escape The Dark</p>
@@ -522,8 +553,9 @@
                         </div>
                         <img data-src="/assets/ALongTimeAgo/EscapeTheDark/End.jpg">
                         <img data-src="/assets/ALongTimeAgo/EscapeTheDark/Fire.jpg">
+			<img data-src="/assets/ALongTimeAgo/EscapeTheDark/Title.jpg">
                     </a>
-                    <a href="" class="gallery-item">
+                    <a href="/src/ALongTimeAgo/FirstSteps.html" class="gallery-item">
                         <div class="overlay"></div>
                         <div class="gallery-text">
                             <p class="gallery-title">First Steps</p>
@@ -546,7 +578,7 @@
 			<span style="--i:1">2</span>
 			<span style="--i:2">0</span>
 			<span style="--i:3">2</span>
-			<span style="--i:4">5 &nbsp;</span>
+			<span style="--i:4">6 &nbsp;</span>
 			<span style="--i:5">A</span>
 			<span style="--i:6">L</span>
 			<span style="--i:7">E</span>
@@ -576,6 +608,21 @@
 	</nav>
 </footer>
 
+<script>
+	document.querySelectorAll('.social-media img').forEach(img => {
+		const computedStyle = window.getComputedStyle(img);
+		const maskImage = computedStyle.maskImage;
+		const imageUrl = maskImage.replace(/^url\(['"](.+)['"]\)$/, '$1');
+
+		const temp = new Image();
+		temp.src = imageUrl;
+		temp.onload = () => {
+			const aspectRatio = temp.naturalWidth / temp.naturalHeight;
+			img.style.width = `${32 * aspectRatio}px`;
+		};
+	});
+</script>
+
 <style>
 	.footer {
 		background-color: #141019b3;
@@ -597,6 +644,7 @@
 		position: relative;
 		display: inline-block;
 		font-size: 16px;
+		font-weight: 400;
 		color: #fff;
 		animation: flip 10s infinite;
 		animation-delay: calc(0.08s * var(--i))

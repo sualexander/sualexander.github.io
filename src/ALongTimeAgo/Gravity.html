@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Gravity</title>
+
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" crossorigin href="/assets/baseStyle-Dd8O5InU.css">
+</head>
+
+<body style="font-family: 'IBM Plex Mono', monospace; font-weight: 400;">
+	<header class="sticky-header">
+    <nav>
+        <a href="/" class="logo">
+            <div class="container">
+                <span style="--i:1;">ALEXANDER SU</span>
+                <span style="--i:2;">ALEXANDER SU</span>
+                <span style="--i:3;">ALEXANDER SU</span>
+                <span style="--i:4;">ALEXANDER SU</span>
+                <span style="--i:5;">ALEXANDER SU</span>
+                <span style="--i:6;">ALEXANDER SU</span>
+                <span style="--i:7;">ALEXANDER SU</span>
+                <span style="--i:8;">ALEXANDER SU</span>
+                <span style="--i:9;">ALEXANDER SU</span>
+                <span style="--i:10;">ALEXANDER SU</span>
+                <span style="--i:11;">ALEXANDER SU</span>
+                <span style="--i:12;">ALEXANDER SU</span>
+            </div>
+        </a>
+        <div class="links">
+            <a href="/#.gallery">HOME</a>
+            <a href="">ABOUT</a>
+            <a href="">CONTACT</a>
+        </div>
+    </nav>
+</header>
+
+<style>
+    .sticky-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #141019e7;
+        z-index: 10;
+    }
+
+    .sticky-header nav {
+        height: 100px;
+        padding: 0 clamp(20px, 4%, 50px) 0 60px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+        margin-left: 30px;
+    }
+    .logo .container {
+        transform-style: preserve-3d;
+        animation: rotate 25s linear infinite;
+    }
+    .logo span {
+        position: absolute;
+        white-space: nowrap;
+        transform-style: preserve-3d;
+        transform: translate(-50%, -50%) rotateX(calc(var(--i) * 30deg)) translateZ(25px);
+        font-size: 1em;
+        color: color-mix(in hsl, 
+        #aff2ff calc(50% + 50% * cos(calc(var(--i) * 30deg))), 
+        #aeaeff calc(50% - 50% * cos(calc(var(--i) * 30deg)))
+    );
+        background: linear-gradient(90deg, transparent, rgb(0, 0, 0), transparent);
+        line-height: 0.7em;
+    }
+    @keyframes rotate {
+        0% { transform: perspective(200px) rotateX(0deg) rotate(25deg); }
+        100% { transform: perspective(200px) rotateX(360deg) rotate(25deg); }
+    }
+
+    .links {
+        display: flex;
+        gap: clamp(10px, 3vw, 50px);
+        align-items: center;
+        position: relative;
+    }
+
+    .links a {
+        color: #ffffff;
+        font-size: 18px;
+        text-decoration: none;
+        position: relative;
+        background: linear-gradient(to right, rgb(0, 195, 255), rgb(65, 58, 255), rgb(8, 195, 255));
+        background-size: 200% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        transition: all 0.3s ease;
+        --gradient-width: 0px;
+    }
+    .links a:hover {
+        transform: scale(1.2);
+        color: transparent;
+        animation: gradientPan var(--animation-duration, 2s) linear infinite;
+        font-weight: 500;
+    }
+    .links a::before {
+        content: '';
+        position: absolute;
+        width: 110%;
+        height: 2px;
+        left: -5%;
+        bottom: -5px;
+        background: white;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s ease-out;
+    }
+    .links a:hover::before {
+        transform: scaleX(1);
+    }
+    @keyframes gradientPan {
+        to { background-position: var(--gradient-width, 100%) center; }
+    }
+</style>
+
+<script>
+	const stickyHeader = document.querySelector('.sticky-header');
+	window.addEventListener('scroll', () => {
+		const opacity = Math.max(0.8, 1 - window.scrollY / 2400);
+		stickyHeader.style.backgroundColor = `rgba(20, 16, 25, ${opacity * 0.9})`;
+	});
+
+	document.querySelectorAll('.links a').forEach(link => {
+		const width = link.offsetWidth;
+		link.style.setProperty('--gradient-width', `${width * 2}px`);
+		link.style.setProperty('--animation-duration', `${width * 0.025}s`);
+	});
+</script>
+
+	<main>
+		<section class="section" style="background-image: url('/assets/ALongTimeAgo/Gravity/Gravity.jpg'); --height: 600px">
+			<div class="section-overlay" style="--overlay: 0.5"></div>
+
+			<div class="section-text" style="flex-direction: column; align-items: center;">
+				<h1 style="font-size: clamp(30px, 5vw, 50px); font-weight: 750;">Gravity</h1>
+				<p style="font-size: clamp(14px, 2.3vw, 22px); font-weight: 350;">2020 | What are we even doing</p>
+			</div>
+		</section>
+
+		<section class="section" style="background-image: url('/assets/ALongTimeAgo/FirstSteps/Gravity.jpg'); --height: 500px; padding: 60px 4vw; align-items: stretch;">
+			<div class="section-overlay" style="--overlay: 0.7"></div>
+
+			<div class="section-text" style="font-size: 1.4em; font-weight: 400; width: 100%; justify-content: space-between;">
+				<pre class="shiki custom-dark" style="background-color:#121212;color:#dbd7caee" tabindex="0"><code><span class="line"><span class="line-number">  1</span> <span style="color:#4D9375">using</span><span style="color:#5DA994"> System</span><span style="color:#666666">.</span><span style="color:#5DA994">Collections</span><span style="color:#666666">;</span></span>
+<span class="line"><span class="line-number">  2</span> <span style="color:#4D9375">using</span><span style="color:#5DA994"> System</span><span style="color:#666666">.</span><span style="color:#5DA994">Collections</span><span style="color:#666666">.</span><span style="color:#5DA994">Generic</span><span style="color:#666666">;</span></span>
+<span class="line"><span class="line-number">  3</span> <span style="color:#4D9375">using</span><span style="color:#5DA994"> UnityEngine</span><span style="color:#666666">;</span></span>
+<span class="line"><span class="line-number">  4</span> </span>
+<span class="line"><span class="line-number">  5</span> <span style="color:#CB7676">public</span><span style="color:#CB7676"> class</span><span style="color:#5DA994"> PlayerMvmt</span><span style="color:#666666"> :</span><span style="color:#5DA994"> MonoBehaviour</span></span>
+<span class="line"><span class="line-number">  6</span> <span style="color:#666666">{</span></span>
+<span class="line"><span class="line-number">  7</span> <span style="color:#CB7676">    public</span><span style="color:#5DA994"> CharacterController</span><span style="color:#80A665"> controller</span><span style="color:#666666">;</span></span>
+<span class="line"><span class="line-number">  8</span> </span>
+<span class="line"><span class="line-number">  9</span> <span style="color:#CB7676">    public</span><span style="color:#4D9375"> float</span><span style="color:#80A665"> speed</span><span style="color:#666666"> =</span><span style="color:#4C9A91"> 12f</span><span style="color:#666666">;</span></span>
+<span class="line"><span class="line-number"> 10</span> <span style="color:#CB7676">    public</span><span style="color:#4D9375"> float</span><span style="color:#80A665"> gravity</span><span style="color:#666666"> =</span><span style="color:#4C9A91"> 10f</span><span style="color:#666666">;</span></span>
+<span class="line"><span class="line-number"> 11</span> <span style="color:#CB7676">    public</span><span style="color:#4D9375"> float</span><span style="color:#80A665"> jumpHeight</span><span style="color:#666666"> =</span><span style="color:#4C9A91"> 3f</span><span style="color:#666666">;</span></span>
+<span class="line"><span class="line-number"> 12</span> <span style="color:#CB7676">    public</span><span style="color:#4D9375"> float</span><span style="color:#80A665"> rotateSpeed</span><span style="color:#666666">;</span></span>
+<span class="line"><span class="line-number"> 13</span> <span style="color:#CB7676">    public</span><span style="color:#5DA994"> Transform</span><span style="color:#80A665"> playerBody</span><span style="color:#666666">,</span><span style="color:#80A665"> playerParent</span><span style="color:#666666">;</span></span>
+<span class="line"><span class="line-number"> 14</span> </span>
+<span class="line"><span class="line-number"> 15</span> <span style="color:#CB7676">    public</span><span style="color:#5DA994"> Transform</span><span style="color:#80A665"> groundCheck</span><span style="color:#666666">;</span></span>
+<span class="line"><span class="line-number"> 16</span> <span style="color:#CB7676">    public</span><span style="color:#4D9375"> float</span><span style="color:#80A665"> groundDistance</span><span style="color:#666666"> =</span><span style="color:#4C9A91"> 0.2f</span><span style="color:#666666">;</span></span>
+<span class="line"><span class="line-number"> 17</span> <span style="color:#CB7676">    public</span><span style="color:#5DA994"> LayerMask</span><span style="color:#80A665"> groundMask</span><span style="color:#666666">;</span></span>
+<span class="line"><span class="line-number"> 18</span> </span>
+<span class="line"><span class="line-number"> 19</span> <span style="color:#5DA994">    Vector3</span><span style="color:#80A665"> velocity</span><span style="color:#666666">,</span><span style="color:#80A665"> movement</span><span style="color:#666666">;</span></span>
+<span class="line"><span class="line-number"> 20</span> <span style="color:#4D9375">    bool</span><span style="color:#80A665"> isGrounded</span><span style="color:#666666">,</span><span style="color:#80A665"> wait</span><span style="color:#666666">;</span></span>
+<span class="line"><span class="line-number"> 21</span> </span>
+<span class="line"><span class="line-number"> 22</span> <span style="color:#4D9375">    float</span><span style="color:#80A665"> rotationProgress</span><span style="color:#666666"> =</span><span style="color:#CB7676"> -</span><span style="color:#4C9A91">1</span><span style="color:#666666">;</span></span>
+<span class="line"><span class="line-number"> 23</span> <span style="color:#4D9375">    float</span><span style="color:#80A665"> x</span><span style="color:#666666">,</span><span style="color:#80A665"> y</span><span style="color:#666666">,</span><span style="color:#80A665"> z</span><span style="color:#666666">;</span></span>
+<span class="line"><span class="line-number"> 24</span> </span>
+<span class="line"><span class="line-number"> 25</span> <span style="color:#5DA994">    Quaternion</span><span style="color:#80A665"> startRotation</span><span style="color:#666666">,</span><span style="color:#80A665"> endRotation</span><span style="color:#666666">;</span></span>
+<span class="line"><span class="line-number"> 26</span> </span>
+<span class="line"><span class="line-number"> 27</span> <span style="color:#4D9375">    void</span><span style="color:#80A665"> Update</span><span style="color:#666666">()</span></span>
+<span class="line"><span class="line-number"> 28</span> <span style="color:#666666">    {</span></span>
+<span class="line"><span class="line-number"> 29</span> <span style="color:#5DA994">        Quaternion</span><span style="color:#666666">?</span><span style="color:#80A665"> targetRotation</span><span style="color:#666666"> =</span><span style="color:#CB7676"> null</span><span style="color:#666666">;</span></span>
+<span class="line"><span class="line-number"> 30</span> </span>
+<span class="line"><span class="line-number"> 31</span> <span style="color:#4D9375">        if</span><span style="color:#666666"> (</span><span style="color:#BD976A">Input</span><span style="color:#666666">.</span><span style="color:#80A665">GetKeyDown</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">g</span><span style="color:#C98A7D77">"</span><span style="color:#666666">)</span><span style="color:#CB7676"> &#x26;&#x26;</span><span style="color:#CB7676"> !</span><span style="color:#BD976A">wait</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number"> 32</span> <span style="color:#666666">        {</span></span>
+<span class="line"><span class="line-number"> 33</span> <span style="color:#BD976A">            startRotation</span><span style="color:#666666"> =</span><span style="color:#BD976A"> playerBody</span><span style="color:#666666">.</span><span style="color:#BD976A">localRotation</span><span style="color:#666666">;</span></span>
+<span class="line"><span class="line-number"> 34</span> <span style="color:#BD976A">            y</span><span style="color:#666666"> =</span><span style="color:#666666"> (</span><span style="color:#BD976A">startRotation</span><span style="color:#666666">.</span><span style="color:#BD976A">eulerAngles</span><span style="color:#666666">[</span><span style="color:#4C9A91">1</span><span style="color:#666666">]</span><span style="color:#CB7676"> -</span><span style="color:#666666"> (</span><span style="color:#BD976A">startRotation</span><span style="color:#666666">.</span><span style="color:#BD976A">eulerAngles</span><span style="color:#666666">[</span><span style="color:#4C9A91">1</span><span style="color:#666666">]</span><span style="color:#CB7676"> %</span><span style="color:#4C9A91"> 90</span><span style="color:#666666">));</span></span>
+<span class="line"><span class="line-number"> 35</span> <span style="color:#BD976A">            targetRotation</span><span style="color:#666666"> =</span><span style="color:#BD976A"> Quaternion</span><span style="color:#666666">.</span><span style="color:#80A665">Euler</span><span style="color:#666666">(</span><span style="color:#4C9A91">0f</span><span style="color:#666666">,</span><span style="color:#BD976A"> y</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 180f</span><span style="color:#666666">);</span></span>
+<span class="line"><span class="line-number"> 36</span> <span style="color:#666666">        }</span></span>
+<span class="line"><span class="line-number"> 37</span> <span style="color:#4D9375">        else</span><span style="color:#4D9375"> if</span><span style="color:#666666"> (</span><span style="color:#BD976A">Input</span><span style="color:#666666">.</span><span style="color:#80A665">GetKey</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">left shift</span><span style="color:#C98A7D77">"</span><span style="color:#666666">)</span><span style="color:#CB7676"> &#x26;&#x26;</span><span style="color:#BD976A"> Input</span><span style="color:#666666">.</span><span style="color:#80A665">GetKeyDown</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">t</span><span style="color:#C98A7D77">"</span><span style="color:#666666">)</span><span style="color:#CB7676"> &#x26;&#x26;</span><span style="color:#CB7676"> !</span><span style="color:#BD976A">wait</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number"> 38</span> <span style="color:#666666">        {</span></span>
+<span class="line"><span class="line-number"> 39</span> <span style="color:#BD976A">            startRotation</span><span style="color:#666666"> =</span><span style="color:#BD976A"> playerBody</span><span style="color:#666666">.</span><span style="color:#BD976A">localRotation</span><span style="color:#666666">;</span></span>
+<span class="line"><span class="line-number"> 40</span> <span style="color:#BD976A">            y</span><span style="color:#666666"> =</span><span style="color:#BD976A"> startRotation</span><span style="color:#666666">.</span><span style="color:#BD976A">eulerAngles</span><span style="color:#666666">[</span><span style="color:#4C9A91">1</span><span style="color:#666666">]</span><span style="color:#CB7676"> %</span><span style="color:#4C9A91"> 90</span><span style="color:#666666">;</span></span>
+<span class="line"><span class="line-number"> 41</span> <span style="color:#4D9375">            if</span><span style="color:#666666"> (</span><span style="color:#BD976A">y</span><span style="color:#666666"> >=</span><span style="color:#4C9A91"> 45</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number"> 42</span> <span style="color:#666666">            {</span></span>
+<span class="line"><span class="line-number"> 43</span> <span style="color:#BD976A">                y</span><span style="color:#666666"> =</span><span style="color:#666666"> (</span><span style="color:#BD976A">startRotation</span><span style="color:#666666">.</span><span style="color:#BD976A">eulerAngles</span><span style="color:#666666">[</span><span style="color:#4C9A91">1</span><span style="color:#666666">]</span><span style="color:#CB7676"> +</span><span style="color:#666666"> (</span><span style="color:#4C9A91">90</span><span style="color:#CB7676"> -</span><span style="color:#BD976A"> y</span><span style="color:#666666">));</span></span>
+<span class="line"><span class="line-number"> 44</span> <span style="color:#666666">            }</span></span>
+<span class="line"><span class="line-number"> 45</span> <span style="color:#4D9375">            else</span></span>
+<span class="line"><span class="line-number"> 46</span> <span style="color:#666666">            {</span></span>
+<span class="line"><span class="line-number"> 47</span> <span style="color:#BD976A">                y</span><span style="color:#666666"> =</span><span style="color:#666666"> (</span><span style="color:#BD976A">startRotation</span><span style="color:#666666">.</span><span style="color:#BD976A">eulerAngles</span><span style="color:#666666">[</span><span style="color:#4C9A91">1</span><span style="color:#666666">]</span><span style="color:#CB7676"> -</span><span style="color:#666666"> (</span><span style="color:#BD976A">startRotation</span><span style="color:#666666">.</span><span style="color:#BD976A">eulerAngles</span><span style="color:#666666">[</span><span style="color:#4C9A91">1</span><span style="color:#666666">]</span><span style="color:#CB7676"> %</span><span style="color:#4C9A91"> 90</span><span style="color:#666666">));</span></span>
+<span class="line"><span class="line-number"> 48</span> <span style="color:#666666">            }</span></span>
+<span class="line"><span class="line-number"> 49</span> </span>
+<span class="line"><span class="line-number"> 50</span> <span style="color:#BD976A">            targetRotation</span><span style="color:#666666"> =</span><span style="color:#BD976A"> Quaternion</span><span style="color:#666666">.</span><span style="color:#80A665">Euler</span><span style="color:#666666">(</span><span style="color:#4C9A91">90f</span><span style="color:#666666">,</span><span style="color:#BD976A"> y</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 0f</span><span style="color:#666666">);</span></span>
+<span class="line"><span class="line-number"> 51</span> <span style="color:#666666">        }</span></span>
+<span class="line"><span class="line-number"> 52</span> <span style="color:#4D9375">        else</span><span style="color:#4D9375"> if</span><span style="color:#666666"> (</span><span style="color:#BD976A">Input</span><span style="color:#666666">.</span><span style="color:#80A665">GetKeyDown</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">t</span><span style="color:#C98A7D77">"</span><span style="color:#666666">)</span><span style="color:#CB7676"> &#x26;&#x26;</span><span style="color:#CB7676"> !</span><span style="color:#BD976A">wait</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number"> 53</span> <span style="color:#666666">        {</span></span>
+<span class="line"><span class="line-number"> 54</span> <span style="color:#BD976A">            startRotation</span><span style="color:#666666"> =</span><span style="color:#BD976A"> playerBody</span><span style="color:#666666">.</span><span style="color:#BD976A">localRotation</span><span style="color:#666666">;</span></span>
+<span class="line"><span class="line-number"> 55</span> <span style="color:#BD976A">            y</span><span style="color:#666666"> =</span><span style="color:#BD976A"> startRotation</span><span style="color:#666666">.</span><span style="color:#BD976A">eulerAngles</span><span style="color:#666666">[</span><span style="color:#4C9A91">1</span><span style="color:#666666">]</span><span style="color:#CB7676"> %</span><span style="color:#4C9A91"> 90</span><span style="color:#666666">;</span></span>
+<span class="line"><span class="line-number"> 56</span> <span style="color:#4D9375">            if</span><span style="color:#666666"> (</span><span style="color:#BD976A">y</span><span style="color:#666666"> >=</span><span style="color:#4C9A91"> 45</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number"> 57</span> <span style="color:#666666">            {</span></span>
+<span class="line"><span class="line-number"> 58</span> <span style="color:#BD976A">                y</span><span style="color:#666666"> =</span><span style="color:#666666"> (</span><span style="color:#BD976A">startRotation</span><span style="color:#666666">.</span><span style="color:#BD976A">eulerAngles</span><span style="color:#666666">[</span><span style="color:#4C9A91">1</span><span style="color:#666666">]</span><span style="color:#CB7676"> +</span><span style="color:#666666"> (</span><span style="color:#4C9A91">90</span><span style="color:#CB7676"> -</span><span style="color:#BD976A"> y</span><span style="color:#666666">));</span></span>
+<span class="line"><span class="line-number"> 59</span> <span style="color:#666666">            }</span></span>
+<span class="line"><span class="line-number"> 60</span> <span style="color:#4D9375">            else</span></span>
+<span class="line"><span class="line-number"> 61</span> <span style="color:#666666">            {</span></span>
+<span class="line"><span class="line-number"> 62</span> <span style="color:#BD976A">                y</span><span style="color:#666666"> =</span><span style="color:#666666"> (</span><span style="color:#BD976A">startRotation</span><span style="color:#666666">.</span><span style="color:#BD976A">eulerAngles</span><span style="color:#666666">[</span><span style="color:#4C9A91">1</span><span style="color:#666666">]</span><span style="color:#CB7676"> -</span><span style="color:#666666"> (</span><span style="color:#BD976A">startRotation</span><span style="color:#666666">.</span><span style="color:#BD976A">eulerAngles</span><span style="color:#666666">[</span><span style="color:#4C9A91">1</span><span style="color:#666666">]</span><span style="color:#CB7676"> %</span><span style="color:#4C9A91"> 90</span><span style="color:#666666">));</span></span>
+<span class="line"><span class="line-number"> 63</span> <span style="color:#666666">            }</span></span>
+<span class="line"><span class="line-number"> 64</span> </span>
+<span class="line"><span class="line-number"> 65</span> <span style="color:#BD976A">            targetRotation</span><span style="color:#666666"> =</span><span style="color:#BD976A"> Quaternion</span><span style="color:#666666">.</span><span style="color:#80A665">Euler</span><span style="color:#666666">(</span><span style="color:#CB7676">-</span><span style="color:#4C9A91">90f</span><span style="color:#666666">,</span><span style="color:#BD976A"> y</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 0f</span><span style="color:#666666">);</span></span>
+<span class="line"><span class="line-number"> 66</span> <span style="color:#666666">        }</span></span>
+<span class="line"><span class="line-number"> 67</span> <span style="color:#4D9375">        else</span><span style="color:#4D9375"> if</span><span style="color:#666666"> (</span><span style="color:#BD976A">Input</span><span style="color:#666666">.</span><span style="color:#80A665">GetKey</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">left shift</span><span style="color:#C98A7D77">"</span><span style="color:#666666">)</span><span style="color:#CB7676"> &#x26;&#x26;</span><span style="color:#BD976A"> Input</span><span style="color:#666666">.</span><span style="color:#80A665">GetKeyDown</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">f</span><span style="color:#C98A7D77">"</span><span style="color:#666666">)</span><span style="color:#CB7676"> &#x26;&#x26;</span><span style="color:#CB7676"> !</span><span style="color:#BD976A">wait</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number"> 68</span> <span style="color:#666666">        {</span></span>
+<span class="line"><span class="line-number"> 69</span> <span style="color:#BD976A">            startRotation</span><span style="color:#666666"> =</span><span style="color:#BD976A"> playerBody</span><span style="color:#666666">.</span><span style="color:#BD976A">localRotation</span><span style="color:#666666">;</span></span>
+<span class="line"><span class="line-number"> 70</span> <span style="color:#BD976A">            y</span><span style="color:#666666"> =</span><span style="color:#666666"> (</span><span style="color:#BD976A">startRotation</span><span style="color:#666666">.</span><span style="color:#BD976A">eulerAngles</span><span style="color:#666666">[</span><span style="color:#4C9A91">1</span><span style="color:#666666">]</span><span style="color:#CB7676"> -</span><span style="color:#666666"> (</span><span style="color:#BD976A">startRotation</span><span style="color:#666666">.</span><span style="color:#BD976A">eulerAngles</span><span style="color:#666666">[</span><span style="color:#4C9A91">1</span><span style="color:#666666">]</span><span style="color:#CB7676"> %</span><span style="color:#4C9A91"> 90</span><span style="color:#666666">));</span></span>
+<span class="line"><span class="line-number"> 71</span> <span style="color:#BD976A">            targetRotation</span><span style="color:#666666"> =</span><span style="color:#BD976A"> Quaternion</span><span style="color:#666666">.</span><span style="color:#80A665">Euler</span><span style="color:#666666">(</span><span style="color:#4C9A91">0f</span><span style="color:#666666">,</span><span style="color:#BD976A"> y</span><span style="color:#666666">,</span><span style="color:#CB7676"> -</span><span style="color:#4C9A91">90f</span><span style="color:#666666">);</span></span>
+<span class="line"><span class="line-number"> 72</span> <span style="color:#666666">        }</span></span>
+<span class="line"><span class="line-number"> 73</span> <span style="color:#4D9375">        else</span><span style="color:#4D9375"> if</span><span style="color:#666666"> (</span><span style="color:#BD976A">Input</span><span style="color:#666666">.</span><span style="color:#80A665">GetKeyDown</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">f</span><span style="color:#C98A7D77">"</span><span style="color:#666666">)</span><span style="color:#CB7676"> &#x26;&#x26;</span><span style="color:#CB7676"> !</span><span style="color:#BD976A">wait</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number"> 74</span> <span style="color:#666666">        {</span></span>
+<span class="line"><span class="line-number"> 75</span> <span style="color:#BD976A">            startRotation</span><span style="color:#666666"> =</span><span style="color:#BD976A"> playerBody</span><span style="color:#666666">.</span><span style="color:#BD976A">localRotation</span><span style="color:#666666">;</span></span>
+<span class="line"><span class="line-number"> 76</span> <span style="color:#BD976A">            y</span><span style="color:#666666"> =</span><span style="color:#666666"> (</span><span style="color:#BD976A">startRotation</span><span style="color:#666666">.</span><span style="color:#BD976A">eulerAngles</span><span style="color:#666666">[</span><span style="color:#4C9A91">1</span><span style="color:#666666">]</span><span style="color:#CB7676"> -</span><span style="color:#666666"> (</span><span style="color:#BD976A">startRotation</span><span style="color:#666666">.</span><span style="color:#BD976A">eulerAngles</span><span style="color:#666666">[</span><span style="color:#4C9A91">1</span><span style="color:#666666">]</span><span style="color:#CB7676"> %</span><span style="color:#4C9A91"> 90</span><span style="color:#666666">));</span></span>
+<span class="line"><span class="line-number"> 77</span> <span style="color:#BD976A">            targetRotation</span><span style="color:#666666"> =</span><span style="color:#BD976A"> Quaternion</span><span style="color:#666666">.</span><span style="color:#80A665">Euler</span><span style="color:#666666">(</span><span style="color:#4C9A91">0f</span><span style="color:#666666">,</span><span style="color:#BD976A"> y</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 90f</span><span style="color:#666666">);</span></span>
+<span class="line"><span class="line-number"> 78</span> <span style="color:#666666">        }</span></span>
+<span class="line"><span class="line-number"> 79</span> </span>
+<span class="line"><span class="line-number"> 80</span> <span style="color:#4D9375">        if</span><span style="color:#666666"> (</span><span style="color:#BD976A">targetRotation</span><span style="color:#666666">.</span><span style="color:#BD976A">HasValue</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number"> 81</span> <span style="color:#666666">        {</span></span>
+<span class="line"><span class="line-number"> 82</span> <span style="color:#BD976A">            endRotation</span><span style="color:#666666"> =</span><span style="color:#BD976A"> playerParent</span><span style="color:#666666">.</span><span style="color:#BD976A">rotation</span><span style="color:#CB7676"> *</span><span style="color:#BD976A"> targetRotation</span><span style="color:#666666">.</span><span style="color:#BD976A">Value</span><span style="color:#666666">;</span></span>
+<span class="line"><span class="line-number"> 83</span> <span style="color:#BD976A">            playerBody</span><span style="color:#666666">.</span><span style="color:#BD976A">localRotation</span><span style="color:#666666"> =</span><span style="color:#BD976A"> Quaternion</span><span style="color:#666666">.</span><span style="color:#BD976A">identity</span><span style="color:#666666">;</span></span>
+<span class="line"><span class="line-number"> 84</span> <span style="color:#BD976A">            rotationProgress</span><span style="color:#666666"> =</span><span style="color:#4C9A91"> 0</span><span style="color:#666666">;</span></span>
+<span class="line"><span class="line-number"> 85</span> <span style="color:#666666">        }</span></span>
+<span class="line"><span class="line-number"> 86</span> </span>
+<span class="line"><span class="line-number"> 87</span> <span style="color:#4D9375">        if</span><span style="color:#666666"> (</span><span style="color:#BD976A">rotationProgress</span><span style="color:#666666"> &#x3C;</span><span style="color:#4C9A91"> 1</span><span style="color:#CB7676"> &#x26;&#x26;</span><span style="color:#BD976A"> rotationProgress</span><span style="color:#666666"> >=</span><span style="color:#4C9A91"> 0</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number"> 88</span> <span style="color:#666666">        {</span></span>
+<span class="line"><span class="line-number"> 89</span> <span style="color:#BD976A">            wait</span><span style="color:#666666"> =</span><span style="color:#4D9375"> true</span><span style="color:#666666">;</span></span>
+<span class="line"><span class="line-number"> 90</span> <span style="color:#BD976A">            rotationProgress</span><span style="color:#CB7676"> +=</span><span style="color:#BD976A"> Time</span><span style="color:#666666">.</span><span style="color:#BD976A">deltaTime</span><span style="color:#CB7676"> *</span><span style="color:#BD976A"> rotateSpeed</span><span style="color:#666666">;</span></span>
+<span class="line"><span class="line-number"> 91</span> <span style="color:#BD976A">            playerParent</span><span style="color:#666666">.</span><span style="color:#BD976A">localRotation</span><span style="color:#666666"> =</span><span style="color:#BD976A"> Quaternion</span><span style="color:#666666">.</span><span style="color:#80A665">Lerp</span><span style="color:#666666">(</span><span style="color:#BD976A">startRotation</span><span style="color:#666666">,</span><span style="color:#BD976A"> endRotation</span><span style="color:#666666">,</span><span style="color:#BD976A"> rotationProgress</span><span style="color:#666666">);</span></span>
+<span class="line"><span class="line-number"> 92</span> <span style="color:#666666">        }</span></span>
+<span class="line"><span class="line-number"> 93</span> <span style="color:#4D9375">        else</span></span>
+<span class="line"><span class="line-number"> 94</span> <span style="color:#666666">        {</span></span>
+<span class="line"><span class="line-number"> 95</span> <span style="color:#BD976A">            wait</span><span style="color:#666666"> =</span><span style="color:#4D9375"> false</span><span style="color:#666666">;</span></span>
+<span class="line"><span class="line-number"> 96</span> <span style="color:#666666">        }</span></span>
+<span class="line"><span class="line-number"> 97</span> </span>
+<span class="line"><span class="line-number"> 98</span> <span style="color:#758575DD">        // Jump</span></span>
+<span class="line"><span class="line-number"> 99</span> <span style="color:#BD976A">        isGrounded</span><span style="color:#666666"> =</span><span style="color:#BD976A"> Physics</span><span style="color:#666666">.</span><span style="color:#80A665">CheckSphere</span><span style="color:#666666">(</span><span style="color:#BD976A">groundCheck</span><span style="color:#666666">.</span><span style="color:#BD976A">position</span><span style="color:#666666">,</span><span style="color:#BD976A"> groundDistance</span><span style="color:#666666">,</span><span style="color:#BD976A"> groundMask</span><span style="color:#666666">);</span></span>
+<span class="line"><span class="line-number">100</span> </span>
+<span class="line"><span class="line-number">101</span> <span style="color:#4D9375">        if</span><span style="color:#666666"> (</span><span style="color:#BD976A">Input</span><span style="color:#666666">.</span><span style="color:#80A665">GetButtonDown</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">Jump</span><span style="color:#C98A7D77">"</span><span style="color:#666666">)</span><span style="color:#CB7676"> &#x26;&#x26;</span><span style="color:#BD976A"> isGrounded</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number">102</span> <span style="color:#666666">        {</span></span>
+<span class="line"><span class="line-number">103</span> <span style="color:#BD976A">            velocity</span><span style="color:#666666">.</span><span style="color:#BD976A">y</span><span style="color:#666666"> =</span><span style="color:#BD976A"> Mathf</span><span style="color:#666666">.</span><span style="color:#80A665">Sqrt</span><span style="color:#666666">(</span><span style="color:#BD976A">jumpHeight</span><span style="color:#CB7676"> *</span><span style="color:#4C9A91"> 2f</span><span style="color:#CB7676"> *</span><span style="color:#BD976A"> gravity</span><span style="color:#666666">);</span></span>
+<span class="line"><span class="line-number">104</span> <span style="color:#666666">        }</span></span>
+<span class="line"><span class="line-number">105</span> </span>
+<span class="line"><span class="line-number">106</span> <span style="color:#4D9375">        if</span><span style="color:#666666"> (</span><span style="color:#BD976A">wait</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number">107</span> <span style="color:#666666">        {</span></span>
+<span class="line"><span class="line-number">108</span> <span style="color:#BD976A">            velocity</span><span style="color:#666666">.</span><span style="color:#BD976A">y</span><span style="color:#666666"> =</span><span style="color:#4C9A91"> 0</span><span style="color:#666666">;</span></span>
+<span class="line"><span class="line-number">109</span> <span style="color:#666666">        }</span></span>
+<span class="line"><span class="line-number">110</span> <span style="color:#4D9375">        else</span></span>
+<span class="line"><span class="line-number">111</span> <span style="color:#666666">        {</span></span>
+<span class="line"><span class="line-number">112</span> <span style="color:#BD976A">            velocity</span><span style="color:#666666">.</span><span style="color:#BD976A">y</span><span style="color:#CB7676"> -=</span><span style="color:#BD976A"> gravity</span><span style="color:#CB7676"> *</span><span style="color:#BD976A"> Time</span><span style="color:#666666">.</span><span style="color:#BD976A">deltaTime</span><span style="color:#666666">;</span></span>
+<span class="line"><span class="line-number">113</span> <span style="color:#666666">        }</span></span>
+<span class="line"><span class="line-number">114</span> <span style="color:#BD976A">        movement</span><span style="color:#666666"> =</span><span style="color:#BD976A"> transform</span><span style="color:#666666">.</span><span style="color:#80A665">TransformDirection</span><span style="color:#666666">((</span><span style="color:#BD976A">velocity</span><span style="color:#CB7676"> *</span><span style="color:#BD976A"> Time</span><span style="color:#666666">.</span><span style="color:#BD976A">deltaTime</span><span style="color:#666666">));</span></span>
+<span class="line"><span class="line-number">115</span> <span style="color:#BD976A">        controller</span><span style="color:#666666">.</span><span style="color:#80A665">Move</span><span style="color:#666666">(</span><span style="color:#BD976A">movement</span><span style="color:#666666">);</span></span>
+<span class="line"><span class="line-number">116</span> </span>
+<span class="line"><span class="line-number">117</span> <span style="color:#758575DD">        // Movement</span></span>
+<span class="line"><span class="line-number">118</span> <span style="color:#4D9375">        float</span><span style="color:#80A665"> x</span><span style="color:#666666"> =</span><span style="color:#BD976A"> Input</span><span style="color:#666666">.</span><span style="color:#80A665">GetAxis</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">Horizontal</span><span style="color:#C98A7D77">"</span><span style="color:#666666">);</span></span>
+<span class="line"><span class="line-number">119</span> <span style="color:#4D9375">        float</span><span style="color:#80A665"> z</span><span style="color:#666666"> =</span><span style="color:#BD976A"> Input</span><span style="color:#666666">.</span><span style="color:#80A665">GetAxis</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">Vertical</span><span style="color:#C98A7D77">"</span><span style="color:#666666">);</span></span>
+<span class="line"><span class="line-number">120</span> </span>
+<span class="line"><span class="line-number">121</span> <span style="color:#5DA994">        Vector3</span><span style="color:#80A665"> move</span><span style="color:#666666"> =</span><span style="color:#BD976A"> transform</span><span style="color:#666666">.</span><span style="color:#BD976A">right</span><span style="color:#CB7676"> *</span><span style="color:#BD976A"> x</span><span style="color:#CB7676"> +</span><span style="color:#BD976A"> transform</span><span style="color:#666666">.</span><span style="color:#BD976A">forward</span><span style="color:#CB7676"> *</span><span style="color:#BD976A"> z</span><span style="color:#666666">;</span></span>
+<span class="line"><span class="line-number">122</span> <span style="color:#BD976A">        controller</span><span style="color:#666666">.</span><span style="color:#80A665">Move</span><span style="color:#666666">(</span><span style="color:#BD976A">move</span><span style="color:#CB7676"> *</span><span style="color:#BD976A"> speed</span><span style="color:#CB7676"> *</span><span style="color:#BD976A"> Time</span><span style="color:#666666">.</span><span style="color:#BD976A">deltaTime</span><span style="color:#666666">);</span></span>
+<span class="line"><span class="line-number">123</span> <span style="color:#666666">    }</span></span>
+<span class="line"><span class="line-number">124</span> <span style="color:#666666">}</span></span>
+<span class="line"><span class="line-number">125</span> </span></code></pre>
+				<p style="text-align: right; max-width: 700px; align-self: flex-end;">
+					It was a cursory introduction to Unity, Unreal, and Maya over the course of two weeks.
+					Even then I had already developed an aversion to Unity thanks to that hideous light theme at the time.
+				</p>
+			</div>
+		</section>
+
+		<section class="section" style="background-color: #000e0a70; --height: 500px; align-items: stretch;">
+			<div class="section-text" style="flex: 1; flex-direction: column; padding: 40px; justify-content: flex-start; align-items: flex-start; gap: 20px; font-size: 1.1em;">
+				<p>
+					A first attempt at hard-surface modeling. Something I would find much joy, and many hours in through the years that followed.
+					I thought it was the coolest thing seeing the gun come together and being able to actually have it sit in a space.
+					Although I would quickly abandon Maya in favor of Blender especially after their 2.8 overhaul.
+				</p>
+				<p style="font-weight: 350;">
+					<i>Shown is the model rendered in Unreal with an emissive material, acting as the centerpiece for the FPS prototype I worked on through the week.</i>
+				</p>
+			</div>
+
+			<div style="flex: 2; background-image: url('/assets/ALongTimeAgo/FirstSteps/Gun.jpg'); background-size: cover; background-position: center;"></div>
+
+			<div style="width: 100%; z-index: 1;">
+				<div class="nav-buttons">
+	<a class="nav-button" href="/src/ALongTimeAgo/Sumusic.html">
+		<img class="chev-left" src="/assets/Home/chevron-left.png">
+		<span>Sumusic</span>
+	</a>
+	<a class="nav-button" href="/src/ALongTimeAgo/EscapeTheDark.html">
+		<span>Escape The Dark</span>
+		<img class="chev-right" src="/assets/Home/chevron-right.png">
+	</a>
+</div>
+
+<style>
+	.nav-buttons {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		padding: 3%;
+	}
+
+	.nav-button {
+		white-space: nowrap;
+		text-decoration: none;
+		color: rgb(255, 255, 255);
+		font-size: clamp(24px, 2.5vw, 36px);
+		display: flex;
+		align-items: center;
+		transition: all 0.3s ease;
+	}
+	.nav-button:hover {
+		opacity: 0.7;
+	}
+	.nav-button img {
+		height: clamp(36px, 3.5vw, 48px);
+		padding: 0 5%;
+	}
+	.nav-button span {
+		transform: translateY(-0.08em);
+	}
+
+	.chev-left,
+	.chev-right {
+		transition: all 0.3s ease;
+	}
+
+	.nav-button:hover .chev-left {
+		animation: bounceLeft 1.6s ease-in-out infinite;
+	}
+
+	.nav-button:hover .chev-right {
+		animation: bounceRight 1.6s ease-in-out infinite;
+	}
+
+	@keyframes bounceLeft {
+		0%	{ transform: translateX(0); }
+		25%	{ transform: translateX(-16%); }
+		40%	{ transform: translateX(-5%); }
+		65%	{ transform: translateX(-12%); }
+		85%	{ transform: translateX(-3%); }
+		100%	{ transform: translateX(0); }
+	}
+
+	@keyframes bounceRight {
+		0%	{ transform: translateX(0); }
+		25%	{ transform: translateX(16%); }
+		40%	{ transform: translateX(5%); }
+		65%	{ transform: translateX(12%); }
+		85%	{ transform: translateX(3%); }
+		100%	{ transform: translateX(0); }
+	}
+</style>
+			</div>
+		</section>
+	</main>
+
+	<div style="font-family: 'Rubik', sans-serif;">
+		<footer class="footer">
+    	<nav>
+		<div class="copyright">
+			<span style="--i:0">&copy; &nbsp;</span>
+			<span style="--i:1">2</span>
+			<span style="--i:2">0</span>
+			<span style="--i:3">2</span>
+			<span style="--i:4">6 &nbsp;</span>
+			<span style="--i:5">A</span>
+			<span style="--i:6">L</span>
+			<span style="--i:7">E</span>
+			<span style="--i:8">X</span>
+			<span style="--i:9">A</span>
+			<span style="--i:10">N</span>
+			<span style="--i:11">D</span>
+			<span style="--i:12">E</span>
+			<span style="--i:13">R &nbsp;</span>
+			<span style="--i:14">S</span>
+			<span style="--i:15">U</span>
+		</div>
+	<div class="social-media">
+		<a href="https://sualexander.itch.io" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/itch.png');">
+		</a>
+		<a href="https://github.com/sualexander" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/github.png');">
+		</a>
+		<a href="https://www.youtube.com/@alexandersu9397" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/youtube.png');">
+		</a>
+		<a href="https://www.linkedin.com/in/alexander-su-b9701824a" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/linkedin.png');">
+		</a>
+		</div>
+	</nav>
+</footer>
+
+<script>
+	document.querySelectorAll('.social-media img').forEach(img => {
+		const computedStyle = window.getComputedStyle(img);
+		const maskImage = computedStyle.maskImage;
+		const imageUrl = maskImage.replace(/^url\(['"](.+)['"]\)$/, '$1');
+
+		const temp = new Image();
+		temp.src = imageUrl;
+		temp.onload = () => {
+			const aspectRatio = temp.naturalWidth / temp.naturalHeight;
+			img.style.width = `${32 * aspectRatio}px`;
+		};
+	});
+</script>
+
+<style>
+	.footer {
+		background-color: #141019b3;
+	}
+
+	.footer nav {
+		height: 80px;
+		padding: 0 3% 0 2%;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.footer .copyright {
+		display: flex;
+		align-items: center;
+	}
+	.footer span {
+		pointer-events: none;
+		position: relative;
+		display: inline-block;
+		font-size: 16px;
+		font-weight: 400;
+		color: #fff;
+		animation: flip 10s infinite;
+		animation-delay: calc(0.08s * var(--i))
+	}
+	@keyframes flip {
+		0%,80% { transform: rotateY(360deg) }
+	}
+
+	.social-media {
+		display: flex;
+		gap: 2vw;
+		align-items: center;
+	}
+
+	.social-media a {
+		height: 40%;
+		display: flex;
+		position: relative;
+	}
+
+	.social-media img {
+		height: 100%;
+		padding: 15px; /*hack for mask artifacts*/
+		mask-size: contain;
+		mask-repeat: no-repeat;
+		mask-position: center;
+		background: rgb(224, 224, 224);
+		transition: all 0.5s ease;
+	}
+	.social-media img:hover {
+		transform: scale(1.1);
+		background: linear-gradient(to bottom, rgb(0, 200, 255), rgb(146, 13, 255), rgb(0, 200, 255));
+		background-size: 100% 400%;
+		animation: gradientPan2 3s linear infinite;
+	}
+	@keyframes gradientPan2 {
+		0% { background-position: center 0%; }
+		100% { background-position: center 130%; }
+	}
+</style>
+	</div>
+
+	<script>
+		window.addEventListener('load', () => {
+			const link = document.createElement('link');
+			link.href = 'https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap'
+			link.rel = 'stylesheet';
+			document.head.appendChild(link);
+		});
+	</script>
+</body>
+</html>
