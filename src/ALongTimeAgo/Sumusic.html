@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Sumusic</title>
+
+
+	<style>
+		.hero-section::before {
+			content: '';
+			position: absolute;
+			inset: 0;
+			background: url('/assets/ALongTimeAgo/Sumusic/Wallpaper.jpg') center/cover no-repeat;
+			filter: blur(8px);
+			z-index: -1;
+		}
+
+		.hero-container {
+			position: relative;
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.hero-title-container {
+			position: relative;
+			z-index: 1;
+		}
+
+		.hero-title {
+			font-size: clamp(80px, 20vw, 300px);
+			font-weight: 700;
+			letter-spacing: -0.04em;
+			line-height: 0.85;
+			text-transform: uppercase;
+			color: white;
+		}
+
+		.hero-title-layer {
+			position: absolute;
+			top: 0;
+			left: 0;
+			font-size: clamp(80px, 20vw, 300px);
+			font-weight: 700;
+			letter-spacing: -0.04em;
+			line-height: 0.85;
+			text-transform: uppercase;
+		}
+		.hero-title-layer:nth-child(1) {
+			color: #ffffff;
+		}
+		.hero-title-layer:nth-child(2) {
+			color: #ffffff;
+		}
+
+		.equalizer {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			display: flex;
+			align-items: flex-end;
+			height: 100%;
+			gap: 0;
+		}
+		.eq-bar {
+			flex: 1;
+			background: rgb(77, 26, 26);
+		}
+	</style>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" crossorigin href="/assets/baseStyle-BDs3jilJ.css">
+</head>
+
+<body style="font-family: 'IBM Plex Sans', sans-serif; font-weight: 350;">
+	<header class="sticky-header">
+    <nav>
+        <a href="/" class="logo">
+            <div class="container">
+                <span style="--i:1;">ALEXANDER SU</span>
+                <span style="--i:2;">ALEXANDER SU</span>
+                <span style="--i:3;">ALEXANDER SU</span>
+                <span style="--i:4;">ALEXANDER SU</span>
+                <span style="--i:5;">ALEXANDER SU</span>
+                <span style="--i:6;">ALEXANDER SU</span>
+                <span style="--i:7;">ALEXANDER SU</span>
+                <span style="--i:8;">ALEXANDER SU</span>
+                <span style="--i:9;">ALEXANDER SU</span>
+                <span style="--i:10;">ALEXANDER SU</span>
+                <span style="--i:11;">ALEXANDER SU</span>
+                <span style="--i:12;">ALEXANDER SU</span>
+            </div>
+        </a>
+        <div class="links">
+            <a href="/#.gallery">HOME</a>
+            <a href="">ABOUT</a>
+            <a href="">CONTACT</a>
+        </div>
+    </nav>
+</header>
+
+<style>
+    .sticky-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #141019e7;
+        z-index: 11;
+        pointer-events: none;
+    }
+
+    .sticky-header nav {
+        height: 100px;
+        padding: 0 clamp(20px, 4%, 50px) 0 60px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+        margin-left: 30px;
+        pointer-events: auto;
+    }
+    .logo .container {
+        transform-style: preserve-3d;
+        animation: rotate 25s linear infinite;
+    }
+    .logo span {
+        position: absolute;
+        white-space: nowrap;
+        transform-style: preserve-3d;
+        transform: translate(-50%, -50%) rotateX(calc(var(--i) * 30deg)) translateZ(25px);
+        font-size: 1em;
+        color: color-mix(in hsl, 
+        #aff2ff calc(50% + 50% * cos(calc(var(--i) * 30deg))), 
+        #aeaeff calc(50% - 50% * cos(calc(var(--i) * 30deg)))
+    );
+        background: linear-gradient(90deg, transparent, rgb(0, 0, 0), transparent);
+        line-height: 0.7em;
+    }
+    @keyframes rotate {
+        0% { transform: perspective(200px) rotateX(0deg) rotate(25deg); }
+        100% { transform: perspective(200px) rotateX(360deg) rotate(25deg); }
+    }
+
+    .links {
+        display: flex;
+        gap: clamp(10px, 3vw, 50px);
+        align-items: center;
+        position: relative;
+        pointer-events: auto;
+    }
+
+    .links a {
+        color: #ffffff;
+        font-size: 18px;
+        text-decoration: none;
+        position: relative;
+        background: linear-gradient(to right, rgb(0, 195, 255), rgb(65, 58, 255), rgb(8, 195, 255));
+        background-size: 200% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        transition: all 0.3s ease;
+        --gradient-width: 0px;
+    }
+    .links a:hover {
+        transform: scale(1.2);
+        color: transparent;
+        animation: gradientPan var(--animation-duration, 2s) linear infinite;
+        font-weight: 500;
+    }
+    .links a::before {
+        content: '';
+        position: absolute;
+        width: 110%;
+        height: 2px;
+        left: -5%;
+        bottom: -5px;
+        background: white;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s ease-out;
+    }
+    .links a:hover::before {
+        transform: scaleX(1);
+    }
+    @keyframes gradientPan {
+        to { background-position: var(--gradient-width, 100%) center; }
+    }
+</style>
+
+<script>
+	const stickyHeader = document.querySelector('.sticky-header');
+	window.addEventListener('scroll', () => {
+		const opacity = Math.max(0.8, 1 - window.scrollY / 2400);
+		stickyHeader.style.backgroundColor = `rgba(20, 16, 25, ${opacity * 0.9})`;
+	});
+
+	document.querySelectorAll('.links a').forEach(link => {
+		const width = link.offsetWidth;
+		link.style.setProperty('--gradient-width', `${width * 2}px`);
+		link.style.setProperty('--animation-duration', `${width * 0.025}s`);
+	});
+</script>
+
+	<main>
+		<section class="section hero-section" style="min-height: 700px; position: relative;">
+			<div class="equalizer" id="equalizer"></div>
+			<div class="hero-container">
+				<div class="hero-title-container">
+					<span class="hero-title-layer">Sumusic</span>
+					<span class="hero-title-layer">Sumusic</span>
+					<h1 class="hero-title">Sumusic</h1>
+				</div>
+			</div>
+		</section>
+
+		<section class="section" style="min-height: 1000px; background-image: url('/assets/ALongTimeAgo/Sumusic/NeonDisco.jpg'); padding: 40px 6vw; gap: 80px; flex-direction: column;">
+			<div class="section-overlay" style="--overlay: 0.8"></div>
+
+			<div style="display: flex; width: 100%; gap: 40px; z-index: 1;">
+				<div class="section-text" style="flex: 1; flex-direction: column; justify-content: center; align-items: center; gap: 20px; font-size: 1.1em;">
+					<p style="max-width: 500px; text-align: center;">
+						In the summer of 2020 I had some time to start a YouTube channel of music
+						<i style="font-weight: 400;">(a mix of live recordings and Logic projects)</i> I'd made throughout high school.
+						It also happened to double nicely as a portfolio for college applications.
+					</p>
+					<p style="max-width: 500px; text-align: center;">
+						At this time I was still more invested in writing music than games, but the tides were slowly shifting.
+						Making thumbnails for each video also got me surprisingly engaged in creating these kinds of vector art.
+					</p>
+				</div>
+
+				<div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+					<iframe
+						width="100%"
+						height="100%"
+						style="max-width: 700px; aspect-ratio: 16/9; border: none; box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.4);"
+						src="https://www.youtube.com/embed/SQpaODwex6c?loop=1&playlist=SQpaODwex6c&rel=0"
+						allowfullscreen>
+					</iframe>
+				</div>
+			</div>
+
+			<div style="display: flex; width: 100%; gap: 40px; z-index: 1;">
+				<div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+					<iframe
+						width="100%"
+						height="100%"
+						style="max-width: 700px; aspect-ratio: 16/9; border: none; box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.4);"
+						src="https://www.youtube.com/embed/CRFDl_9Rx-I?loop=1&playlist=CRFDl_9Rx-I&rel=0"
+						allowfullscreen>
+					</iframe>
+				</div>
+
+				<div class="section-text" style="flex: 1; flex-direction: column; justify-content: center; align-items: center; gap: 20px; font-size: 1.1em;">
+					<p style="max-width: 500px; text-align: center;">
+						My first piece for full orchestra. The start and end are quite inspired but the middle sections are a bit hard to bear.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="section" style="background-image: url('/assets/ALongTimeAgo/Sumusic/Onward.jpg'); flex-direction: column;">
+			<div class="section-overlay" style="--overlay: 0.7"></div>
+			<div class="section-text">
+				<p style="max-width: 600px; text-align: center; font-size: 1.1em; padding: 70px 0 0 0">
+					The channel is ultimately long dead with no plans of revival as the satisfaction I got from writing slowly dwindled and I also shifted heavily towards jazz in college.
+					Aside from academic work in school, further musical projects wouldn't really materialize until 
+					<a href="/src/2024/Jounterpoint.html" style="color: inherit; text-decoration: none; font-weight: 500;">2024</a>.
+				</p>
+			</div>
+
+			<div style="width: 100%; z-index: 1;">
+				<div class="nav-buttons">
+	<a class="nav-button" href="/src/ALongTimeAgo/TheGreatDerby.html">
+		<img class="chev-left" src="/assets/Home/chevron-left.png">
+		<span>The Great Derby</span>
+	</a>
+	<a class="nav-button" href="/src/ALongTimeAgo/Gravity.html">
+		<span>Gravity</span>
+		<img class="chev-right" src="/assets/Home/chevron-right.png">
+	</a>
+</div>
+
+<style>
+	.nav-buttons {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		padding: 3%;
+	}
+
+	.nav-button {
+		white-space: nowrap;
+		text-decoration: none;
+		color: rgb(255, 255, 255);
+		font-size: clamp(24px, 2.5vw, 36px);
+		display: flex;
+		align-items: center;
+		transition: all 0.3s ease;
+	}
+	.nav-button:hover {
+		opacity: 0.7;
+	}
+	.nav-button img {
+		height: clamp(36px, 3.5vw, 48px);
+		padding: 0 5%;
+	}
+	.nav-button span {
+		transform: translateY(-0.08em);
+	}
+
+	.chev-left,
+	.chev-right {
+		transition: all 0.3s ease;
+	}
+
+	.nav-button:hover .chev-left {
+		animation: bounceLeft 1.6s ease-in-out infinite;
+	}
+
+	.nav-button:hover .chev-right {
+		animation: bounceRight 1.6s ease-in-out infinite;
+	}
+
+	@keyframes bounceLeft {
+		0%	{ transform: translateX(0); }
+		25%	{ transform: translateX(-16%); }
+		40%	{ transform: translateX(-5%); }
+		65%	{ transform: translateX(-12%); }
+		85%	{ transform: translateX(-3%); }
+		100%	{ transform: translateX(0); }
+	}
+
+	@keyframes bounceRight {
+		0%	{ transform: translateX(0); }
+		25%	{ transform: translateX(16%); }
+		40%	{ transform: translateX(5%); }
+		65%	{ transform: translateX(12%); }
+		85%	{ transform: translateX(3%); }
+		100%	{ transform: translateX(0); }
+	}
+</style>
+			</div>
+		</section>
+	</main>
+
+	<footer class="footer">
+    	<nav>
+		<div class="copyright">
+			<span style="--i:0">&copy; &nbsp;</span>
+			<span style="--i:1">2</span>
+			<span style="--i:2">0</span>
+			<span style="--i:3">2</span>
+			<span style="--i:4">6 &nbsp;</span>
+			<span style="--i:5">A</span>
+			<span style="--i:6">L</span>
+			<span style="--i:7">E</span>
+			<span style="--i:8">X</span>
+			<span style="--i:9">A</span>
+			<span style="--i:10">N</span>
+			<span style="--i:11">D</span>
+			<span style="--i:12">E</span>
+			<span style="--i:13">R &nbsp;</span>
+			<span style="--i:14">S</span>
+			<span style="--i:15">U</span>
+		</div>
+	<div class="social-media">
+		<a href="https://sualexander.itch.io" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/itch.png');">
+		</a>
+		<a href="https://github.com/sualexander" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/github.png');">
+		</a>
+		<a href="https://www.youtube.com/@alexandersu9397" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/youtube.png');">
+		</a>
+		<a href="https://www.linkedin.com/in/alexander-su-b9701824a" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/linkedin.png');">
+		</a>
+		</div>
+	</nav>
+</footer>
+
+<script>
+	document.querySelectorAll('.social-media img').forEach(img => {
+		const computedStyle = window.getComputedStyle(img);
+		const maskImage = computedStyle.maskImage;
+		const imageUrl = maskImage.replace(/^url\(['"](.+)['"]\)$/, '$1');
+
+		const temp = new Image();
+		temp.src = imageUrl;
+		temp.onload = () => {
+			const aspectRatio = temp.naturalWidth / temp.naturalHeight;
+			img.style.width = `${32 * aspectRatio}px`;
+		};
+	});
+</script>
+
+<style>
+	.footer {
+		background-color: #141019b3;
+	}
+
+	.footer nav {
+		height: 80px;
+		padding: 0 3% 0 2%;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.footer .copyright {
+		display: flex;
+		align-items: center;
+	}
+	.footer span {
+		pointer-events: none;
+		position: relative;
+		display: inline-block;
+		font-size: 16px;
+		font-weight: 400;
+		color: #fff;
+		animation: flip 10s infinite;
+		animation-delay: calc(0.08s * var(--i))
+	}
+	@keyframes flip {
+		0%,80% { transform: rotateY(360deg) }
+	}
+
+	.social-media {
+		display: flex;
+		gap: 2vw;
+		align-items: center;
+	}
+
+	.social-media a {
+		height: 40%;
+		display: flex;
+		position: relative;
+	}
+
+	.social-media img {
+		height: 100%;
+		padding: 15px; /*hack for mask artifacts*/
+		mask-size: contain;
+		mask-repeat: no-repeat;
+		mask-position: center;
+		background: rgb(224, 224, 224);
+		transition: all 0.5s ease;
+	}
+	.social-media img:hover {
+		transform: scale(1.1);
+		background: linear-gradient(to bottom, rgb(0, 200, 255), rgb(146, 13, 255), rgb(0, 200, 255));
+		background-size: 100% 400%;
+		animation: gradientPan2 3s linear infinite;
+	}
+	@keyframes gradientPan2 {
+		0% { background-position: center 0%; }
+		100% { background-position: center 130%; }
+	}
+</style>
+
+	<script>
+		//Title
+		const titleLayers = document.querySelectorAll('.hero-title-layer');
+		const layerOffsets = [
+			{ x: -20, y: -20, maxOpacity: 0.6 },
+			{ x: 20, y: 20, maxOpacity: 0.6 }
+		];
+		let pulseValue = 0;
+		let pulseDirection = 1;
+		let pulseSpeed = 0.02;
+		let pulseScale = 1;
+
+		//Bars
+		const equalizer = document.getElementById('equalizer');
+		const barCount = 60;
+		const bars = [];
+		const barData = [];
+
+		for (let i = 0; i < barCount; i++) {
+			const bar = document.createElement('div');
+			bar.className = 'eq-bar';
+
+			//Gradient
+			const t = i / (barCount - 1);
+			let r, g, b;
+			if (t < 0.5) {
+				const t2 = t * 2;
+				r = Math.round(255 * (1 - t2));
+				g = 0;
+				b = Math.round(255 * t2);
+			} else {
+				const t2 = (t - 0.5) * 2;
+				r = 0;
+				g = Math.round(255 * t2);
+				b = Math.round(255 * (1 - t2));
+			}
+			bar.style.background = `rgb(${r}, ${g}, ${b})`;
+
+			equalizer.appendChild(bar);
+			bars.push(bar);
+			barData.push({
+				height: 0,
+				velocity: 0,
+				baseOpacity: Math.random() * 0.02
+			});
+		}
+
+		let nextBeat = 0;
+
+		function triggerBeat() {
+			const center = Math.floor(Math.random() * barCount);
+			const width = 3 + Math.floor(Math.random() * 12);
+			const intensity = Math.random() * 16;
+
+			for (let i = 0; i < barCount; i++) {
+				const dist = Math.abs(i - center);
+				if (dist < width) {
+					const falloff = 1 - (dist / width);
+					barData[i].velocity += intensity * falloff * falloff;
+				}
+			}
+		}
+
+		function animate() {
+			nextBeat--;
+			if (nextBeat <= 0) {
+				triggerBeat();
+				nextBeat = 8 + Math.floor(Math.random() * 25);
+			}
+
+			if (Math.random() < 0.03) {
+				triggerBeat();
+			}
+
+			bars.forEach((bar, i) => {
+				const data = barData[i];
+
+				data.height += data.velocity;
+				data.velocity *= 0.92;
+				data.height *= 0.95;
+
+				data.height = Math.max(0, data.height);
+
+				const opacity = data.baseOpacity + (data.height / 50) * 0.12;
+
+				bar.style.height = `${data.height}%`;
+				bar.style.opacity = opacity;
+			});
+
+			//Title pulsing
+			pulseValue += pulseDirection * pulseSpeed;
+
+			if (pulseValue >= 1) {
+				pulseValue = 1;
+				pulseDirection = -1;
+				pulseSpeed = 0.02 + Math.random() * 0.025;
+			} else if (pulseValue <= 0) {
+				pulseValue = 0;
+				pulseDirection = 1;
+				pulseSpeed = 0.02 + Math.random() * 0.025;
+				pulseScale = 0.2 + Math.random() * 1.5;
+			}
+
+			const easedPulse = pulseValue < 0.5
+				? 2 * pulseValue * pulseValue
+				: 1 - Math.pow(-2 * pulseValue + 2, 2) / 2;
+
+			titleLayers.forEach((layer, i) => {
+				const offset = layerOffsets[i];
+				const x = offset.x * easedPulse * pulseScale;
+				const y = offset.y * easedPulse * pulseScale;
+				layer.style.transform = `translate(${x}px, ${y}px)`;
+				layer.style.opacity = offset.maxOpacity * easedPulse;
+			});
+
+			requestAnimationFrame(animate);
+		}
+
+		animate();
+	</script>
+</body>
+</html>

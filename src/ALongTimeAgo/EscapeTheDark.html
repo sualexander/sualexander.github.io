@@ -30,6 +30,7 @@
 			aspect-ratio: 8 / 11;
 			height: 300px;
 			position: relative;
+			image-rendering: pixelated;
 		}
 		.fire::after {
 			content: '';
@@ -58,13 +59,14 @@
 			aspect-ratio: 55 / 31;
 			height: 350px;
 			box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.5);
+			image-rendering: pixelated;
 		}
 	</style>
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Faculty+Glyphic&display=swap" rel="stylesheet">
-  <link rel="stylesheet" crossorigin href="/assets/baseStyle-Dd8O5InU.css">
+  <link rel="stylesheet" crossorigin href="/assets/baseStyle-BDs3jilJ.css">
 </head>
 
 <body style="font-family: 'Faculty Glyphic', sans-serif; font-weight: 400;">
@@ -101,7 +103,8 @@
         left: 0;
         width: 100%;
         background-color: #141019e7;
-        z-index: 10;
+        z-index: 11;
+        pointer-events: none;
     }
 
     .sticky-header nav {
@@ -117,6 +120,7 @@
         align-items: center;
         margin-top: 30px;
         margin-left: 30px;
+        pointer-events: auto;
     }
     .logo .container {
         transform-style: preserve-3d;
@@ -145,6 +149,7 @@
         gap: clamp(10px, 3vw, 50px);
         align-items: center;
         position: relative;
+        pointer-events: auto;
     }
 
     .links a {
@@ -211,7 +216,7 @@
 			</defs>
 		</svg>
 
-		<section class="section" style="background-image: url('/assets/ALongTimeAgo/EscapeTheDark/Fire.jpg'); --height: 900px; justify-content: flex-start; padding: 60px 4vw;">
+		<section class="section" style="background-image: url('/assets/ALongTimeAgo/EscapeTheDark/Fire.jpg'); min-height: 900px; justify-content: flex-start; padding: 60px 6vw;">
 			<div class="section-overlay" style="--overlay: 0.1"></div>
 
 			<div class="section-text" style="flex-direction: column; align-items: flex-start; gap: 12px">
@@ -223,14 +228,14 @@
 			</div>
 		</section>
 
-		<section class="section wave-top" style="background-image: url('/assets/ALongTimeAgo/EscapeTheDark/End.jpg'); --height: auto; flex-direction: column; text-align: center; font-size: 1.1em">
+		<section class="section wave-top" style="background-image: url('/assets/ALongTimeAgo/EscapeTheDark/End.jpg'); min-height: auto; flex-direction: column; text-align: center; font-size: 1.1em; line-height: 1.6;">
 			<div class="section-overlay" style="--overlay: 0.8"></div>
 			<div class="section-text" style="width: 100%; justify-content: center; padding: 60px">
-				<p style="max-width: 700px;">
+				<p style="max-width: 670px;">
 					We interpreted the theme as a dying torch <b>running out</b> of fuel, along with the literal goal of <b>running out</b> of the cave system.
 					Unlit campfires scattered throughout the map allowed you to relight your torch and served as soft checkpoints to retreat to, 
 					although we didn't finish implementing an actual fail-state for being in the dark too long. 
-					Other than that, it's straightforward platforming with some doors and levers thrown in there for good measure.
+					Other than that, it's straightforward platforming with some doors and levers thrown in for good measure.
 				</p>
 			</div>
 
@@ -245,19 +250,20 @@
 			<div class="section-text" style="width: 100%; min-height: 400px; justify-content: center; gap: 60px; padding: 40px;">
 				<div class="fire"></div>
 				<p style="max-width: 600px;">
-					I remember struggling surprisingly hard with the sprite animations in Unity even for a first attempt.
+					Even for a first attempt, I remember struggling quite hard with the sprite animations.
 					Getting collisions to behave and the fires to actually illuminate the scene was also a pain.
-					It was certainly a different time for programming back then before ChatGPT snuck up on everyone.
+					It's surprising how little you can get done in 48 hours even when focused.
+					And it was certainly a different time for programming back then before ChatGPT snuck up on everyone.
 				</p>
 			</div>
 
 			<div style="height: 60px;"></div>
 		</section>
 
-		<section class="section wave-top-2" style="background-image: url('/assets/ALongTimeAgo/EscapeTheDark/Title.jpg'); --height: auto; flex-direction: column;">
-			<div class="section-overlay" style="--overlay: 0.2"></div>
+		<section class="section wave-top-2" style="background-image: url('/assets/ALongTimeAgo/EscapeTheDark/Title.jpg'); min-height: auto; flex-direction: column;">
+			<div class="section-overlay" style="--overlay: 0.4"></div>
 
-			<div style="width: 100%; max-width: 850px; aspect-ratio: 16/9; z-index: 1;">
+			<div style="width: 100%; max-width: 900px; aspect-ratio: 16/9; z-index: 1;">
 				<iframe
 					width="100%"
 					height="100%"
@@ -267,7 +273,7 @@
 				</iframe>
 			</div>
 
-			<a href="https://sualexander.itch.io/escape-the-dark" target="_blank" class="button" style="z-index: 1; margin-top: 30px; padding: 12px 30px; background-color: #fb5d5c; font-size: 1.2em;">
+			<a href="https://sualexander.itch.io/escape-the-dark" target="_blank" class="button" style="z-index: 1; margin-top: 40px; padding: 12px 30px; background-color: #fb5d5c; font-size: 1.2em;">
 				Play on itch.io
 			</a>
 

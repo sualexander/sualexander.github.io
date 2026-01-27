@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>BLAD</title>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Balthazar&display=swap" rel="stylesheet">
+
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		html {
+			scrollbar-color: #5e5e5e #252525dc;
+		}
+		
+		.map-container {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100vw;
+			height: 100vh;
+			overflow: hidden;
+			will-change: contents;
+		}
+
+		.map-image {
+			position: absolute;
+			width: 250vw;
+			height: auto;
+			max-width: none;
+			left: 0;
+			top: 0;
+			transform-origin: 0 0;
+			will-change: transform;
+		}
+
+		.scroll-content {
+			position: relative;
+			z-index: 10;
+		}
+
+		.waypoint {	
+			height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 2rem;
+		}
+		.waypoint-content {
+			background: rgba(0, 0, 0, 0.7);
+			border: 2.5px solid rgba(255, 255, 255, 0.3);
+			padding: 2rem 3rem;
+			max-width: clamp(500px, 45vw, 1000px);
+			text-align: center;
+			font-size: 1.3em;
+		}
+		.waypoint-content p {
+			color: rgba(255, 255, 255, 0.9);
+			line-height: 1.7;
+		}
+
+		footer {
+			position: fixed;
+			bottom: 0;
+			width: 100%;
+			z-index: 10;
+		}
+	</style>
+</head>
+
+<body style="font-family: 'Balthazar', normal; background-color: #1b1b1b;">
+	<header class="sticky-header">
+    <nav>
+        <a href="/" class="logo">
+            <div class="container">
+                <span style="--i:1;">ALEXANDER SU</span>
+                <span style="--i:2;">ALEXANDER SU</span>
+                <span style="--i:3;">ALEXANDER SU</span>
+                <span style="--i:4;">ALEXANDER SU</span>
+                <span style="--i:5;">ALEXANDER SU</span>
+                <span style="--i:6;">ALEXANDER SU</span>
+                <span style="--i:7;">ALEXANDER SU</span>
+                <span style="--i:8;">ALEXANDER SU</span>
+                <span style="--i:9;">ALEXANDER SU</span>
+                <span style="--i:10;">ALEXANDER SU</span>
+                <span style="--i:11;">ALEXANDER SU</span>
+                <span style="--i:12;">ALEXANDER SU</span>
+            </div>
+        </a>
+        <div class="links">
+            <a href="/#.gallery">HOME</a>
+            <a href="">ABOUT</a>
+            <a href="">CONTACT</a>
+        </div>
+    </nav>
+</header>
+
+<style>
+    .sticky-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #141019e7;
+        z-index: 11;
+        pointer-events: none;
+    }
+
+    .sticky-header nav {
+        height: 100px;
+        padding: 0 clamp(20px, 4%, 50px) 0 60px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+        margin-left: 30px;
+        pointer-events: auto;
+    }
+    .logo .container {
+        transform-style: preserve-3d;
+        animation: rotate 25s linear infinite;
+    }
+    .logo span {
+        position: absolute;
+        white-space: nowrap;
+        transform-style: preserve-3d;
+        transform: translate(-50%, -50%) rotateX(calc(var(--i) * 30deg)) translateZ(25px);
+        font-size: 1em;
+        color: color-mix(in hsl, 
+        #aff2ff calc(50% + 50% * cos(calc(var(--i) * 30deg))), 
+        #aeaeff calc(50% - 50% * cos(calc(var(--i) * 30deg)))
+    );
+        background: linear-gradient(90deg, transparent, rgb(0, 0, 0), transparent);
+        line-height: 0.7em;
+    }
+    @keyframes rotate {
+        0% { transform: perspective(200px) rotateX(0deg) rotate(25deg); }
+        100% { transform: perspective(200px) rotateX(360deg) rotate(25deg); }
+    }
+
+    .links {
+        display: flex;
+        gap: clamp(10px, 3vw, 50px);
+        align-items: center;
+        position: relative;
+        pointer-events: auto;
+    }
+
+    .links a {
+        color: #ffffff;
+        font-size: 18px;
+        text-decoration: none;
+        position: relative;
+        background: linear-gradient(to right, rgb(0, 195, 255), rgb(65, 58, 255), rgb(8, 195, 255));
+        background-size: 200% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        transition: all 0.3s ease;
+        --gradient-width: 0px;
+    }
+    .links a:hover {
+        transform: scale(1.2);
+        color: transparent;
+        animation: gradientPan var(--animation-duration, 2s) linear infinite;
+        font-weight: 500;
+    }
+    .links a::before {
+        content: '';
+        position: absolute;
+        width: 110%;
+        height: 2px;
+        left: -5%;
+        bottom: -5px;
+        background: white;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s ease-out;
+    }
+    .links a:hover::before {
+        transform: scaleX(1);
+    }
+    @keyframes gradientPan {
+        to { background-position: var(--gradient-width, 100%) center; }
+    }
+</style>
+
+<script>
+	const stickyHeader = document.querySelector('.sticky-header');
+	window.addEventListener('scroll', () => {
+		const opacity = Math.max(0.8, 1 - window.scrollY / 2400);
+		stickyHeader.style.backgroundColor = `rgba(20, 16, 25, ${opacity * 0.9})`;
+	});
+
+	document.querySelectorAll('.links a').forEach(link => {
+		const width = link.offsetWidth;
+		link.style.setProperty('--gradient-width', `${width * 2}px`);
+		link.style.setProperty('--animation-duration', `${width * 0.025}s`);
+	});
+</script>
+
+	<div class="map-container">
+		<img src="/assets/ALongTimeAgo/BLAD/WorldMapBig.jpg" class="map-image" id="mapImage" decoding="sync">
+	</div>
+
+	<main class="scroll-content">
+		<section class="waypoint" data-map-x="13.8" data-map-y="54" data-map-scale="4">
+			<div class="waypoint-content" style="padding: 3rem 4rem;">
+				<h1 style="color: white; font-size: 3.5em; margin-bottom: 0.4rem;">Buddy Lives Another Day</h1>
+				<p style="font-size: 1.5em;">2022</p>
+				<p style="font-size: 1.2em; margin-top: 2rem;">Alex Su, Charlie Doris, Lana Lim, Micha Rand</p>
+			</div>
+		</section>
+		<section class="waypoint" data-map-x="13.8" data-map-y="36" data-map-scale="3">
+			<div class="waypoint-content">
+				<p>
+					The initial inspiration came from our high school mascot <b>Buddy</b> and a recent <b>Spirit Week</b> celebration. 
+					It then was reframed into a gritty film noir aesthetic that retains some lightness by the premise that in this world of anthropomorphic animals, arm wrestling is combat.
+					What follows is a good ol underdog story with Buddy and his friends against the evil Stars trying to take over.
+				</p>
+			</div>
+		</section>
+		<section class="waypoint" data-map-x="37.5" data-map-y="34" data-map-scale="1.8">
+			<div class="waypoint-content">
+				<p>
+					The game was never finished. For one, the core interaction of arm wrestling just wasn't a very compelling mechanic.
+					And the highly branched nature of the story also made the programming side of things increasingly cumbersome.
+					It eventually just dragged on a bit too long and we all started drifting towards other projects.
+					But the few months we did spend in development amidst college applications were incredibly enjoyable.
+				</p>
+			</div>
+		</section>
+		<section class="waypoint" data-map-x="36.9" data-map-y="14" data-map-scale="3.2">
+			<div class="waypoint-content">
+				<p>
+					Last I remember, the project file had fallen into disrepair, so all I have here are some backgrounds and sketches.
+				</p>
+			</div>
+		</section>
+		<section class="waypoint" data-map-x="6" data-map-y="13.7" data-map-scale="2.8">
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 50px;">
+				<div class="waypoint-content">
+					<p>
+						I was in charge of the art for this game <i>(thankfully Lana came on later to do all the characters).</i>
+						We were initially going for something isometric inspired by the likes of <i>Transistor</i> or <i>Disco Elysium.</i>
+						But it dawned on us that one big continuous map was a lot of work and Micha suggested a simpler zelda dungeon top-down perspective.
+						This actually added quite a bit of charm and having disconnected sections allowed us to imply a much grander scale for the world.
+					</p>
+				</div>
+				<div class="waypoint-content" style="display: flex; gap: 1rem; padding: 1.5rem 1rem; justify-content: center;">
+					<img data-src="/assets/ALongTimeAgo/BLAD/Sketch.jpg" style="max-width: 48%; height: auto;">
+					<img data-src="/assets/ALongTimeAgo/BLAD/Vector.jpg" style="max-width: 48%; height: auto;">
+				</div>
+			</div>
+		</section>
+		<section class="waypoint" data-map-x="36.9" data-map-y="14" data-map-scale="3.2">
+			<div class="waypoint-content">
+				<p>
+					Right from the start I arrived at this photobashed approach to have maximal visual detail in the shortest time. 
+					We also decided early on that the lighting should be baked into the backgrounds <i>(besides a character shadow)</i> 
+					for much higher fidelity than if we went with actual dynamic lights through the engine.
+					And because it's mostly ambiently lit, I leaned into a kind of exaggerated ambient occlusion style of shading with a general principle of keeping high contrast everywhere.
+					I would also come to add little patches of light and dark to break up surfaces especially with tiled images.
+					It was a lot of fun learning this new workflow and it also forced me to get very proficient at Photoshop by the end.
+				</p>
+			</div>
+		</section>
+		<section class="waypoint" data-map-x="36.9" data-map-y="2.5" data-map-scale="3.2"> </section>
+		<section class="waypoint" data-map-x="53" data-map-y="2.5" data-map-scale="3.4">
+			<div class="waypoint-content" style="padding: 2rem 0; border: none">
+				<img data-src="/assets/ALongTimeAgo/BLAD/Trifecta.jpg" style="max-width: 90%; height: auto;">
+			</div>
+		</section>
+		<section class="waypoint" data-map-x="36.9" data-map-y="2.5" data-map-scale="3.2"> </section>
+		<section class="waypoint" data-map-x="36.9" data-map-y="14" data-map-scale="2"> </section>
+		<section class="waypoint" data-map-x="52.5" data-map-y="13" data-map-scale="4">
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 50px;">
+				<div class="waypoint-content">
+					<p>
+						The plan was to replace the heads with portraits that could be swapped out for each of the characters,
+						so we didn't have to redraw and reanimate the arm movements for every single encounter.
+						The portraits would also express facial cues much better which was vital for the <i>fakes</i> and <i>tells</i> as part of the arm-wrestling gameplay.
+					</p>
+				</div>
+				<div class="waypoint-content">
+					<img data-src="/assets/ALongTimeAgo/BLAD/ArmWrestling.jpg" style="max-width: 100%; height: auto;">
+				</div>
+			</div>
+		</section>
+		<section class="waypoint" data-map-x="70" data-map-y="13" data-map-scale="3.2"> </section>
+		<section class="waypoint" data-map-x="70" data-map-y="19" data-map-scale="2.6"> </section>
+		<section class="waypoint" data-map-x="90" data-map-y="19" data-map-scale="2.6">
+			<div class="waypoint-content" style="max-width: fit-content;">
+				<p>Where the climax takes place as Buddy finally takes on Lil Star. There were grand plans for this area...</p>
+			</div>
+		</section>
+		<section class="waypoint" data-map-x="97" data-map-y="19" data-map-scale="3"> </section>
+		<section class="waypoint" data-map-x="97" data-map-y="34" data-map-scale="3"> </section>
+		<section class="waypoint" data-map-x="79" data-map-y="33" data-map-scale="3.2">
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 50px;">
+				<div class="waypoint-content">
+					<p>
+						Posters and other environmental text were supposed to diegetically add additional lore and flavor to the world.
+					</p>
+				</div>
+				<div class="waypoint-content" style="padding: 2rem 0">
+					<img data-src="/assets/ALongTimeAgo/BLAD/Poster.jpg" style="max-width: 70%; height: auto;">
+				</div>
+			</div>
+		</section>
+		<section class="waypoint" data-map-x="56" data-map-y="35" data-map-scale="3.2">
+			<div style="display: flex; flex-direction: column; align-items: center; gap: 50px;">
+				<div class="waypoint-content">
+					<p>
+						Cutscenes were of lower priority so they most definitely did not get off the cutting board.
+					</p>
+				</div>
+				<div class="waypoint-content" style="padding: 2rem 1rem">
+					<img data-src="/assets/ALongTimeAgo/BLAD/Title.jpg" style="max-width: 90%; height: auto;">
+				</div>
+			</div>
+		</section>
+		<section class="waypoint" data-map-x="45.2" data-map-y="34" data-map-scale="1.8"> </section>
+		<section class="waypoint" data-map-x="45.2" data-map-y="58" data-map-scale="4">
+
+		</section>
+		<section class="waypoint" data-map-x="45.2" data-map-y="51" data-map-scale="4"> </section>
+		<section class="waypoint" data-map-x="62.5" data-map-y="51" data-map-scale="4"> </section>
+		<section class="waypoint" data-map-x="62.5" data-map-y="64.5" data-map-scale="2.4">
+			<div class="waypoint-content">
+				<p>
+					These indoor scenes were inspired by the <b>Snowdin Town</b> shop from Undertale.
+				</p>
+			</div>
+		</section>
+		<section class="waypoint" data-map-x="33.5" data-map-y="64" data-map-scale="2.4">
+
+		</section>
+		<section class="waypoint" data-map-x="11.8" data-map-y="71" data-map-scale="2.4">
+
+		</section>
+		<section class="waypoint" data-map-x="11.8" data-map-y="85" data-map-scale="3">
+			<div class="waypoint-content">
+				<p>These dock areas were actually the first ones drawn yet are still the most cohesive...</p>
+			</div>
+		</section>
+		<section class="waypoint" data-map-x="46" data-map-y="82.7" data-map-scale="2.3">
+
+		</section>
+		<section class="waypoint" data-map-x="80.5" data-map-y="88.5" data-map-scale="2.6">
+
+		</section>
+		<section class="waypoint" data-map-x="91.5" data-map-y="86" data-map-scale="4"></section>
+		<section class="waypoint" data-map-x="91.5" data-map-y="71" data-map-scale="4">
+			<div class="waypoint-content">
+				<p>This was going to be an easter egg room.</p>
+			</div>
+		</section>
+		<section class="waypoint" data-map-x="50" data-map-y="50" data-map-scale="0.3"></section>
+		<section class="waypoint" data-map-x="13.8" data-map-y="54" data-map-scale="4"></section>
+	</main>
+
+	<div style="position: fixed; bottom: 60px; width: 100%; z-index: 10;">
+		<div class="nav-buttons">
+	<a class="nav-button" href="/src/ALongTimeAgo/TheRule.html">
+		<img class="chev-left" src="/assets/Home/chevron-left.png">
+		<span>The Rule</span>
+	</a>
+	<a class="nav-button" href="/src/ALongTimeAgo/TheGreatDerby.html">
+		<span>The Great Derby</span>
+		<img class="chev-right" src="/assets/Home/chevron-right.png">
+	</a>
+</div>
+
+<style>
+	.nav-buttons {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		padding: 3%;
+	}
+
+	.nav-button {
+		white-space: nowrap;
+		text-decoration: none;
+		color: rgb(255, 255, 255);
+		font-size: clamp(24px, 2.5vw, 36px);
+		display: flex;
+		align-items: center;
+		transition: all 0.3s ease;
+	}
+	.nav-button:hover {
+		opacity: 0.7;
+	}
+	.nav-button img {
+		height: clamp(36px, 3.5vw, 48px);
+		padding: 0 5%;
+	}
+	.nav-button span {
+		transform: translateY(-0.08em);
+	}
+
+	.chev-left,
+	.chev-right {
+		transition: all 0.3s ease;
+	}
+
+	.nav-button:hover .chev-left {
+		animation: bounceLeft 1.6s ease-in-out infinite;
+	}
+
+	.nav-button:hover .chev-right {
+		animation: bounceRight 1.6s ease-in-out infinite;
+	}
+
+	@keyframes bounceLeft {
+		0%	{ transform: translateX(0); }
+		25%	{ transform: translateX(-16%); }
+		40%	{ transform: translateX(-5%); }
+		65%	{ transform: translateX(-12%); }
+		85%	{ transform: translateX(-3%); }
+		100%	{ transform: translateX(0); }
+	}
+
+	@keyframes bounceRight {
+		0%	{ transform: translateX(0); }
+		25%	{ transform: translateX(16%); }
+		40%	{ transform: translateX(5%); }
+		65%	{ transform: translateX(12%); }
+		85%	{ transform: translateX(3%); }
+		100%	{ transform: translateX(0); }
+	}
+</style>
+	</div>
+
+	<footer class="footer">
+    	<nav>
+		<div class="copyright">
+			<span style="--i:0">&copy; &nbsp;</span>
+			<span style="--i:1">2</span>
+			<span style="--i:2">0</span>
+			<span style="--i:3">2</span>
+			<span style="--i:4">6 &nbsp;</span>
+			<span style="--i:5">A</span>
+			<span style="--i:6">L</span>
+			<span style="--i:7">E</span>
+			<span style="--i:8">X</span>
+			<span style="--i:9">A</span>
+			<span style="--i:10">N</span>
+			<span style="--i:11">D</span>
+			<span style="--i:12">E</span>
+			<span style="--i:13">R &nbsp;</span>
+			<span style="--i:14">S</span>
+			<span style="--i:15">U</span>
+		</div>
+	<div class="social-media">
+		<a href="https://sualexander.itch.io" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/itch.png');">
+		</a>
+		<a href="https://github.com/sualexander" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/github.png');">
+		</a>
+		<a href="https://www.youtube.com/@alexandersu9397" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/youtube.png');">
+		</a>
+		<a href="https://www.linkedin.com/in/alexander-su-b9701824a" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/linkedin.png');">
+		</a>
+		</div>
+	</nav>
+</footer>
+
+<script>
+	document.querySelectorAll('.social-media img').forEach(img => {
+		const computedStyle = window.getComputedStyle(img);
+		const maskImage = computedStyle.maskImage;
+		const imageUrl = maskImage.replace(/^url\(['"](.+)['"]\)$/, '$1');
+
+		const temp = new Image();
+		temp.src = imageUrl;
+		temp.onload = () => {
+			const aspectRatio = temp.naturalWidth / temp.naturalHeight;
+			img.style.width = `${32 * aspectRatio}px`;
+		};
+	});
+</script>
+
+<style>
+	.footer {
+		background-color: #141019b3;
+	}
+
+	.footer nav {
+		height: 80px;
+		padding: 0 3% 0 2%;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.footer .copyright {
+		display: flex;
+		align-items: center;
+	}
+	.footer span {
+		pointer-events: none;
+		position: relative;
+		display: inline-block;
+		font-size: 16px;
+		font-weight: 400;
+		color: #fff;
+		animation: flip 10s infinite;
+		animation-delay: calc(0.08s * var(--i))
+	}
+	@keyframes flip {
+		0%,80% { transform: rotateY(360deg) }
+	}
+
+	.social-media {
+		display: flex;
+		gap: 2vw;
+		align-items: center;
+	}
+
+	.social-media a {
+		height: 40%;
+		display: flex;
+		position: relative;
+	}
+
+	.social-media img {
+		height: 100%;
+		padding: 15px; /*hack for mask artifacts*/
+		mask-size: contain;
+		mask-repeat: no-repeat;
+		mask-position: center;
+		background: rgb(224, 224, 224);
+		transition: all 0.5s ease;
+	}
+	.social-media img:hover {
+		transform: scale(1.1);
+		background: linear-gradient(to bottom, rgb(0, 200, 255), rgb(146, 13, 255), rgb(0, 200, 255));
+		background-size: 100% 400%;
+		animation: gradientPan2 3s linear infinite;
+	}
+	@keyframes gradientPan2 {
+		0% { background-position: center 0%; }
+		100% { background-position: center 130%; }
+	}
+</style>
+
+	<script>
+		const mapImage = document.getElementById('mapImage');
+		const waypoints = document.querySelectorAll('.waypoint');
+
+		const SMOOTHING = .15;
+
+		let currentTranslateX = 0;
+		let currentTranslateY = 0;
+		let currentScale = 1;
+
+		let targetTranslateX = 0;
+		let targetTranslateY = 0;
+		let targetScale = 1;
+
+		const waypointData = Array.from(waypoints).map(wp => ({
+			element: wp,
+			x: parseFloat(wp.dataset.mapX) || 0,
+			y: parseFloat(wp.dataset.mapY) || 0,
+			scale: parseFloat(wp.dataset.mapScale) || 1
+		}));
+
+		function lerp(start, end, factor) {
+			return start + (end - start) * factor;
+		}
+
+		function calculateTarget() {
+			const windowHeight = window.innerHeight;
+			const windowWidth = window.innerWidth;
+
+			const mapWidth = mapImage.offsetWidth;
+			const mapHeight = mapImage.offsetHeight;
+
+			if (mapWidth === 0 || mapHeight === 0) return;
+
+			let currentIndex = 0;
+			let progress = 0;
+
+			for (let i = 0; i < waypointData.length; i++) {
+				const wp = waypointData[i];
+				const rect = wp.element.getBoundingClientRect();
+				const wpCenter = rect.top + rect.height / 2;
+
+				if (wpCenter > windowHeight / 2) {
+					break;
+				}
+				currentIndex = i;
+			}
+
+			const current = waypointData[currentIndex];
+			const next = waypointData[Math.min(currentIndex + 1, waypointData.length - 1)];
+
+			if (current !== next) {
+				const currentRect = current.element.getBoundingClientRect();
+				const nextRect = next.element.getBoundingClientRect();
+				const currentCenter = currentRect.top + currentRect.height / 2;
+				const nextCenter = nextRect.top + nextRect.height / 2;
+
+				progress = Math.max(0, Math.min(1,
+					(windowHeight / 2 - currentCenter) / (nextCenter - currentCenter)
+				));
+			}
+
+			const xPerc = current.x + (next.x - current.x) * progress;
+			const yPerc = current.y + (next.y - current.y) * progress;
+			const scale = current.scale + (next.scale - current.scale) * progress;
+
+			const targetX = (xPerc / 100) * mapWidth;
+			const targetY = (yPerc / 100) * mapHeight;
+
+			targetTranslateX = (windowWidth / 2) - (targetX * scale);
+			targetTranslateY = (windowHeight / 2) - (targetY * scale);
+			targetScale = scale;
+		}
+
+		function animate() {
+			currentTranslateX = lerp(currentTranslateX, targetTranslateX, SMOOTHING);
+			currentTranslateY = lerp(currentTranslateY, targetTranslateY, SMOOTHING);
+			currentScale = lerp(currentScale, targetScale, SMOOTHING);
+
+			mapImage.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px) scale(${currentScale})`;
+
+			requestAnimationFrame(animate);
+		}
+
+		function updateContentOpacity() {
+			const vh = window.innerHeight;
+			const fadeStart = 0.3;
+			const fadeEnd = 0.6;
+
+			document.querySelectorAll('.waypoint-content').forEach(content => {
+				const rect = content.getBoundingClientRect();
+				const centerY = rect.top + rect.height / 2;
+
+				const distFromCenter = Math.abs(centerY - vh / 2) / vh;
+
+				let opacity = 1;
+				if (distFromCenter > fadeStart) {
+					opacity = 1 - (distFromCenter - fadeStart) / (fadeEnd - fadeStart);
+				}
+				content.style.opacity = Math.max(0, Math.min(1, opacity));
+			});
+		}
+
+		//Infinite scroll loop
+		function checkLoop() {
+			const scrollY = window.scrollY;
+			const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+
+			if (scrollY >= maxScroll - 10) {
+				window.scrollTo(0, 1);
+			}
+			else if (scrollY <= 0) {
+				window.scrollTo(0, maxScroll - 11);
+			}
+		}
+
+		window.addEventListener('scroll', () => {
+			calculateTarget();
+			checkLoop();
+			updateContentOpacity();
+		});
+		window.addEventListener('resize', calculateTarget);
+		mapImage.addEventListener('load', () => {
+			calculateTarget();
+
+			currentTranslateX = targetTranslateX;
+			currentTranslateY = targetTranslateY;
+			currentScale = targetScale;
+
+			//Load other images after map
+			document.querySelectorAll('.waypoint-content img[data-src]').forEach(img => {
+				img.src = img.dataset.src;
+			});
+		});
+
+		calculateTarget();
+		currentTranslateX = targetTranslateX;
+		currentTranslateY = targetTranslateY;
+		currentScale = targetScale;
+		updateContentOpacity();
+		animate();
+	</script>
+</body>
+</html>

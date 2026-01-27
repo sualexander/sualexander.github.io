@@ -10,7 +10,7 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Ysabeau:ital,wght@0,1..1000;1,1..1000&display=swap" rel="stylesheet">
-  <link rel="stylesheet" crossorigin href="/assets/baseStyle-Dd8O5InU.css">
+  <link rel="stylesheet" crossorigin href="/assets/baseStyle-BDs3jilJ.css">
 </head>
 
 <body style="font-family: 'Ysabeau', sans-serif; font-weight: 450;">
@@ -47,7 +47,8 @@
         left: 0;
         width: 100%;
         background-color: #141019e7;
-        z-index: 10;
+        z-index: 11;
+        pointer-events: none;
     }
 
     .sticky-header nav {
@@ -63,6 +64,7 @@
         align-items: center;
         margin-top: 30px;
         margin-left: 30px;
+        pointer-events: auto;
     }
     .logo .container {
         transform-style: preserve-3d;
@@ -91,6 +93,7 @@
         gap: clamp(10px, 3vw, 50px);
         align-items: center;
         position: relative;
+        pointer-events: auto;
     }
 
     .links a {
@@ -146,7 +149,7 @@
 </script>
 
 	<main>
-		<section class="section" style="background-image: url('/assets/ALongTimeAgo/FirstSteps/CrossyRoad.jpg'); --height: 600px">
+		<section class="section" style="background-image: url('/assets/ALongTimeAgo/FirstSteps/CrossyRoad.jpg'); min-height: 600px">
 			<div class="section-overlay" style="--overlay: 0.5"></div>
 
 			<div class="section-text" style="flex-direction: column; align-items: center;">
@@ -155,8 +158,8 @@
 			</div>
 		</section>
 
-		<section class="section" style="background-image: url('/assets/ALongTimeAgo/FirstSteps/Gravity.jpg'); --height: 500px; padding: 60px 4vw; align-items: stretch;">
-			<div class="section-overlay" style="--overlay: 0.7"></div>
+		<section class="section" style="background-image: url('/assets/ALongTimeAgo/FirstSteps/Gravity.jpg'); min-height: 500px; padding: 60px 8vw; align-items: stretch;">
+			<div class="section-overlay" style="--overlay: 0.6"></div>
 
 			<div class="section-text" style="font-size: 1.4em; font-weight: 400; width: 100%; justify-content: space-between;">
 				<p style="text-align: left; max-width: 700px; align-self: flex-start;">
@@ -170,7 +173,7 @@
 			</div>
 		</section>
 
-		<section class="section" style="background-color: #000e0a70; --height: 500px; align-items: stretch;">
+		<section class="section" style="background-color: #000e0a70; min-height: 500px; align-items: stretch;">
 			<div class="section-text" style="flex: 1; flex-direction: column; padding: 40px; justify-content: flex-start; align-items: flex-start; gap: 20px; font-size: 1.1em;">
 				<p>
 					A first attempt at hard-surface modeling. Something I would find much joy, and many hours in through the years that followed.
@@ -185,14 +188,14 @@
 			<div style="flex: 2; background-image: url('/assets/ALongTimeAgo/FirstSteps/Gun.jpg'); background-size: cover; background-position: center;"></div>
 		</section>
 
-		<section class="section" style="background-image: url('/assets/ALongTimeAgo/FirstSteps/Invaders.jpg'); --height: 400px; flex-direction: column;">
+		<section class="section" style="background-image: url('/assets/ALongTimeAgo/FirstSteps/Invaders.jpg'); min-height: 400px; flex-direction: column;">
 			<div class="section-overlay" style="--overlay: 0.1"></div>
 
 			<div class="section-text" style="flex: 1; width: 100%; padding: 70px 10%;">
 				<div style="position: absolute; inset: 50px 10%; background-color: rgba(0, 0, 0, 0.7);"></div>
 
 				<div style="flex: 1; display: flex; align-items: center; justify-content: center; z-index: 1; padding: 20px">
-					<img src="/assets/ALongTimeAgo/FirstSteps/Menu.jpg" style="max-height: 250px; object-fit: cover; box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.2);">
+					<img src="/assets/ALongTimeAgo/FirstSteps/Menu.jpg" style="max-height: 250px; object-fit: cover; box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.15);">
 				</div>
 
 				<div style="flex: 1; display: flex; align-items: center; justify-content: center; z-index: 1; padding: 20px">

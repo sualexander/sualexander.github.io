@@ -7,13 +7,66 @@
 	<title>Gravity</title>
 
 
+	<style>
+		.split-left {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			clip-path: polygon(0 0, 70% 0, 25% 100%, 0 100%);
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			padding-left: 6vw;
+			transition: clip-path 0.1s ease-out;
+		}
+
+		.split-right {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-image: url('/assets/ALongTimeAgo/Gravity/Gravity.jpg');
+			background-size: cover;
+			background-position: center;
+			clip-path: polygon(70% 0, 100% 0, 100% 100%, 25% 100%);
+			transition: clip-path 0.1s ease-out;
+		}
+		.split-right::after {
+			content: '';
+			position: absolute;
+			inset: 0;
+			background: rgba(0, 0, 0, 0.1);
+		}
+
+		.split-title {
+			font-size: clamp(40px, 7vw, 80px);
+			font-weight: 700;
+			letter-spacing: -0.02em;
+			line-height: 1;
+			margin-bottom: 16px;
+			transform: translateY(0);
+			transition: transform 0.1s ease-out, opacity 0.1s ease-out;
+		}
+
+		.split-subtitle {
+			font-size: clamp(14px, 2vw, 20px);
+			font-weight: 300;
+			color: #ffffffcc;
+			transform: translateY(0);
+			transition: transform 0.1s ease-out, opacity 0.1s ease-out;
+		}
+	</style>
+
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" crossorigin href="/assets/baseStyle-Dd8O5InU.css">
+  <link rel="stylesheet" crossorigin href="/assets/baseStyle-BDs3jilJ.css">
 </head>
 
-<body style="font-family: 'IBM Plex Mono', monospace; font-weight: 400;">
+<body style="font-family: 'IBM Plex Mono', monospace; font-weight: 300;">
 	<header class="sticky-header">
     <nav>
         <a href="/" class="logo">
@@ -47,7 +100,8 @@
         left: 0;
         width: 100%;
         background-color: #141019e7;
-        z-index: 10;
+        z-index: 11;
+        pointer-events: none;
     }
 
     .sticky-header nav {
@@ -63,6 +117,7 @@
         align-items: center;
         margin-top: 30px;
         margin-left: 30px;
+        pointer-events: auto;
     }
     .logo .container {
         transform-style: preserve-3d;
@@ -91,6 +146,7 @@
         gap: clamp(10px, 3vw, 50px);
         align-items: center;
         position: relative;
+        pointer-events: auto;
     }
 
     .links a {
@@ -146,19 +202,33 @@
 </script>
 
 	<main>
-		<section class="section" style="background-image: url('/assets/ALongTimeAgo/Gravity/Gravity.jpg'); --height: 600px">
-			<div class="section-overlay" style="--overlay: 0.5"></div>
-
-			<div class="section-text" style="flex-direction: column; align-items: center;">
-				<h1 style="font-size: clamp(30px, 5vw, 50px); font-weight: 750;">Gravity</h1>
-				<p style="font-size: clamp(14px, 2.3vw, 22px); font-weight: 350;">2020 | What are we even doing</p>
+		<section class="section" style="min-height: 900px;">
+			<div class="split-left">
+				<h1 class="split-title">GRAVITY</h1>
+				<p class="split-subtitle" style="padding: 0 3px; color: #ffffff; font-weight: 400; ">2020 // A Familiar Face</p>
 			</div>
+			<div class="split-right"></div>
 		</section>
 
-		<section class="section" style="background-image: url('/assets/ALongTimeAgo/FirstSteps/Gravity.jpg'); --height: 500px; padding: 60px 4vw; align-items: stretch;">
-			<div class="section-overlay" style="--overlay: 0.7"></div>
+		<section class="section" style="height: 900px; background-color: #ffffff05; align-items: stretch;">
+			<div class="section-text" style="flex: 1; flex-direction: column; padding: 40px 6vw; justify-content: center; gap: 40px; font-size: 1.1em;">
+				<p>
+					Inspired by the catastrophe that was 
+					<a href="/src/ALongTimeAgo/EscapeTheDark.html" style="color: inherit; text-decoration: none; font-weight: 500;">Escape The Dark</a>
+					and a newfound acquaintance with the Unity engine, 
+					my heart was pulled back to the gravity flipping concept from 
+					<a href="/src/ALongTimeAgo/FirstSteps.html" style="color: inherit; text-decoration: none; font-weight: 500;">three years prior.</a>
+				</p>
+				<p>
+					I expanded from simply flipping vertically to all 3 axis, allowing the player to walk on any surface by reorienting <i style="font-weight: 400;">(map is all axis-aligned)</i>.
+					The most exciting part was the potential for novel platforming by jumping and changing gravity midair.
+				</p>
+				<p>
+					Unfortunately this never made it past the block out stage, but at least there was a working implementation of the movement with smooth camera rotation.
+				</p>
+			</div>
 
-			<div class="section-text" style="font-size: 1.4em; font-weight: 400; width: 100%; justify-content: space-between;">
+			<div style="flex: 2; overflow-y: scroll;">
 				<pre class="shiki custom-dark" style="background-color:#121212;color:#dbd7caee" tabindex="0"><code><span class="line"><span class="line-number">  1</span> <span style="color:#4D9375">using</span><span style="color:#5DA994"> System</span><span style="color:#666666">.</span><span style="color:#5DA994">Collections</span><span style="color:#666666">;</span></span>
 <span class="line"><span class="line-number">  2</span> <span style="color:#4D9375">using</span><span style="color:#5DA994"> System</span><span style="color:#666666">.</span><span style="color:#5DA994">Collections</span><span style="color:#666666">.</span><span style="color:#5DA994">Generic</span><span style="color:#666666">;</span></span>
 <span class="line"><span class="line-number">  3</span> <span style="color:#4D9375">using</span><span style="color:#5DA994"> UnityEngine</span><span style="color:#666666">;</span></span>
@@ -284,26 +354,16 @@
 <span class="line"><span class="line-number">123</span> <span style="color:#666666">    }</span></span>
 <span class="line"><span class="line-number">124</span> <span style="color:#666666">}</span></span>
 <span class="line"><span class="line-number">125</span> </span></code></pre>
-				<p style="text-align: right; max-width: 700px; align-self: flex-end;">
-					It was a cursory introduction to Unity, Unreal, and Maya over the course of two weeks.
-					Even then I had already developed an aversion to Unity thanks to that hideous light theme at the time.
-				</p>
 			</div>
 		</section>
 
-		<section class="section" style="background-color: #000e0a70; --height: 500px; align-items: stretch;">
-			<div class="section-text" style="flex: 1; flex-direction: column; padding: 40px; justify-content: flex-start; align-items: flex-start; gap: 20px; font-size: 1.1em;">
-				<p>
-					A first attempt at hard-surface modeling. Something I would find much joy, and many hours in through the years that followed.
-					I thought it was the coolest thing seeing the gun come together and being able to actually have it sit in a space.
-					Although I would quickly abandon Maya in favor of Blender especially after their 2.8 overhaul.
-				</p>
-				<p style="font-weight: 350;">
-					<i>Shown is the model rendered in Unreal with an emissive material, acting as the centerpiece for the FPS prototype I worked on through the week.</i>
-				</p>
-			</div>
-
-			<div style="flex: 2; background-image: url('/assets/ALongTimeAgo/FirstSteps/Gun.jpg'); background-size: cover; background-position: center;"></div>
+		<section class="section" style="min-height: 300px; background-color: #ffffff0b; flex-direction: column; padding: 70px 0 10px 0;">
+			<p style="max-width: 700px; text-align: center; font-size: 1.1em; margin-bottom: 10px;">
+				Making games kind of fell on the backburner for some time, but getting through this project definitely rekindled a spark.
+				I haven't really gone back to this flipping idea yet <i style="font-weight: 400;">(as of 2026)</i>, but some of its spirit found its way into
+				<a href="/src/ALongTimeAgo/Unicorn.html" style="color: inherit; text-decoration: none; font-weight: 500;">Unicorn</a> 
+				in which you're now flipping in 2D but space is connected to time <i style="font-weight: 400;">(a la Braid)</i>.
+			</p>
 
 			<div style="width: 100%; z-index: 1;">
 				<div class="nav-buttons">
@@ -380,8 +440,7 @@
 		</section>
 	</main>
 
-	<div style="font-family: 'Rubik', sans-serif;">
-		<footer class="footer">
+	<footer class="footer">
     	<nav>
 		<div class="copyright">
 			<span style="--i:0">&copy; &nbsp;</span>
@@ -495,14 +554,31 @@
 		100% { background-position: center 130%; }
 	}
 </style>
-	</div>
 
 	<script>
-		window.addEventListener('load', () => {
-			const link = document.createElement('link');
-			link.href = 'https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap'
-			link.rel = 'stylesheet';
-			document.head.appendChild(link);
+		const splitHero = document.querySelector('.section');
+		const splitLeft = document.querySelector('.split-left');
+		const splitRight = document.querySelector('.split-right');
+		const splitTitle = document.querySelector('.split-title');
+		const splitSubtitle = document.querySelector('.split-subtitle');
+
+		window.addEventListener('scroll', () => {
+			const scrollY = window.scrollY;
+			const heroHeight = splitHero.offsetHeight;
+			const progress = Math.min(scrollY / (heroHeight * 0.7), 1);
+
+			const topClip = 70 - (progress * 45);
+			const bottomClip = 25 - (progress * 10); // moves a little: 25% -> 15%
+
+			splitLeft.style.clipPath = `polygon(0 0, ${topClip}% 0, ${bottomClip}% 100%, 0 100%)`;
+			splitRight.style.clipPath = `polygon(${topClip}% 0, 100% 0, 100% 100%, ${bottomClip}% 100%)`;
+
+			const titleFall = progress * 300;
+			const subtitleFall = progress * 400;
+			splitTitle.style.transform = `translateY(${titleFall}px)`;
+			splitTitle.style.opacity = 1 - (progress * 0.8);
+			splitSubtitle.style.transform = `translateY(${subtitleFall}px)`;
+			splitSubtitle.style.opacity = 1 - progress;
 		});
 	</script>
 </body>

@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>The Great Derby</title>
+
+
+	<style>
+		.derby-banner {
+			position: relative;
+			background-color: #9e4600;
+			padding: 16px 60px;
+			clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
+		}
+		.derby-banner::before {
+			content: '';
+			position: absolute;
+			inset: 4px;
+			background: linear-gradient(135deg, #d4a056 0%, #b8860b 50%, #d4a056 100%);
+			clip-path: polygon(10% 0%, 90% 0%, 99.5% 50%, 90% 100%, 10% 100%, 0.5% 50%)
+		}
+
+		.derby-title {
+			position: relative;
+			font-size: clamp(28px, 5vw, 52px);
+			font-weight: 800;
+			letter-spacing: 0.08em;
+			color: #1a0f00;
+			text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);
+		}
+		.derby-title::after {
+			content: '|';
+			animation: blink 0.7s step-end infinite;
+		}
+		.derby-title.done::after {
+			display: none;
+		}
+
+		.derby-ribbon {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+		}
+		.derby-ribbon::before,
+		.derby-ribbon::after {
+			content: '◆';
+			font-size: 10px;
+			color: #e4a54e;
+		}
+
+		.derby-description {
+			margin-top: 24px;
+			font-size: clamp(14px, 2.2vw, 20px);
+			color: #ffffffd1;
+		}
+		.derby-description::after {
+			content: '|';
+			animation: blink 0.7s step-end infinite;
+		}
+
+		@keyframes blink {
+			50% { opacity: 0; }
+		}
+
+		.torn-top {
+			clip-path: polygon(
+				0% 4%, 3% 2.5%, 5% 4.5%, 7% 1.5%, 10% 3.75%, 12% 2%, 15% 4.75%, 17% 1.25%,
+				20% 3.25%, 22% 5%, 25% 1.75%, 28% 4%, 30% 2.25%, 33% 5.5%, 35% 1.5%,
+				38% 3.5%, 40% 2.5%, 43% 4.5%, 45% 1.25%, 48% 3.75%, 50% 5.25%, 52% 2%,
+				55% 4.25%, 58% 1.5%, 60% 3.25%, 63% 4.75%, 65% 1.75%, 68% 4%, 70% 2.5%,
+				73% 5%, 75% 1.25%, 78% 3.5%, 80% 4.5%, 83% 2%, 85% 3.75%, 88% 1.5%,
+				90% 4.25%, 93% 2.75%, 95% 4.75%, 97% 1.75%, 100% 3.5%,
+				100% 100%, 0% 100%
+			);
+			margin-top: clamp(-1000px, -3vw, -60px);
+			padding-top: 45px;
+		}
+
+		.torn-top-2 {
+			clip-path: polygon(
+				0% 4%, 4% 7%, 6% 2%, 9% 6.5%, 12% 1%, 16% 5%, 19% 8%, 22% 2.5%,
+				25% 6%, 29% 1.5%, 32% 7%, 36% 3%, 39% 8.5%, 42% 2%, 46% 5.5%,
+				49% 0.5%, 52% 6%, 56% 3.5%, 59% 7.5%, 62% 1%, 66% 5%, 69% 8%,
+				72% 2%, 76% 6.5%, 79% 1.5%, 82% 7%, 86% 3.5%, 89% 6%, 92% 0.5%,
+				95% 5%, 98% 8%, 100% 3%,
+				100% 100%, 0% 100%
+			);
+			margin-top: -60px;
+			padding-top: 60px;
+		}
+
+		.letter-particles {
+			position: absolute;
+			inset: 0;
+			overflow: hidden;
+			pointer-events: none;
+		}
+		.letter-particle {
+			position: absolute;
+			font-size: 20px;
+			color: rgba(255, 255, 255, 0.15);
+			animation: floatUp linear forwards;
+		}
+		@keyframes floatUp {
+			0% {
+				transform: translateY(0) rotate(0deg);
+				opacity: 0;
+			}
+			10% {
+				opacity: 0.8;
+			}
+			90% {
+				opacity: 0.8;
+			}
+			100% {
+				transform: translateY(-900px) rotate(20deg);
+				opacity: 0;
+			}
+		}
+	</style>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" crossorigin href="/assets/baseStyle-BDs3jilJ.css">
+</head>
+
+<body style="font-family: 'Merienda', cursive; font-weight: 400;">
+	<header class="sticky-header">
+    <nav>
+        <a href="/" class="logo">
+            <div class="container">
+                <span style="--i:1;">ALEXANDER SU</span>
+                <span style="--i:2;">ALEXANDER SU</span>
+                <span style="--i:3;">ALEXANDER SU</span>
+                <span style="--i:4;">ALEXANDER SU</span>
+                <span style="--i:5;">ALEXANDER SU</span>
+                <span style="--i:6;">ALEXANDER SU</span>
+                <span style="--i:7;">ALEXANDER SU</span>
+                <span style="--i:8;">ALEXANDER SU</span>
+                <span style="--i:9;">ALEXANDER SU</span>
+                <span style="--i:10;">ALEXANDER SU</span>
+                <span style="--i:11;">ALEXANDER SU</span>
+                <span style="--i:12;">ALEXANDER SU</span>
+            </div>
+        </a>
+        <div class="links">
+            <a href="/#.gallery">HOME</a>
+            <a href="">ABOUT</a>
+            <a href="">CONTACT</a>
+        </div>
+    </nav>
+</header>
+
+<style>
+    .sticky-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #141019e7;
+        z-index: 11;
+        pointer-events: none;
+    }
+
+    .sticky-header nav {
+        height: 100px;
+        padding: 0 clamp(20px, 4%, 50px) 0 60px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+        margin-left: 30px;
+        pointer-events: auto;
+    }
+    .logo .container {
+        transform-style: preserve-3d;
+        animation: rotate 25s linear infinite;
+    }
+    .logo span {
+        position: absolute;
+        white-space: nowrap;
+        transform-style: preserve-3d;
+        transform: translate(-50%, -50%) rotateX(calc(var(--i) * 30deg)) translateZ(25px);
+        font-size: 1em;
+        color: color-mix(in hsl, 
+        #aff2ff calc(50% + 50% * cos(calc(var(--i) * 30deg))), 
+        #aeaeff calc(50% - 50% * cos(calc(var(--i) * 30deg)))
+    );
+        background: linear-gradient(90deg, transparent, rgb(0, 0, 0), transparent);
+        line-height: 0.7em;
+    }
+    @keyframes rotate {
+        0% { transform: perspective(200px) rotateX(0deg) rotate(25deg); }
+        100% { transform: perspective(200px) rotateX(360deg) rotate(25deg); }
+    }
+
+    .links {
+        display: flex;
+        gap: clamp(10px, 3vw, 50px);
+        align-items: center;
+        position: relative;
+        pointer-events: auto;
+    }
+
+    .links a {
+        color: #ffffff;
+        font-size: 18px;
+        text-decoration: none;
+        position: relative;
+        background: linear-gradient(to right, rgb(0, 195, 255), rgb(65, 58, 255), rgb(8, 195, 255));
+        background-size: 200% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        transition: all 0.3s ease;
+        --gradient-width: 0px;
+    }
+    .links a:hover {
+        transform: scale(1.2);
+        color: transparent;
+        animation: gradientPan var(--animation-duration, 2s) linear infinite;
+        font-weight: 500;
+    }
+    .links a::before {
+        content: '';
+        position: absolute;
+        width: 110%;
+        height: 2px;
+        left: -5%;
+        bottom: -5px;
+        background: white;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s ease-out;
+    }
+    .links a:hover::before {
+        transform: scaleX(1);
+    }
+    @keyframes gradientPan {
+        to { background-position: var(--gradient-width, 100%) center; }
+    }
+</style>
+
+<script>
+	const stickyHeader = document.querySelector('.sticky-header');
+	window.addEventListener('scroll', () => {
+		const opacity = Math.max(0.8, 1 - window.scrollY / 2400);
+		stickyHeader.style.backgroundColor = `rgba(20, 16, 25, ${opacity * 0.9})`;
+	});
+
+	document.querySelectorAll('.links a').forEach(link => {
+		const width = link.offsetWidth;
+		link.style.setProperty('--gradient-width', `${width * 2}px`);
+		link.style.setProperty('--animation-duration', `${width * 0.025}s`);
+	});
+</script>
+
+	<main>
+		<section class="section" style="background-image: url('/assets/ALongTimeAgo/TheGreatDerby/Game.jpg'); min-height: 800px">
+			<div class="section-overlay" style="--overlay: 0.5"></div>
+
+			<div class="section-text" style="flex-direction: column; gap: 8px;">
+				<div class="derby-banner">
+					<h1 class="derby-title"></h1>
+				</div>
+				<div class="derby-ribbon">
+					<p style="font-size: clamp(12px, 2vw, 18px); letter-spacing: 0.15em; color: #ffffffdd;">2021 | UNSTABLE</p>
+				</div>
+				<p class="derby-description"></p>
+			</div>
+
+			<div style="position: absolute; bottom: 120px; left: 3vw; font-size: clamp(10px, 1.5vw, 15px); font-weight: 300; color: #ffffffc7;">
+				<p>Made By: Alex Su, Micha Rand</p>
+			</div>
+		</section>	
+
+		<section class="section torn-top" style="background: linear-gradient(to top, #050021 0%, #211000 100%); min-height: 1000px; flex-direction: column; position: relative;">
+			<div class="letter-particles" id="letterParticles"></div>
+			<div class="section-text" style="gap: 80px; padding: 90px 4vw 30px 6vw">
+				<p style="max-width: 800px; font-size: 1.2em; text-align: center;">
+					A ridiculous premise, but it starts to all make sense once you sit with it a while. I don't remember why we settled on a typing mechanic,
+					but the choice of unusual bottom row keys unintentionally produced quite a challenging experience.
+				</p>
+				<a href="https://geojax.itch.io/the-great-derby" target="_blank" class="button" style="padding: 12px 30px; background-color: #fb5d5c; font-size: 1.1em;">
+					Play on itch.io
+				</a>
+			</div>
+
+			<div style="display: flex; width: 100%; padding: 4vw; gap: 4vw">
+				<div style="flex: 2; z-index: 1; justify-content: center; align-items: center;">
+					<iframe
+						width="100%"
+						height="100%"
+						style="aspect-ratio: 16/9; border: none; box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.4);"
+						src="https://www.youtube.com/embed/bBEVvABVkPk?loop=1&playlist=bBEVvABVkPk&rel=0"
+						allowfullscreen>
+					</iframe>
+				</div>
+
+				<div class="section-text" style="flex: 1; justify-content: center; text-align: center; font-size: 1.2em;">
+					<p>
+						I remember development was quite smooth, having to balance it with schoolwork and the limit of 72 hours.
+						The music and sounds by Micha were especially brilliant. 
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="section torn-top-2" style="background-image: url('/assets/ALongTimeAgo/TheGreatDerby/Title.jpg'); min-height: 400px; flex-direction: column;">
+			<div class="section-overlay" style="--overlay: 0.75"></div>
+			<div class="section-text" style="flex: 1; text-align: center; padding: 40px;">
+				<p style="max-width: 750px; font-size: 1.2em;">
+					The individual parts may not stand on their own, but they really came together quite harmoniously.
+					There's genuine urgency when you hear the hooves growing louder while wrangling with the fireworks.
+					All in all this turned out to be very charming game, I still like it a lot.
+				</p>
+			</div>
+
+			<div style="width: 100%; z-index: 1;">
+				<div class="nav-buttons">
+	<a class="nav-button" href="/src/ALongTimeAgo/BLAD.html">
+		<img class="chev-left" src="/assets/Home/chevron-left.png">
+		<span>BLAD</span>
+	</a>
+	<a class="nav-button" href="/src/ALongTimeAgo/Sumusic.html">
+		<span>Sumusic</span>
+		<img class="chev-right" src="/assets/Home/chevron-right.png">
+	</a>
+</div>
+
+<style>
+	.nav-buttons {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		padding: 3%;
+	}
+
+	.nav-button {
+		white-space: nowrap;
+		text-decoration: none;
+		color: rgb(255, 255, 255);
+		font-size: clamp(24px, 2.5vw, 36px);
+		display: flex;
+		align-items: center;
+		transition: all 0.3s ease;
+	}
+	.nav-button:hover {
+		opacity: 0.7;
+	}
+	.nav-button img {
+		height: clamp(36px, 3.5vw, 48px);
+		padding: 0 5%;
+	}
+	.nav-button span {
+		transform: translateY(-0.08em);
+	}
+
+	.chev-left,
+	.chev-right {
+		transition: all 0.3s ease;
+	}
+
+	.nav-button:hover .chev-left {
+		animation: bounceLeft 1.6s ease-in-out infinite;
+	}
+
+	.nav-button:hover .chev-right {
+		animation: bounceRight 1.6s ease-in-out infinite;
+	}
+
+	@keyframes bounceLeft {
+		0%	{ transform: translateX(0); }
+		25%	{ transform: translateX(-16%); }
+		40%	{ transform: translateX(-5%); }
+		65%	{ transform: translateX(-12%); }
+		85%	{ transform: translateX(-3%); }
+		100%	{ transform: translateX(0); }
+	}
+
+	@keyframes bounceRight {
+		0%	{ transform: translateX(0); }
+		25%	{ transform: translateX(16%); }
+		40%	{ transform: translateX(5%); }
+		65%	{ transform: translateX(12%); }
+		85%	{ transform: translateX(3%); }
+		100%	{ transform: translateX(0); }
+	}
+</style>
+			</div>
+		</section>
+	</main>
+
+	<div style="font-family: 'Rubik', sans-serif;">
+		<footer class="footer">
+    	<nav>
+		<div class="copyright">
+			<span style="--i:0">&copy; &nbsp;</span>
+			<span style="--i:1">2</span>
+			<span style="--i:2">0</span>
+			<span style="--i:3">2</span>
+			<span style="--i:4">6 &nbsp;</span>
+			<span style="--i:5">A</span>
+			<span style="--i:6">L</span>
+			<span style="--i:7">E</span>
+			<span style="--i:8">X</span>
+			<span style="--i:9">A</span>
+			<span style="--i:10">N</span>
+			<span style="--i:11">D</span>
+			<span style="--i:12">E</span>
+			<span style="--i:13">R &nbsp;</span>
+			<span style="--i:14">S</span>
+			<span style="--i:15">U</span>
+		</div>
+	<div class="social-media">
+		<a href="https://sualexander.itch.io" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/itch.png');">
+		</a>
+		<a href="https://github.com/sualexander" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/github.png');">
+		</a>
+		<a href="https://www.youtube.com/@alexandersu9397" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/youtube.png');">
+		</a>
+		<a href="https://www.linkedin.com/in/alexander-su-b9701824a" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/linkedin.png');">
+		</a>
+		</div>
+	</nav>
+</footer>
+
+<script>
+	document.querySelectorAll('.social-media img').forEach(img => {
+		const computedStyle = window.getComputedStyle(img);
+		const maskImage = computedStyle.maskImage;
+		const imageUrl = maskImage.replace(/^url\(['"](.+)['"]\)$/, '$1');
+
+		const temp = new Image();
+		temp.src = imageUrl;
+		temp.onload = () => {
+			const aspectRatio = temp.naturalWidth / temp.naturalHeight;
+			img.style.width = `${32 * aspectRatio}px`;
+		};
+	});
+</script>
+
+<style>
+	.footer {
+		background-color: #141019b3;
+	}
+
+	.footer nav {
+		height: 80px;
+		padding: 0 3% 0 2%;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.footer .copyright {
+		display: flex;
+		align-items: center;
+	}
+	.footer span {
+		pointer-events: none;
+		position: relative;
+		display: inline-block;
+		font-size: 16px;
+		font-weight: 400;
+		color: #fff;
+		animation: flip 10s infinite;
+		animation-delay: calc(0.08s * var(--i))
+	}
+	@keyframes flip {
+		0%,80% { transform: rotateY(360deg) }
+	}
+
+	.social-media {
+		display: flex;
+		gap: 2vw;
+		align-items: center;
+	}
+
+	.social-media a {
+		height: 40%;
+		display: flex;
+		position: relative;
+	}
+
+	.social-media img {
+		height: 100%;
+		padding: 15px; /*hack for mask artifacts*/
+		mask-size: contain;
+		mask-repeat: no-repeat;
+		mask-position: center;
+		background: rgb(224, 224, 224);
+		transition: all 0.5s ease;
+	}
+	.social-media img:hover {
+		transform: scale(1.1);
+		background: linear-gradient(to bottom, rgb(0, 200, 255), rgb(146, 13, 255), rgb(0, 200, 255));
+		background-size: 100% 400%;
+		animation: gradientPan2 3s linear infinite;
+	}
+	@keyframes gradientPan2 {
+		0% { background-position: center 0%; }
+		100% { background-position: center 130%; }
+	}
+</style>
+	</div>
+
+	<script src="/src/components/typewriter.js"></script>
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			const titleElement = document.querySelector('.derby-title');
+			const titleWriter = new TypeWriter(
+				titleElement,
+				["THE GREAT DERBY"],
+				false,
+				{ startDelay: 400, speed: 80, onComplete: () => titleElement.classList.add('done') }
+			);
+
+			const descriptionWriter = new TypeWriter(
+				document.querySelector('.derby-description'),
+				[
+					"The horses were being oppressed. They needed freedom.",
+					"Now they are stampeding across the globe, flooding in from the Horseverse, in search of new lands.",
+					"The Un-Stable -- opposite of what a stable once was in the old days -- is humanity's last refuge.",
+					"And you have been responsible for keeping the horses out.",
+					"But there are too many now.",
+					"And on top of that, your health has been unstable since you contracted the equine flu from those darned horses.",
+					"Stabilize the portal and get your family to safety. Keep the horses out by using the fireworks.",
+					"Unfortunately, you yourself won't be able go through the portal.",
+					"Or else you'll spread the equine flu to the new Humanverse.",
+					"Good Luck!"
+
+				],
+				true,
+				{ startDelay: 1700, speed: 30, deleteSpeed: 10, skipDelay: 35}
+			);
+		});
+
+		window.addEventListener('load', () => {
+			const link = document.createElement('link');
+			link.href = 'https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap'
+			link.rel = 'stylesheet';
+			document.head.appendChild(link);
+		});
+
+		//Letters
+		const particleContainer = document.getElementById('letterParticles');
+		const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+		function createParticle() {
+			const particle = document.createElement('span');
+			particle.className = 'letter-particle';
+			particle.textContent = letters[Math.floor(Math.random() * letters.length)];
+
+			const x = Math.random() * 100;
+			const duration = 4 + Math.random() * 10;
+			const size = 10 + Math.random() * 20;
+
+			particle.style.left = x + '%';
+			particle.style.bottom = '0';
+			particle.style.fontSize = size + 'px';
+			particle.style.animationDuration = duration + 's';
+
+			particleContainer.appendChild(particle);
+
+			setTimeout(() => particle.remove(), duration * 1000);
+		}
+
+		setInterval(createParticle, 200);
+	</script>
+</body>
+</html>

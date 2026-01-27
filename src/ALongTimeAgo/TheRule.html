@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>The Rule</title>
+
+	<style>
+		img {
+			image-rendering: pixelated;
+		}
+	</style>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Modern+Antiqua&display=swap" rel="stylesheet">
+  <link rel="stylesheet" crossorigin href="/assets/baseStyle-BDs3jilJ.css">
+</head>
+
+<body style="font-family: 'Modern Antiqua', normal">
+	<header class="sticky-header">
+    <nav>
+        <a href="/" class="logo">
+            <div class="container">
+                <span style="--i:1;">ALEXANDER SU</span>
+                <span style="--i:2;">ALEXANDER SU</span>
+                <span style="--i:3;">ALEXANDER SU</span>
+                <span style="--i:4;">ALEXANDER SU</span>
+                <span style="--i:5;">ALEXANDER SU</span>
+                <span style="--i:6;">ALEXANDER SU</span>
+                <span style="--i:7;">ALEXANDER SU</span>
+                <span style="--i:8;">ALEXANDER SU</span>
+                <span style="--i:9;">ALEXANDER SU</span>
+                <span style="--i:10;">ALEXANDER SU</span>
+                <span style="--i:11;">ALEXANDER SU</span>
+                <span style="--i:12;">ALEXANDER SU</span>
+            </div>
+        </a>
+        <div class="links">
+            <a href="/#.gallery">HOME</a>
+            <a href="">ABOUT</a>
+            <a href="">CONTACT</a>
+        </div>
+    </nav>
+</header>
+
+<style>
+    .sticky-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #141019e7;
+        z-index: 11;
+        pointer-events: none;
+    }
+
+    .sticky-header nav {
+        height: 100px;
+        padding: 0 clamp(20px, 4%, 50px) 0 60px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+        margin-left: 30px;
+        pointer-events: auto;
+    }
+    .logo .container {
+        transform-style: preserve-3d;
+        animation: rotate 25s linear infinite;
+    }
+    .logo span {
+        position: absolute;
+        white-space: nowrap;
+        transform-style: preserve-3d;
+        transform: translate(-50%, -50%) rotateX(calc(var(--i) * 30deg)) translateZ(25px);
+        font-size: 1em;
+        color: color-mix(in hsl, 
+        #aff2ff calc(50% + 50% * cos(calc(var(--i) * 30deg))), 
+        #aeaeff calc(50% - 50% * cos(calc(var(--i) * 30deg)))
+    );
+        background: linear-gradient(90deg, transparent, rgb(0, 0, 0), transparent);
+        line-height: 0.7em;
+    }
+    @keyframes rotate {
+        0% { transform: perspective(200px) rotateX(0deg) rotate(25deg); }
+        100% { transform: perspective(200px) rotateX(360deg) rotate(25deg); }
+    }
+
+    .links {
+        display: flex;
+        gap: clamp(10px, 3vw, 50px);
+        align-items: center;
+        position: relative;
+        pointer-events: auto;
+    }
+
+    .links a {
+        color: #ffffff;
+        font-size: 18px;
+        text-decoration: none;
+        position: relative;
+        background: linear-gradient(to right, rgb(0, 195, 255), rgb(65, 58, 255), rgb(8, 195, 255));
+        background-size: 200% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        transition: all 0.3s ease;
+        --gradient-width: 0px;
+    }
+    .links a:hover {
+        transform: scale(1.2);
+        color: transparent;
+        animation: gradientPan var(--animation-duration, 2s) linear infinite;
+        font-weight: 500;
+    }
+    .links a::before {
+        content: '';
+        position: absolute;
+        width: 110%;
+        height: 2px;
+        left: -5%;
+        bottom: -5px;
+        background: white;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s ease-out;
+    }
+    .links a:hover::before {
+        transform: scaleX(1);
+    }
+    @keyframes gradientPan {
+        to { background-position: var(--gradient-width, 100%) center; }
+    }
+</style>
+
+<script>
+	const stickyHeader = document.querySelector('.sticky-header');
+	window.addEventListener('scroll', () => {
+		const opacity = Math.max(0.8, 1 - window.scrollY / 2400);
+		stickyHeader.style.backgroundColor = `rgba(20, 16, 25, ${opacity * 0.9})`;
+	});
+
+	document.querySelectorAll('.links a').forEach(link => {
+		const width = link.offsetWidth;
+		link.style.setProperty('--gradient-width', `${width * 2}px`);
+		link.style.setProperty('--animation-duration', `${width * 0.025}s`);
+	});
+</script>
+
+	<main>
+		<section class="section" style="min-height: 800px;">
+			<div style="position: absolute; inset: -20px; background-image: url('/assets/ALongTimeAgo/TheRule/Castle.jpg'); background-size: cover; background-position: center; filter: blur(4px);"></div>
+			<div class="section-overlay" style="--overlay: 0.2"></div>
+
+			<div id="titleContainer" style="position: absolute; left: 6vw; top: 45%; transform: translateY(-50%)">
+				<div style="overflow: hidden;">
+					<span id="titleThe" style="font-size: clamp(24px, 4vw, 48px); letter-spacing: 0.2em; color: #ffffffcc; display: inline-block;">THE</span>
+				</div>
+				<div style="overflow: hidden;">
+					<span id="titleRule" style="font-size: clamp(60px, 12vw, 140px); letter-spacing: 0.05em; line-height: 0.95; display: inline-block;">Rule</span>
+				</div>
+				<div id="titleAccent" style="width: clamp(150px, 30vw, 340px); height: 2px; background: #ffffff66; margin: 8px 0; transform-origin: left;"></div>
+				<p id="titleSubtitle" style="margin-top: 16px; font-size: clamp(12px, 1.8vw, 18px); color: #ffffffd2; letter-spacing: 0.1em;">You Can Only Have One</p>
+			</div>
+
+			<div id="titleCredits" style="position: absolute; left: 6vw; bottom: 120px;">
+				<p style="font-size: clamp(11px, 1.5vw, 16px); color: #ffffffdc;">
+					Alex Su, Charlie Doris, Chris Robertson, Micha Rand, Solomon Baik
+				</p>
+				<p style="margin-top: 6px; font-size: clamp(10px, 1.3vw, 14px); color: #ffffffbd; font-style: italic;">
+					Created for the 2022 HW Game Jam
+				</p>
+			</div>
+		</section>
+
+		<section id="section2" class="section" style="background-image: url('/assets/ALongTimeAgo/TheRule/Basemenet.jpg'); background-position: center top; min-height: 1200px">
+			<div style="display: flex; gap: 140px; width: 100%; padding: 80px 6vw;">
+				<div class="section-text" style="flex: 1; flex-direction: column; justify-content: space-between; font-size: clamp(13px, 1.4vw, 18px); line-height: 1.4; color: #fffffff1;">
+					<p>
+						I don't remember why we elected on this interpretation of the theme but this we did. Essentially it's <b><i>Simon Says</i></b> with rules coming in one after the other such as:
+						<i>only walk backwards, stay completely silent, never shooting your weapon, etc...</i>
+						A single violation immediately alerts the guards towards you, which would often cascade as trying to fend them off almost always results in breaking more subseqeunt rules.
+					</p>
+
+					<p>
+						In a bit of an art phase from
+						<a href="/src/ALongTimeAgo/BLAD.html" style="color: inherit; text-decoration: none; font-weight: 800;">BLAD</a>
+						, I once again took up the mantle of being the artist.
+						At the time, I was also getting back into 3D modeling and wanted that for this game, unfortunately everyone else decided against that.
+						So I thought to try my hand at pixel art, but not your usual tileset approach, rather a more continuous oil painting style somewhat inspired by <b>Hyper Light Drifter.</b>
+					</p>
+
+					<p>
+						Looking back, I was far too caught up in the minutiae, the little details, albeit very fun to do.
+						While the real issue was actually my method for shading, leading to everything feeling quite flat in lighting while overly noisy in distractions.
+						It certainly made me respect the amount of subtlety when working with pixel art.
+						Still today, I think a more <i>vectory</i> style is far superior to tile based approaches.
+					</p>
+				</div>
+
+				<div style="flex: 1; display: flex; align-items: center; margin: 60px 0;">
+					<img src="/assets/ALongTimeAgo/TheRule/Throne.jpg" style="max-width: 100%; object-fit: contain; box-shadow: 0 0 40px rgba(0,0,0,0.6);">
+				</div>
+			</div>
+		</section>
+
+		<section class="section" style="background-image: url('/assets/ALongTimeAgo/TheRule/Statue.jpg'); background-position: center top; min-height: 800px">
+			<div class="section-overlay" style="--overlay: 0.5"></div>
+			<div style="display: flex; gap: 140px; width: 100%; padding: 80px 6vw;">
+				<div style="flex: 1; display: flex; align-items: center; margin: 60px 0; z-index: 1">
+					<img src="/assets/ALongTimeAgo/TheRule/Map.jpg" style="max-width: 100%; object-fit: contain; box-shadow: 0 0 40px rgba(0,0,0,0.6);">
+				</div>
+
+				<div class="section-text" style="flex: 1; flex-direction: column; justify-content: center; font-size: clamp(14px, 1.8vw, 22px); line-height: 1.4;">
+					<p>
+						Although the game was technically playable by the end of the 32 hours, we went in with too much hubris, and what came out was quite a mess.
+						And comparing with the
+						<a href="/src/ALongTimeAgo/EscapeTheDark.html" style="color: inherit; text-decoration: none; font-weight: 800;">jam from 2 years ago</a>
+						, it was only slightly better, and not by much...
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="section" style="background-image: url('/assets/ALongTimeAgo/TheRule/Fountain.jpg'); min-height: 600px; flex-direction: column;">
+			<div class="section-overlay" style="--overlay: 0.5"></div>
+
+			<div class="section-text" style="flex: 1; justify-content: center; font-size: clamp(14px, 1.8vw, 22px); line-height: 1.4; max-width: 700px; text-align: center; text-shadow: 0 2px 8px rgba(0,0,0,1);">
+				<p>
+					By this point, I was getting genuinely fired up about game development. The final product didn't even matter that much compared to the joy found throughout the process.
+					I suppose that's the real value of game jams, drawing people into this rabbit hole.
+				</p>
+			</div>
+
+			<div style="width: 100%; z-index: 1;">
+				<div class="nav-buttons">
+	<a class="nav-button" href="/src/ALongTimeAgo/OrbitalOdyssey2.html">
+		<img class="chev-left" src="/assets/Home/chevron-left.png">
+		<span>Orbital Odyssey 2</span>
+	</a>
+	<a class="nav-button" href="/src/ALongTimeAgo/BLAD.html">
+		<span>BLAD</span>
+		<img class="chev-right" src="/assets/Home/chevron-right.png">
+	</a>
+</div>
+
+<style>
+	.nav-buttons {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		padding: 3%;
+	}
+
+	.nav-button {
+		white-space: nowrap;
+		text-decoration: none;
+		color: rgb(255, 255, 255);
+		font-size: clamp(24px, 2.5vw, 36px);
+		display: flex;
+		align-items: center;
+		transition: all 0.3s ease;
+	}
+	.nav-button:hover {
+		opacity: 0.7;
+	}
+	.nav-button img {
+		height: clamp(36px, 3.5vw, 48px);
+		padding: 0 5%;
+	}
+	.nav-button span {
+		transform: translateY(-0.08em);
+	}
+
+	.chev-left,
+	.chev-right {
+		transition: all 0.3s ease;
+	}
+
+	.nav-button:hover .chev-left {
+		animation: bounceLeft 1.6s ease-in-out infinite;
+	}
+
+	.nav-button:hover .chev-right {
+		animation: bounceRight 1.6s ease-in-out infinite;
+	}
+
+	@keyframes bounceLeft {
+		0%	{ transform: translateX(0); }
+		25%	{ transform: translateX(-16%); }
+		40%	{ transform: translateX(-5%); }
+		65%	{ transform: translateX(-12%); }
+		85%	{ transform: translateX(-3%); }
+		100%	{ transform: translateX(0); }
+	}
+
+	@keyframes bounceRight {
+		0%	{ transform: translateX(0); }
+		25%	{ transform: translateX(16%); }
+		40%	{ transform: translateX(5%); }
+		65%	{ transform: translateX(12%); }
+		85%	{ transform: translateX(3%); }
+		100%	{ transform: translateX(0); }
+	}
+</style>
+			</div>
+		</section>
+	</main>
+
+	<footer class="footer">
+    	<nav>
+		<div class="copyright">
+			<span style="--i:0">&copy; &nbsp;</span>
+			<span style="--i:1">2</span>
+			<span style="--i:2">0</span>
+			<span style="--i:3">2</span>
+			<span style="--i:4">6 &nbsp;</span>
+			<span style="--i:5">A</span>
+			<span style="--i:6">L</span>
+			<span style="--i:7">E</span>
+			<span style="--i:8">X</span>
+			<span style="--i:9">A</span>
+			<span style="--i:10">N</span>
+			<span style="--i:11">D</span>
+			<span style="--i:12">E</span>
+			<span style="--i:13">R &nbsp;</span>
+			<span style="--i:14">S</span>
+			<span style="--i:15">U</span>
+		</div>
+	<div class="social-media">
+		<a href="https://sualexander.itch.io" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/itch.png');">
+		</a>
+		<a href="https://github.com/sualexander" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/github.png');">
+		</a>
+		<a href="https://www.youtube.com/@alexandersu9397" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/youtube.png');">
+		</a>
+		<a href="https://www.linkedin.com/in/alexander-su-b9701824a" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/linkedin.png');">
+		</a>
+		</div>
+	</nav>
+</footer>
+
+<script>
+	document.querySelectorAll('.social-media img').forEach(img => {
+		const computedStyle = window.getComputedStyle(img);
+		const maskImage = computedStyle.maskImage;
+		const imageUrl = maskImage.replace(/^url\(['"](.+)['"]\)$/, '$1');
+
+		const temp = new Image();
+		temp.src = imageUrl;
+		temp.onload = () => {
+			const aspectRatio = temp.naturalWidth / temp.naturalHeight;
+			img.style.width = `${32 * aspectRatio}px`;
+		};
+	});
+</script>
+
+<style>
+	.footer {
+		background-color: #141019b3;
+	}
+
+	.footer nav {
+		height: 80px;
+		padding: 0 3% 0 2%;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.footer .copyright {
+		display: flex;
+		align-items: center;
+	}
+	.footer span {
+		pointer-events: none;
+		position: relative;
+		display: inline-block;
+		font-size: 16px;
+		font-weight: 400;
+		color: #fff;
+		animation: flip 10s infinite;
+		animation-delay: calc(0.08s * var(--i))
+	}
+	@keyframes flip {
+		0%,80% { transform: rotateY(360deg) }
+	}
+
+	.social-media {
+		display: flex;
+		gap: 2vw;
+		align-items: center;
+	}
+
+	.social-media a {
+		height: 40%;
+		display: flex;
+		position: relative;
+	}
+
+	.social-media img {
+		height: 100%;
+		padding: 15px; /*hack for mask artifacts*/
+		mask-size: contain;
+		mask-repeat: no-repeat;
+		mask-position: center;
+		background: rgb(224, 224, 224);
+		transition: all 0.5s ease;
+	}
+	.social-media img:hover {
+		transform: scale(1.1);
+		background: linear-gradient(to bottom, rgb(0, 200, 255), rgb(146, 13, 255), rgb(0, 200, 255));
+		background-size: 100% 400%;
+		animation: gradientPan2 3s linear infinite;
+	}
+	@keyframes gradientPan2 {
+		0% { background-position: center 0%; }
+		100% { background-position: center 130%; }
+	}
+</style>
+
+	<script>
+		const titleThe = document.getElementById('titleThe');
+		const titleRule = document.getElementById('titleRule');
+		const titleAccent = document.getElementById('titleAccent');
+		const titleSubtitle = document.getElementById('titleSubtitle');
+		const titleCredits = document.getElementById('titleCredits');
+
+		titleThe.style.transform = 'translateX(-100%)';
+		titleRule.style.transform = 'translateX(-100%)';
+		titleAccent.style.transform = 'scaleX(0)';
+		titleSubtitle.style.opacity = '0';
+		titleSubtitle.style.transform = 'translateY(20px)';
+		titleCredits.style.opacity = '0';
+		titleCredits.style.transform = 'translateY(20px)';
+
+		let revealed = false;
+
+		function revealTitle() {
+			if (revealed) return;
+			revealed = true;
+
+			titleThe.style.transition = 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+			titleRule.style.transition = 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s';
+			titleAccent.style.transition = 'transform 0.6s ease 0.3s';
+			titleSubtitle.style.transition = 'all 0.6s ease 0.4s';
+			titleCredits.style.transition = 'all 0.6s ease 0.5s';
+
+			titleThe.style.transform = 'translateX(0)';
+			titleRule.style.transform = 'translateX(0)';
+			titleAccent.style.transform = 'scaleX(1)';
+			titleSubtitle.style.opacity = '1';
+			titleSubtitle.style.transform = 'translateY(0)';
+			titleCredits.style.opacity = '1';
+			titleCredits.style.transform = 'translateY(0)';
+
+			setTimeout(() => {
+				titleThe.style.transition = 'none';
+				titleRule.style.transition = 'none';
+				titleAccent.style.transition = 'none';
+				titleSubtitle.style.transition = 'none';
+				titleCredits.style.transition = 'none';
+			}, 1000);
+		}
+
+		function updateTitle() {
+			const scrollY = window.scrollY;
+			const windowHeight = window.innerHeight;
+			const progress = Math.min(1, scrollY / (windowHeight * 0.5));
+
+			if (!revealed) return;
+
+			titleThe.style.transform = `translateX(${-progress * 50}px)`;
+			titleThe.style.opacity = 1 - progress * 0.7;
+
+			titleRule.style.transform = `translateX(${progress * 30}px) scale(${1 + progress * 0.05})`;
+			titleRule.style.opacity = 1 - progress * 0.5;
+
+			titleAccent.style.transform = `scaleX(${1 - progress * 0.5})`;
+			titleAccent.style.opacity = 1 - progress * 0.8;
+
+			titleSubtitle.style.opacity = 1 - progress * 1.5;
+			titleCredits.style.opacity = 1 - progress * 1.8;
+		}
+
+		window.addEventListener('scroll', updateTitle);
+
+		const section2 = document.getElementById('section2');
+		let currentBgPos = 0;
+		let targetBgPos = 0;
+
+		function updateSection2Target() {
+			const sectionTop = section2.offsetTop;
+			const scrollY = window.scrollY;
+
+			const offset = -666;
+			targetBgPos = (scrollY - sectionTop + window.innerHeight) * 1.2 + offset;
+		}
+
+		function animateBg() {
+			currentBgPos += (targetBgPos - currentBgPos) * 0.08;
+			section2.style.backgroundPositionY = `${currentBgPos}px`;
+			requestAnimationFrame(animateBg);
+		}
+
+		window.addEventListener('scroll', updateSection2Target);
+		animateBg();
+
+		setTimeout(revealTitle, 420);
+	</script>
+</body>
+</html>

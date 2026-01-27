@@ -45,7 +45,8 @@
         left: 0;
         width: 100%;
         background-color: #141019e7;
-        z-index: 10;
+        z-index: 11;
+        pointer-events: none;
     }
 
     .sticky-header nav {
@@ -61,6 +62,7 @@
         align-items: center;
         margin-top: 30px;
         margin-left: 30px;
+        pointer-events: auto;
     }
     .logo .container {
         transform-style: preserve-3d;
@@ -89,6 +91,7 @@
         gap: clamp(10px, 3vw, 50px);
         align-items: center;
         position: relative;
+        pointer-events: auto;
     }
 
     .links a {

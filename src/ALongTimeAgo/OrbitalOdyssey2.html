@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Orbital Odyssey 2</title>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Electrolize&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+	<style>
+		@keyframes sprite {
+			from { background-position: 0 0; }
+			to { background-position: -300% 0; }
+		}
+		.sprite-animation {
+			background-image: url('/assets/ALongTimeAgo/OrbitalOdyssey2/Rocket.png');
+			background-size: 300% 100%;
+			animation: sprite 0.5s steps(3) infinite;
+			aspect-ratio: 138 / 48;
+			height: 200px;
+			z-index: 1;
+			image-rendering: pixelated;
+		}
+
+		@keyframes neonPulse {
+			0%, 100% { text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff, 0 0 80px #0ff; }
+			50% { text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff; }
+		}
+		@keyframes neonPulse2 {
+			0%, 100% { text-shadow: 0 0 10px #f0f, 0 0 20px #f0f, 0 0 40px #f0f, 0 0 80px #f0f; }
+			50% { text-shadow: 0 0 5px #f0f, 0 0 10px #f0f, 0 0 20px #f0f, 0 0 40px #f0f; }
+		}
+		@keyframes scanline {
+			0% { transform: translateY(-100%); }
+			100% { transform: translateY(100%); }
+		}
+		@keyframes flicker {
+			0%, 100% { opacity: 1; }
+			92% { opacity: 1; }
+			93% { opacity: 0.8; }
+			94% { opacity: 1; }
+			96% { opacity: 0.9; }
+			97% { opacity: 1; }
+		}
+
+		.arcade-title {
+			font-family: 'Press Start 2P', cursive;
+			font-size: clamp(32px, 6vw, 72px);
+			color: #0ff;
+			animation: neonPulse 2s ease-in-out infinite, flicker 4s linear infinite;
+			letter-spacing: 0.1em;
+		}
+		.arcade-subtitle {
+			font-family: 'Press Start 2P', cursive;
+			font-size: clamp(16px, 2.5vw, 32px);
+			color: #f0f;
+			animation: neonPulse2 2s ease-in-out infinite 0.5s, flicker 4s linear infinite 1s;
+			letter-spacing: 0.15em;
+		}
+		.scanlines {
+			position: absolute;
+			inset: 0;
+			background: repeating-linear-gradient(
+				0deg,
+				rgba(0, 0, 0, 0.4) 0px,
+				rgba(0, 0, 0, 0.4) 2px,
+				transparent 2px,
+				transparent 4px
+			);
+			pointer-events: none;
+		}
+		.scanlines::after {
+			content: '';
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(rgba(255,255,255,0.08) 50%, transparent 50%);
+			background-size: 100% 6px;
+			animation: scanline 6s linear infinite;
+			pointer-events: none;
+		}
+
+		@keyframes glowPulse {
+			0%, 100% { box-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff, inset 0 0 10px rgba(0, 255, 255, 0.1); }
+			50% { box-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 15px #0ff, inset 0 0 5px rgba(0, 255, 255, 0.05); }
+		}
+		@keyframes glowPulse2 {
+			0%, 100% { box-shadow: 0 0 10px #f0f, 0 0 20px #f0f, 0 0 30px #f0f, inset 0 0 10px rgba(255, 0, 255, 0.1); }
+			50% { box-shadow: 0 0 5px #f0f, 0 0 10px #f0f, 0 0 15px #f0f, inset 0 0 5px rgba(255, 0, 255, 0.05); }
+		}
+		.neon-box {
+			border: 2px solid #0ff;
+			padding: 30px 40px;
+			animation: glowPulse 2s ease-in-out infinite;
+			background: rgba(0, 0, 0, 0.3);
+		}
+		.neon-line-pink {
+			height: 2px;
+			background: #f0f;
+			box-shadow: 0 0 10px #f0f, 0 0 20px #f0f;
+			animation: glowPulse2 2s ease-in-out infinite;
+		}
+	</style>
+  <link rel="stylesheet" crossorigin href="/assets/baseStyle-BDs3jilJ.css">
+</head>
+
+<body style="font-family: 'Electrolize', sans-serif">
+	<header class="sticky-header">
+    <nav>
+        <a href="/" class="logo">
+            <div class="container">
+                <span style="--i:1;">ALEXANDER SU</span>
+                <span style="--i:2;">ALEXANDER SU</span>
+                <span style="--i:3;">ALEXANDER SU</span>
+                <span style="--i:4;">ALEXANDER SU</span>
+                <span style="--i:5;">ALEXANDER SU</span>
+                <span style="--i:6;">ALEXANDER SU</span>
+                <span style="--i:7;">ALEXANDER SU</span>
+                <span style="--i:8;">ALEXANDER SU</span>
+                <span style="--i:9;">ALEXANDER SU</span>
+                <span style="--i:10;">ALEXANDER SU</span>
+                <span style="--i:11;">ALEXANDER SU</span>
+                <span style="--i:12;">ALEXANDER SU</span>
+            </div>
+        </a>
+        <div class="links">
+            <a href="/#.gallery">HOME</a>
+            <a href="">ABOUT</a>
+            <a href="">CONTACT</a>
+        </div>
+    </nav>
+</header>
+
+<style>
+    .sticky-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #141019e7;
+        z-index: 11;
+        pointer-events: none;
+    }
+
+    .sticky-header nav {
+        height: 100px;
+        padding: 0 clamp(20px, 4%, 50px) 0 60px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+        margin-left: 30px;
+        pointer-events: auto;
+    }
+    .logo .container {
+        transform-style: preserve-3d;
+        animation: rotate 25s linear infinite;
+    }
+    .logo span {
+        position: absolute;
+        white-space: nowrap;
+        transform-style: preserve-3d;
+        transform: translate(-50%, -50%) rotateX(calc(var(--i) * 30deg)) translateZ(25px);
+        font-size: 1em;
+        color: color-mix(in hsl, 
+        #aff2ff calc(50% + 50% * cos(calc(var(--i) * 30deg))), 
+        #aeaeff calc(50% - 50% * cos(calc(var(--i) * 30deg)))
+    );
+        background: linear-gradient(90deg, transparent, rgb(0, 0, 0), transparent);
+        line-height: 0.7em;
+    }
+    @keyframes rotate {
+        0% { transform: perspective(200px) rotateX(0deg) rotate(25deg); }
+        100% { transform: perspective(200px) rotateX(360deg) rotate(25deg); }
+    }
+
+    .links {
+        display: flex;
+        gap: clamp(10px, 3vw, 50px);
+        align-items: center;
+        position: relative;
+        pointer-events: auto;
+    }
+
+    .links a {
+        color: #ffffff;
+        font-size: 18px;
+        text-decoration: none;
+        position: relative;
+        background: linear-gradient(to right, rgb(0, 195, 255), rgb(65, 58, 255), rgb(8, 195, 255));
+        background-size: 200% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        transition: all 0.3s ease;
+        --gradient-width: 0px;
+    }
+    .links a:hover {
+        transform: scale(1.2);
+        color: transparent;
+        animation: gradientPan var(--animation-duration, 2s) linear infinite;
+        font-weight: 500;
+    }
+    .links a::before {
+        content: '';
+        position: absolute;
+        width: 110%;
+        height: 2px;
+        left: -5%;
+        bottom: -5px;
+        background: white;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s ease-out;
+    }
+    .links a:hover::before {
+        transform: scaleX(1);
+    }
+    @keyframes gradientPan {
+        to { background-position: var(--gradient-width, 100%) center; }
+    }
+</style>
+
+<script>
+	const stickyHeader = document.querySelector('.sticky-header');
+	window.addEventListener('scroll', () => {
+		const opacity = Math.max(0.8, 1 - window.scrollY / 2400);
+		stickyHeader.style.backgroundColor = `rgba(20, 16, 25, ${opacity * 0.9})`;
+	});
+
+	document.querySelectorAll('.links a').forEach(link => {
+		const width = link.offsetWidth;
+		link.style.setProperty('--gradient-width', `${width * 2}px`);
+		link.style.setProperty('--animation-duration', `${width * 0.025}s`);
+	});
+</script>
+
+	<main>
+		<section class="section" style="background-image: url('/assets/ALongTimeAgo/OrbitalOdyssey2/Level.jpg'); min-height: 800px;">
+			<div class="section-overlay" style="--overlay: 0.75"></div>
+			<div class="scanlines"></div>
+
+			<div class="section-text" style="flex-direction: column; gap: 40px;">
+				<h1 class="arcade-title">ORBITAL ODYSSEY 2</h1>
+				<p class="arcade-subtitle">2022</p>
+			</div>
+		</section>
+
+		<section class="section" style="background-image: url('/assets/ALongTimeAgo/OrbitalOdyssey2/Title.jpg'); min-height: 800px">
+			<div class="section-overlay" style="--overlay: 0.75"></div>
+
+			<div style="display: flex; gap: 6vw; width: 100%; padding: 60px 6vw; align-items: center; z-index: 1;">
+				<div class="sprite-animation"></div>
+
+				<div style="flex: 1;">
+					<div class="neon-line-pink" style="width: 200px; margin-bottom: 30px;"></div>
+					<p style="font-size: clamp(14px, 1.8vw, 22px); line-height: 1.6;">
+						I started this project the very day after the
+						<a href="/src/ALongTimeAgo/TheRule.html" style="color: inherit; text-decoration: none; font-weight: 900;">game jam</a>
+						mostly because I was a bit salty and wanted to prove to myself that the winning game was not hard to make in a short amount of time <i>(which was accomplished).</i>
+						So I booted up pygame for the first time and set to work. Luckily I had dabbled at a python chess app the month before so at least I was familiar with the language.
+						It ultimately turned out to be the most complete bit of game programming I had done yet, a very valuable learning experience.
+					</p>
+					<div class="neon-line-pink" style="width: 200px; margin-top: 30px; margin-left: auto"></div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section" style="background-image: url('/assets/ALongTimeAgo/OrbitalOdyssey2/OtherLevel.jpg'); min-height: 800px; flex-direction: column;">
+			<div class="section-overlay" style="--overlay: 0.4"></div>
+
+			<div class="section-text" style="gap: 8vw; padding: 80px 6vw 40px 6vw">
+				<div style="flex: 1;">
+					<div class="neon-line-pink" style="width: 200px; margin-bottom: 30px;"></div>
+					<p style="font-size: clamp(14px, 1.8vw, 22px); line-height: 1.6;">
+						The gameplay involves deciding where to place the given planets such that the resulting gravitational field carries your ship to the end without hitting obstacles.
+						There was a state system for handling menus, level select, the editing phase, and playing phase.
+						As well as basic UI interaction, sprite animation and a simple object inheritance system for all the entities.
+					</p>
+					<div class="neon-line-pink" style="width: 200px; margin-top: 30px; margin-left: auto;"></div>
+				</div>
+				<div style="flex: 2; overflow-y: scroll; max-height: 600px; box-shadow: 0 0 16px rgb(255, 0, 255);">
+					<pre class="shiki custom-dark" style="background-color:#121212;color:#dbd7caee" tabindex="0"><code><span class="line"><span class="line-number">  1</span> <span style="color:#4D9375">import</span><span style="color:#DBD7CAEE"> copy</span></span>
+<span class="line"><span class="line-number">  2</span> <span style="color:#4D9375">import</span><span style="color:#DBD7CAEE"> pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">mouse</span></span>
+<span class="line"><span class="line-number">  3</span> <span style="color:#4D9375">from</span><span style="color:#DBD7CAEE"> objects </span><span style="color:#4D9375">import</span><span style="color:#CB7676">*</span></span>
+<span class="line"><span class="line-number">  4</span> </span>
+<span class="line"><span class="line-number">  5</span> <span style="color:#DBD7CAEE">pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">init</span><span style="color:#666666">()</span></span>
+<span class="line"><span class="line-number">  6</span> <span style="color:#DBD7CAEE">pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">font</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">init</span><span style="color:#666666">()</span></span>
+<span class="line"><span class="line-number">  7</span> </span>
+<span class="line"><span class="line-number">  8</span> <span style="color:#DBD7CAEE">window </span><span style="color:#666666">=</span><span style="color:#666666"> (</span><span style="color:#4C9A91">1280</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 720</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number">  9</span> <span style="color:#DBD7CAEE">screen </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">display</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">set_mode</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">window</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number"> 10</span> <span style="color:#DBD7CAEE">pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">display</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">set_caption</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">Orbital Odyssey</span><span style="color:#C98A7D77">"</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number"> 11</span> </span>
+<span class="line"><span class="line-number"> 12</span> <span style="color:#C99076">FPS</span><span style="color:#666666"> =</span><span style="color:#4C9A91"> 30</span></span>
+<span class="line"><span class="line-number"> 13</span> <span style="color:#C99076">GRAV_CONST</span><span style="color:#666666"> =</span><span style="color:#4C9A91"> 5</span></span>
+<span class="line"><span class="line-number"> 14</span> <span style="color:#C99076">VEL</span><span style="color:#666666"> =</span><span style="color:#4C9A91"> 5</span></span>
+<span class="line"><span class="line-number"> 15</span> </span>
+<span class="line"><span class="line-number"> 16</span> <span style="color:#C99076">FONT</span><span style="color:#666666"> =</span><span style="color:#DBD7CAEE"> pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">font</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">SysFont</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">helveticaneue</span><span style="color:#C98A7D77">"</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 30</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number"> 17</span> <span style="color:#C99076">UI_SIZE</span><span style="color:#666666"> =</span><span style="color:#666666"> [</span><span style="color:#4C9A91">100</span><span style="color:#666666">,</span><span style="color:#4C9A91">100</span><span style="color:#666666">]</span></span>
+<span class="line"><span class="line-number"> 18</span> <span style="color:#DBD7CAEE">num_levels </span><span style="color:#666666">=</span><span style="color:#4C9A91"> 6</span></span>
+<span class="line"><span class="line-number"> 19</span> <span style="color:#DBD7CAEE">count </span><span style="color:#666666">=</span><span style="color:#4C9A91"> 0</span></span>
+<span class="line"><span class="line-number"> 20</span> <span style="color:#CB7676">def</span><span style="color:#80A665"> update_window</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">objects</span><span style="color:#666666">):</span></span>
+<span class="line"><span class="line-number"> 21</span> <span style="color:#CB7676">    global</span><span style="color:#DBD7CAEE"> count</span></span>
+<span class="line"><span class="line-number"> 22</span> <span style="color:#4D9375">    for</span><span style="color:#B8A965"> object</span><span style="color:#4D9375"> in</span><span style="color:#DBD7CAEE"> objects</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number"> 23</span> <span style="color:#4D9375">        if</span><span style="color:#B8A965"> isinstance</span><span style="color:#666666">(</span><span style="color:#B8A965">object</span><span style="color:#666666">,</span><span style="color:#DBD7CAEE"> Player</span><span style="color:#666666">):</span></span>
+<span class="line"><span class="line-number"> 24</span> <span style="color:#4D9375">            if</span><span style="color:#DBD7CAEE"> count </span><span style="color:#CB7676">>=</span><span style="color:#4C9A91"> 3</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number"> 25</span> <span style="color:#DBD7CAEE">                count </span><span style="color:#666666">=</span><span style="color:#4C9A91"> 0</span></span>
+<span class="line"><span class="line-number"> 26</span> <span style="color:#DBD7CAEE">            screen</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">blit</span><span style="color:#666666">(</span><span style="color:#B8A965">object</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">animation</span><span style="color:#666666">[</span><span style="color:#B8A965">int</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">count</span><span style="color:#666666">)],</span><span style="color:#B8A965"> object</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">location</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number"> 27</span> <span style="color:#DBD7CAEE">            count </span><span style="color:#666666">+=</span><span style="color:#4C9A91"> 0.1</span></span>
+<span class="line"><span class="line-number"> 28</span> <span style="color:#4D9375">        else</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number"> 29</span> <span style="color:#DBD7CAEE">            screen</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">blit</span><span style="color:#666666">(</span><span style="color:#B8A965">object</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">image</span><span style="color:#666666">,</span><span style="color:#B8A965"> object</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">location</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number"> 30</span> <span style="color:#4D9375">            if</span><span style="color:#B8A965"> isinstance</span><span style="color:#666666">(</span><span style="color:#B8A965">object</span><span style="color:#666666">,</span><span style="color:#DBD7CAEE"> Portal</span><span style="color:#666666">):</span></span>
+<span class="line"><span class="line-number"> 31</span> <span style="color:#DBD7CAEE">                screen</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">blit</span><span style="color:#666666">(</span><span style="color:#B8A965">object</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">image2</span><span style="color:#666666">,</span><span style="color:#B8A965"> object</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">location2</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number"> 32</span> <span style="color:#DBD7CAEE">    pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">display</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">flip</span><span style="color:#666666">()</span></span>
+<span class="line"><span class="line-number"> 33</span> </span>
+<span class="line"><span class="line-number"> 34</span> <span style="color:#CB7676">def</span><span style="color:#80A665"> update_gravity</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">rocket</span><span style="color:#666666">,</span><span style="color:#DBD7CAEE"> actors</span><span style="color:#666666">):</span></span>
+<span class="line"><span class="line-number"> 35</span> <span style="color:#DBD7CAEE">    force_x </span><span style="color:#666666">=</span><span style="color:#4C9A91"> 0</span></span>
+<span class="line"><span class="line-number"> 36</span> <span style="color:#DBD7CAEE">    force_y </span><span style="color:#666666">=</span><span style="color:#4C9A91"> 0</span></span>
+<span class="line"><span class="line-number"> 37</span> <span style="color:#4D9375">    for</span><span style="color:#DBD7CAEE"> actor </span><span style="color:#4D9375">in</span><span style="color:#DBD7CAEE"> actors</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number"> 38</span> <span style="color:#4D9375">        if</span><span style="color:#DBD7CAEE"> actor</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">has_gravity</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number"> 39</span> <span style="color:#DBD7CAEE">            y </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> actor</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">get_center</span><span style="color:#666666">()[</span><span style="color:#4C9A91">1</span><span style="color:#666666">]</span><span style="color:#CB7676"> -</span><span style="color:#DBD7CAEE"> rocket</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">get_center</span><span style="color:#666666">()[</span><span style="color:#4C9A91">1</span><span style="color:#666666">]</span></span>
+<span class="line"><span class="line-number"> 40</span> <span style="color:#DBD7CAEE">            x </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> actor</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">get_center</span><span style="color:#666666">()[</span><span style="color:#4C9A91">0</span><span style="color:#666666">]</span><span style="color:#CB7676"> -</span><span style="color:#DBD7CAEE"> rocket</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">get_center</span><span style="color:#666666">()[</span><span style="color:#4C9A91">0</span><span style="color:#666666">]</span></span>
+<span class="line"><span class="line-number"> 41</span> <span style="color:#DBD7CAEE">            distance_squared </span><span style="color:#666666">=</span><span style="color:#666666"> (</span><span style="color:#DBD7CAEE">x </span><span style="color:#CB7676">**</span><span style="color:#4C9A91"> 2</span><span style="color:#666666">)</span><span style="color:#CB7676"> +</span><span style="color:#666666"> (</span><span style="color:#DBD7CAEE">y </span><span style="color:#CB7676">**</span><span style="color:#4C9A91"> 2</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number"> 42</span> <span style="color:#DBD7CAEE">            gravity </span><span style="color:#666666">=</span><span style="color:#C99076"> GRAV_CONST</span><span style="color:#CB7676"> /</span><span style="color:#DBD7CAEE"> distance_squared</span></span>
+<span class="line"><span class="line-number"> 43</span> <span style="color:#DBD7CAEE">            force_x </span><span style="color:#666666">+=</span><span style="color:#DBD7CAEE"> gravity </span><span style="color:#CB7676">*</span><span style="color:#DBD7CAEE"> x</span></span>
+<span class="line"><span class="line-number"> 44</span> <span style="color:#DBD7CAEE">            force_y </span><span style="color:#666666">+=</span><span style="color:#DBD7CAEE"> gravity </span><span style="color:#CB7676">*</span><span style="color:#DBD7CAEE"> y</span></span>
+<span class="line"><span class="line-number"> 45</span> <span style="color:#DBD7CAEE">    rocket</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">velocity</span><span style="color:#666666">[</span><span style="color:#4C9A91">0</span><span style="color:#666666">]</span><span style="color:#666666"> +=</span><span style="color:#DBD7CAEE"> force_x</span></span>
+<span class="line"><span class="line-number"> 46</span> <span style="color:#DBD7CAEE">    rocket</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">velocity</span><span style="color:#666666">[</span><span style="color:#4C9A91">1</span><span style="color:#666666">]</span><span style="color:#666666"> +=</span><span style="color:#DBD7CAEE"> force_y</span></span>
+<span class="line"><span class="line-number"> 47</span> </span>
+<span class="line"><span class="line-number"> 48</span> <span style="color:#CB7676">def</span><span style="color:#80A665"> check_collision</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">rocket</span><span style="color:#666666">,</span><span style="color:#DBD7CAEE"> actors</span><span style="color:#666666">):</span></span>
+<span class="line"><span class="line-number"> 49</span> <span style="color:#CB7676">    global</span><span style="color:#DBD7CAEE"> cooldown</span></span>
+<span class="line"><span class="line-number"> 50</span> <span style="color:#DBD7CAEE">    rocket_rect </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">Rect</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">rocket</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">location</span><span style="color:#666666">[</span><span style="color:#4C9A91">0</span><span style="color:#666666">],</span><span style="color:#DBD7CAEE"> rocket</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">location</span><span style="color:#666666">[</span><span style="color:#4C9A91">1</span><span style="color:#666666">],</span><span style="color:#DBD7CAEE"> rocket</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">radius</span><span style="color:#666666">[</span><span style="color:#4C9A91">0</span><span style="color:#666666">]</span><span style="color:#CB7676">*</span><span style="color:#4C9A91">2</span><span style="color:#666666">,</span><span style="color:#DBD7CAEE"> rocket</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">radius</span><span style="color:#666666">[</span><span style="color:#4C9A91">1</span><span style="color:#666666">]</span><span style="color:#CB7676">*</span><span style="color:#4C9A91">2</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number"> 51</span> <span style="color:#4D9375">    for</span><span style="color:#DBD7CAEE"> actor </span><span style="color:#4D9375">in</span><span style="color:#DBD7CAEE"> actors</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number"> 52</span> <span style="color:#4D9375">        if</span><span style="color:#B8A965"> isinstance</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">actor</span><span style="color:#666666">,</span><span style="color:#DBD7CAEE"> Portal</span><span style="color:#666666">):</span></span>
+<span class="line"><span class="line-number"> 53</span> <span style="color:#4D9375">            if</span><span style="color:#DBD7CAEE"> rocket_rect</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">colliderect</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">actor</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">rect</span><span style="color:#666666">)</span><span style="color:#CB7676"> and</span><span style="color:#CB7676"> not</span><span style="color:#DBD7CAEE"> cooldown</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number"> 54</span> <span style="color:#DBD7CAEE">                rocket</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">location</span><span style="color:#666666">[</span><span style="color:#4C9A91">0</span><span style="color:#666666">]</span><span style="color:#666666"> =</span><span style="color:#DBD7CAEE"> actor</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">rect2</span><span style="color:#666666">[</span><span style="color:#4C9A91">0</span><span style="color:#666666">]</span></span>
+<span class="line"><span class="line-number"> 55</span> <span style="color:#DBD7CAEE">                rocket</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">location</span><span style="color:#666666">[</span><span style="color:#4C9A91">1</span><span style="color:#666666">]</span><span style="color:#666666"> =</span><span style="color:#B8A965"> abs</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">rocket</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">location</span><span style="color:#666666">[</span><span style="color:#4C9A91">1</span><span style="color:#666666">]</span><span style="color:#CB7676">-</span><span style="color:#DBD7CAEE">actor</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">rect</span><span style="color:#666666">[</span><span style="color:#4C9A91">1</span><span style="color:#666666">])</span><span style="color:#CB7676"> +</span><span style="color:#DBD7CAEE"> actor</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">rect2</span><span style="color:#666666">[</span><span style="color:#4C9A91">1</span><span style="color:#666666">]</span></span>
+<span class="line"><span class="line-number"> 56</span> <span style="color:#DBD7CAEE">                cooldown </span><span style="color:#666666">=</span><span style="color:#4D9375"> True</span></span>
+<span class="line"><span class="line-number"> 57</span> <span style="color:#4D9375">            elif</span><span style="color:#DBD7CAEE"> rocket_rect</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">colliderect</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">actor</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">rect2</span><span style="color:#666666">)</span><span style="color:#CB7676"> and</span><span style="color:#CB7676"> not</span><span style="color:#DBD7CAEE"> cooldown</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number"> 58</span> <span style="color:#DBD7CAEE">                rocket</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">location </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> actor</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">location</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">copy</span><span style="color:#666666">()</span></span>
+<span class="line"><span class="line-number"> 59</span> <span style="color:#DBD7CAEE">                cooldown </span><span style="color:#666666">=</span><span style="color:#4D9375"> True</span></span>
+<span class="line"><span class="line-number"> 60</span> <span style="color:#4D9375">            elif</span><span style="color:#CB7676"> not</span><span style="color:#DBD7CAEE"> rocket_rect</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">colliderect</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">actor</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">rect</span><span style="color:#666666">)</span><span style="color:#CB7676"> and</span><span style="color:#CB7676"> not</span><span style="color:#DBD7CAEE"> rocket_rect</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">colliderect</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">actor</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">rect2</span><span style="color:#666666">):</span></span>
+<span class="line"><span class="line-number"> 61</span> <span style="color:#DBD7CAEE">                cooldown </span><span style="color:#666666">=</span><span style="color:#4D9375"> False</span></span>
+<span class="line"><span class="line-number"> 62</span> <span style="color:#4D9375">        if</span><span style="color:#DBD7CAEE"> rocket_rect</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">colliderect</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">actor</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">rect</span><span style="color:#666666">):</span></span>
+<span class="line"><span class="line-number"> 63</span> <span style="color:#4D9375">            if</span><span style="color:#DBD7CAEE"> actor</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">is_target</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number"> 64</span> <span style="color:#4D9375">                return</span><span style="color:#4C9A91"> 2</span></span>
+<span class="line"><span class="line-number"> 65</span> <span style="color:#4D9375">            elif</span><span style="color:#CB7676"> not</span><span style="color:#B8A965"> isinstance</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">actor</span><span style="color:#666666">,</span><span style="color:#DBD7CAEE"> Portal</span><span style="color:#666666">):</span></span>
+<span class="line"><span class="line-number"> 66</span> <span style="color:#4D9375">                return</span><span style="color:#4C9A91"> 1</span></span>
+<span class="line"><span class="line-number"> 67</span> <span style="color:#4D9375">        elif</span><span style="color:#DBD7CAEE"> rocket</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">location</span><span style="color:#666666">[</span><span style="color:#4C9A91">0</span><span style="color:#666666">]</span><span style="color:#CB7676"> ></span><span style="color:#4C9A91"> 1400</span><span style="color:#CB7676"> or</span><span style="color:#DBD7CAEE"> rocket</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">location</span><span style="color:#666666">[</span><span style="color:#4C9A91">0</span><span style="color:#666666">]</span><span style="color:#CB7676"> &#x3C;</span><span style="color:#CB7676"> -</span><span style="color:#4C9A91">100</span><span style="color:#CB7676"> or</span><span style="color:#DBD7CAEE"> rocket</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">location</span><span style="color:#666666">[</span><span style="color:#4C9A91">1</span><span style="color:#666666">]</span><span style="color:#CB7676"> ></span><span style="color:#4C9A91"> 800</span><span style="color:#CB7676"> or</span><span style="color:#DBD7CAEE"> rocket</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">location</span><span style="color:#666666">[</span><span style="color:#4C9A91">1</span><span style="color:#666666">]</span><span style="color:#CB7676"> &#x3C;</span><span style="color:#CB7676"> -</span><span style="color:#4C9A91">100</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number"> 68</span> <span style="color:#4D9375">            return</span><span style="color:#4C9A91"> 1</span></span>
+<span class="line"><span class="line-number"> 69</span> <span style="color:#4D9375">    return</span><span style="color:#4C9A91"> 0</span></span>
+<span class="line"><span class="line-number"> 70</span> </span>
+<span class="line"><span class="line-number"> 71</span> <span style="color:#CB7676">def</span><span style="color:#80A665"> start_menu</span><span style="color:#666666">():</span></span>
+<span class="line"><span class="line-number"> 72</span> <span style="color:#DBD7CAEE">    start_screen </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> Actor</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ART/startmenu.png</span><span style="color:#C98A7D77">"</span><span style="color:#666666">,</span><span style="color:#666666"> [</span><span style="color:#4C9A91">0</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 0</span><span style="color:#666666">])</span></span>
+<span class="line"><span class="line-number"> 73</span> <span style="color:#DBD7CAEE">    start_button </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> Actor</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ART/startbutton.png</span><span style="color:#C98A7D77">"</span><span style="color:#666666">,</span><span style="color:#666666"> [</span><span style="color:#4C9A91">110</span><span style="color:#666666">,</span><span style="color:#4C9A91">540</span><span style="color:#666666">])</span></span>
+<span class="line"><span class="line-number"> 74</span> <span style="color:#DBD7CAEE">    level_select </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> Actor</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ART/levelselect.png</span><span style="color:#C98A7D77">"</span><span style="color:#666666">,</span><span style="color:#666666"> [</span><span style="color:#4C9A91">220</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 600</span><span style="color:#666666">])</span></span>
+<span class="line"><span class="line-number"> 75</span> <span style="color:#DBD7CAEE">    exit_button </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> Actor</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ART/exitgame.png</span><span style="color:#C98A7D77">"</span><span style="color:#666666">,</span><span style="color:#666666"> [</span><span style="color:#4C9A91">330</span><span style="color:#666666">,</span><span style="color:#4C9A91">660</span><span style="color:#666666">])</span></span>
+<span class="line"><span class="line-number"> 76</span> <span style="color:#DBD7CAEE">    objects </span><span style="color:#666666">=</span><span style="color:#666666"> [</span><span style="color:#DBD7CAEE">start_screen</span><span style="color:#666666">,</span><span style="color:#DBD7CAEE"> start_button</span><span style="color:#666666">,</span><span style="color:#DBD7CAEE"> level_select</span><span style="color:#666666">,</span><span style="color:#DBD7CAEE"> exit_button</span><span style="color:#666666">]</span></span>
+<span class="line"><span class="line-number"> 77</span> <span style="color:#DBD7CAEE">    starting </span><span style="color:#666666">=</span><span style="color:#4D9375"> True</span></span>
+<span class="line"><span class="line-number"> 78</span> <span style="color:#4D9375">    while</span><span style="color:#DBD7CAEE"> starting</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number"> 79</span> <span style="color:#4D9375">        for</span><span style="color:#DBD7CAEE"> event </span><span style="color:#4D9375">in</span><span style="color:#DBD7CAEE"> pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">event</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">get</span><span style="color:#666666">():</span></span>
+<span class="line"><span class="line-number"> 80</span> <span style="color:#4D9375">            if</span><span style="color:#DBD7CAEE"> event</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">type </span><span style="color:#CB7676">==</span><span style="color:#DBD7CAEE"> pygame</span><span style="color:#666666">.</span><span style="color:#C99076">QUIT</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number"> 81</span> <span style="color:#DBD7CAEE">                pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">quit</span><span style="color:#666666">()</span></span>
+<span class="line"><span class="line-number"> 82</span> <span style="color:#4D9375">            if</span><span style="color:#DBD7CAEE"> event</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">type </span><span style="color:#CB7676">==</span><span style="color:#DBD7CAEE"> pygame</span><span style="color:#666666">.</span><span style="color:#C99076">MOUSEBUTTONDOWN</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number"> 83</span> <span style="color:#4D9375">                if</span><span style="color:#DBD7CAEE"> start_button</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">image</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">get_rect</span><span style="color:#666666">(</span><span style="color:#BD976A">topleft</span><span style="color:#666666">=</span><span style="color:#DBD7CAEE">start_button</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">location</span><span style="color:#666666">).</span><span style="color:#DBD7CAEE">collidepoint</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">mouse</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">get_pos</span><span style="color:#666666">()):</span></span>
+<span class="line"><span class="line-number"> 84</span> <span style="color:#4D9375">                    return</span><span style="color:#4C9A91"> 0</span></span>
+<span class="line"><span class="line-number"> 85</span> <span style="color:#4D9375">                if</span><span style="color:#DBD7CAEE"> level_select</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">image</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">get_rect</span><span style="color:#666666">(</span><span style="color:#BD976A">topleft</span><span style="color:#666666">=</span><span style="color:#DBD7CAEE">level_select</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">location</span><span style="color:#666666">).</span><span style="color:#DBD7CAEE">collidepoint</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">mouse</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">get_pos</span><span style="color:#666666">()):</span></span>
+<span class="line"><span class="line-number"> 86</span> <span style="color:#4D9375">                    return</span><span style="color:#DBD7CAEE"> select_menu</span><span style="color:#666666">()</span></span>
+<span class="line"><span class="line-number"> 87</span> <span style="color:#4D9375">                if</span><span style="color:#DBD7CAEE"> exit_button</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">image</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">get_rect</span><span style="color:#666666">(</span><span style="color:#BD976A">topleft</span><span style="color:#666666">=</span><span style="color:#DBD7CAEE">exit_button</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">location</span><span style="color:#666666">).</span><span style="color:#DBD7CAEE">collidepoint</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">mouse</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">get_pos</span><span style="color:#666666">()):</span></span>
+<span class="line"><span class="line-number"> 88</span> <span style="color:#DBD7CAEE">                    pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">quit</span><span style="color:#666666">()</span></span>
+<span class="line"><span class="line-number"> 89</span> <span style="color:#DBD7CAEE">        update_window</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">objects</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number"> 90</span> </span>
+<span class="line"><span class="line-number"> 91</span> <span style="color:#CB7676">def</span><span style="color:#80A665"> select_menu</span><span style="color:#666666">():</span></span>
+<span class="line"><span class="line-number"> 92</span> <span style="color:#DBD7CAEE">    selecting </span><span style="color:#666666">=</span><span style="color:#4D9375"> True</span></span>
+<span class="line"><span class="line-number"> 93</span> <span style="color:#DBD7CAEE">    level_select_screen </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> Actor</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ART/levelselectscreen.png</span><span style="color:#C98A7D77">"</span><span style="color:#666666">,</span><span style="color:#666666"> [</span><span style="color:#4C9A91">0</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 0</span><span style="color:#666666">])</span></span>
+<span class="line"><span class="line-number"> 94</span> <span style="color:#DBD7CAEE">    back_button </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> Actor</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ART/backbutton.png</span><span style="color:#C98A7D77">"</span><span style="color:#666666">,</span><span style="color:#666666"> [</span><span style="color:#4C9A91">610</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 650</span><span style="color:#666666">])</span></span>
+<span class="line"><span class="line-number"> 95</span> <span style="color:#DBD7CAEE">    objects </span><span style="color:#666666">=</span><span style="color:#666666"> [</span><span style="color:#DBD7CAEE">level_select_screen</span><span style="color:#666666">,</span><span style="color:#DBD7CAEE"> back_button</span><span style="color:#666666">]</span></span>
+<span class="line"><span class="line-number"> 96</span> </span>
+<span class="line"><span class="line-number"> 97</span> <span style="color:#DBD7CAEE">    buttons </span><span style="color:#666666">=</span><span style="color:#666666"> []</span></span>
+<span class="line"><span class="line-number"> 98</span> <span style="color:#DBD7CAEE">    texts </span><span style="color:#666666">=</span><span style="color:#666666"> []</span></span>
+<span class="line"><span class="line-number"> 99</span> </span>
+<span class="line"><span class="line-number">100</span> <span style="color:#DBD7CAEE">    n </span><span style="color:#666666">=</span><span style="color:#4C9A91"> 0</span></span>
+<span class="line"><span class="line-number">101</span> <span style="color:#4D9375">    for</span><span style="color:#DBD7CAEE"> i </span><span style="color:#4D9375">in</span><span style="color:#B8A965"> range</span><span style="color:#666666">(</span><span style="color:#4C9A91">4</span><span style="color:#666666">):</span></span>
+<span class="line"><span class="line-number">102</span> <span style="color:#4D9375">        for</span><span style="color:#DBD7CAEE"> j </span><span style="color:#4D9375">in</span><span style="color:#B8A965"> range</span><span style="color:#666666">(</span><span style="color:#4C9A91">3</span><span style="color:#666666">):</span></span>
+<span class="line"><span class="line-number">103</span> <span style="color:#DBD7CAEE">            buttons</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">append</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">Actor</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ART/levelbutton.png</span><span style="color:#C98A7D77">"</span><span style="color:#666666">,</span><span style="color:#666666"> [</span><span style="color:#4C9A91">130</span><span style="color:#CB7676"> +</span><span style="color:#4C9A91"> 420</span><span style="color:#CB7676">*</span><span style="color:#DBD7CAEE">j</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 180</span><span style="color:#CB7676"> +</span><span style="color:#4C9A91"> 100</span><span style="color:#CB7676">*</span><span style="color:#DBD7CAEE">i</span><span style="color:#666666">]))</span></span>
+<span class="line"><span class="line-number">104</span> <span style="color:#DBD7CAEE">            buttons</span><span style="color:#666666">[</span><span style="color:#DBD7CAEE">n</span><span style="color:#666666">].</span><span style="color:#DBD7CAEE">image </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">transform</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">scale</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">buttons</span><span style="color:#666666">[</span><span style="color:#DBD7CAEE">n</span><span style="color:#666666">].</span><span style="color:#DBD7CAEE">image</span><span style="color:#666666">,</span><span style="color:#666666"> [</span><span style="color:#4C9A91">180</span><span style="color:#666666">,</span><span style="color:#4C9A91">40</span><span style="color:#666666">])</span></span>
+<span class="line"><span class="line-number">105</span> <span style="color:#DBD7CAEE">            text_surface </span><span style="color:#666666">=</span><span style="color:#C99076"> FONT</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">render</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">LEVEL </span><span style="color:#C98A7D77">"</span><span style="color:#CB7676"> +</span><span style="color:#B8A965"> str</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">n</span><span style="color:#CB7676">+</span><span style="color:#4C9A91">1</span><span style="color:#666666">),</span><span style="color:#4D9375"> False</span><span style="color:#666666">,</span><span style="color:#666666"> (</span><span style="color:#4C9A91">255</span><span style="color:#666666">,</span><span style="color:#4C9A91">255</span><span style="color:#666666">,</span><span style="color:#4C9A91">255</span><span style="color:#666666">))</span></span>
+<span class="line"><span class="line-number">106</span> <span style="color:#DBD7CAEE">            text </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> Text</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">text_surface</span><span style="color:#666666">,</span><span style="color:#666666"> [</span><span style="color:#4C9A91">130</span><span style="color:#CB7676"> +</span><span style="color:#4C9A91"> 420</span><span style="color:#CB7676">*</span><span style="color:#DBD7CAEE">j</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 180</span><span style="color:#CB7676"> +</span><span style="color:#4C9A91"> 100</span><span style="color:#CB7676">*</span><span style="color:#DBD7CAEE">i</span><span style="color:#666666">])</span></span>
+<span class="line"><span class="line-number">107</span> <span style="color:#DBD7CAEE">            texts</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">append</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">text</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number">108</span> <span style="color:#DBD7CAEE">            n </span><span style="color:#666666">+=</span><span style="color:#4C9A91"> 1</span></span>
+<span class="line"><span class="line-number">109</span> </span>
+<span class="line"><span class="line-number">110</span> <span style="color:#DBD7CAEE">    objects</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">extend</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">buttons</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number">111</span> <span style="color:#DBD7CAEE">    objects</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">extend</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">texts</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number">112</span> <span style="color:#DBD7CAEE">            </span></span>
+<span class="line"><span class="line-number">113</span> <span style="color:#4D9375">    while</span><span style="color:#DBD7CAEE"> selecting</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number">114</span> <span style="color:#4D9375">        for</span><span style="color:#DBD7CAEE"> event </span><span style="color:#4D9375">in</span><span style="color:#DBD7CAEE"> pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">event</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">get</span><span style="color:#666666">():</span></span>
+<span class="line"><span class="line-number">115</span> <span style="color:#4D9375">            if</span><span style="color:#DBD7CAEE"> event</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">type </span><span style="color:#CB7676">==</span><span style="color:#DBD7CAEE"> pygame</span><span style="color:#666666">.</span><span style="color:#C99076">QUIT</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number">116</span> <span style="color:#DBD7CAEE">                pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">quit</span><span style="color:#666666">()</span></span>
+<span class="line"><span class="line-number">117</span> <span style="color:#4D9375">            if</span><span style="color:#DBD7CAEE"> event</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">type </span><span style="color:#CB7676">==</span><span style="color:#DBD7CAEE"> pygame</span><span style="color:#666666">.</span><span style="color:#C99076">MOUSEBUTTONDOWN</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number">118</span> <span style="color:#4D9375">                if</span><span style="color:#DBD7CAEE"> back_button</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">image</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">get_rect</span><span style="color:#666666">(</span><span style="color:#BD976A">topleft</span><span style="color:#666666">=</span><span style="color:#DBD7CAEE">back_button</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">location</span><span style="color:#666666">).</span><span style="color:#DBD7CAEE">collidepoint</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">mouse</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">get_pos</span><span style="color:#666666">()):</span></span>
+<span class="line"><span class="line-number">119</span> <span style="color:#DBD7CAEE">                    selecting </span><span style="color:#666666">=</span><span style="color:#4D9375"> False</span></span>
+<span class="line"><span class="line-number">120</span> <span style="color:#DBD7CAEE">                    start_menu</span><span style="color:#666666">()</span></span>
+<span class="line"><span class="line-number">121</span> <span style="color:#4D9375">                for</span><span style="color:#DBD7CAEE"> i </span><span style="color:#4D9375">in</span><span style="color:#B8A965"> range</span><span style="color:#666666">(</span><span style="color:#B8A965">len</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">buttons</span><span style="color:#666666">)):</span></span>
+<span class="line"><span class="line-number">122</span> <span style="color:#4D9375">                    if</span><span style="color:#DBD7CAEE"> buttons</span><span style="color:#666666">[</span><span style="color:#DBD7CAEE">i</span><span style="color:#666666">].</span><span style="color:#DBD7CAEE">image</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">get_rect</span><span style="color:#666666">(</span><span style="color:#BD976A">topleft</span><span style="color:#666666">=</span><span style="color:#DBD7CAEE">buttons</span><span style="color:#666666">[</span><span style="color:#DBD7CAEE">i</span><span style="color:#666666">].</span><span style="color:#DBD7CAEE">location</span><span style="color:#666666">).</span><span style="color:#DBD7CAEE">collidepoint</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">mouse</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">get_pos</span><span style="color:#666666">()):</span></span>
+<span class="line"><span class="line-number">123</span> <span style="color:#4D9375">                        return</span><span style="color:#DBD7CAEE"> i</span></span>
+<span class="line"><span class="line-number">124</span> </span>
+<span class="line"><span class="line-number">125</span> <span style="color:#DBD7CAEE">        update_window</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">objects</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number">126</span> </span>
+<span class="line"><span class="line-number">127</span> <span style="color:#CB7676">def</span><span style="color:#80A665"> end_screen</span><span style="color:#666666">():</span></span>
+<span class="line"><span class="line-number">128</span> <span style="color:#DBD7CAEE">    end </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> Actor</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ART/amogus.png</span><span style="color:#C98A7D77">"</span><span style="color:#666666">,</span><span style="color:#666666"> [</span><span style="color:#4C9A91">0</span><span style="color:#666666">,</span><span style="color:#4C9A91">0</span><span style="color:#666666">])</span></span>
+<span class="line"><span class="line-number">129</span> <span style="color:#DBD7CAEE">    you_win </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> Actor</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ART/youwin.png</span><span style="color:#C98A7D77">"</span><span style="color:#666666">,</span><span style="color:#666666"> [</span><span style="color:#4C9A91">400</span><span style="color:#666666">,</span><span style="color:#4C9A91">200</span><span style="color:#666666">])</span></span>
+<span class="line"><span class="line-number">130</span> <span style="color:#DBD7CAEE">    end</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">image </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">transform</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">scale</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">end</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">image</span><span style="color:#666666">,</span><span style="color:#DBD7CAEE"> window</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number">131</span> <span style="color:#DBD7CAEE">    objects </span><span style="color:#666666">=</span><span style="color:#666666"> [</span><span style="color:#DBD7CAEE">end</span><span style="color:#666666">,</span><span style="color:#DBD7CAEE"> you_win</span><span style="color:#666666">]</span></span>
+<span class="line"><span class="line-number">132</span> <span style="color:#DBD7CAEE">    ending </span><span style="color:#666666">=</span><span style="color:#4D9375"> True</span></span>
+<span class="line"><span class="line-number">133</span> <span style="color:#4D9375">    while</span><span style="color:#DBD7CAEE"> ending</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number">134</span> <span style="color:#4D9375">        for</span><span style="color:#DBD7CAEE"> event </span><span style="color:#4D9375">in</span><span style="color:#DBD7CAEE"> pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">event</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">get</span><span style="color:#666666">():</span></span>
+<span class="line"><span class="line-number">135</span> <span style="color:#4D9375">            if</span><span style="color:#DBD7CAEE"> event</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">type </span><span style="color:#CB7676">==</span><span style="color:#DBD7CAEE"> pygame</span><span style="color:#666666">.</span><span style="color:#C99076">QUIT</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number">136</span> <span style="color:#DBD7CAEE">                pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">quit</span><span style="color:#666666">()</span></span>
+<span class="line"><span class="line-number">137</span> <span style="color:#DBD7CAEE">        update_window</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">objects</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number">138</span> </span>
+<span class="line"><span class="line-number">139</span> <span style="color:#CB7676">def</span><span style="color:#80A665"> success</span><span style="color:#666666">():</span></span>
+<span class="line"><span class="line-number">140</span> <span style="color:#DBD7CAEE">    running </span><span style="color:#666666">=</span><span style="color:#4D9375"> True</span></span>
+<span class="line"><span class="line-number">141</span> <span style="color:#DBD7CAEE">    success </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> Actor</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ART/success.png</span><span style="color:#C98A7D77">"</span><span style="color:#666666">,</span><span style="color:#666666"> [</span><span style="color:#4C9A91">0</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 100</span><span style="color:#666666">])</span></span>
+<span class="line"><span class="line-number">142</span> <span style="color:#DBD7CAEE">    next_level_button </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> Actor</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ART/nextlevel.png</span><span style="color:#C98A7D77">"</span><span style="color:#666666">,</span><span style="color:#666666"> [</span><span style="color:#4C9A91">480</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 550</span><span style="color:#666666">])</span></span>
+<span class="line"><span class="line-number">143</span> <span style="color:#DBD7CAEE">    main_menu </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> Actor</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ART/mainmenubutton.png</span><span style="color:#C98A7D77">"</span><span style="color:#666666">,</span><span style="color:#666666"> [</span><span style="color:#4C9A91">460</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 640</span><span style="color:#666666">])</span></span>
+<span class="line"><span class="line-number">144</span> <span style="color:#DBD7CAEE">    objects </span><span style="color:#666666">=</span><span style="color:#666666"> [</span><span style="color:#DBD7CAEE">success</span><span style="color:#666666">,</span><span style="color:#DBD7CAEE"> next_level_button</span><span style="color:#666666">,</span><span style="color:#DBD7CAEE"> main_menu</span><span style="color:#666666">]</span></span>
+<span class="line"><span class="line-number">145</span> <span style="color:#4D9375">    while</span><span style="color:#DBD7CAEE"> running</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number">146</span> <span style="color:#4D9375">        for</span><span style="color:#DBD7CAEE"> event </span><span style="color:#4D9375">in</span><span style="color:#DBD7CAEE"> pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">event</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">get</span><span style="color:#666666">():</span></span>
+<span class="line"><span class="line-number">147</span> <span style="color:#4D9375">            if</span><span style="color:#DBD7CAEE"> event</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">type </span><span style="color:#CB7676">==</span><span style="color:#DBD7CAEE"> pygame</span><span style="color:#666666">.</span><span style="color:#C99076">QUIT</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number">148</span> <span style="color:#DBD7CAEE">                pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">quit</span><span style="color:#666666">()</span></span>
+<span class="line"><span class="line-number">149</span> <span style="color:#4D9375">            if</span><span style="color:#DBD7CAEE"> event</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">type </span><span style="color:#CB7676">==</span><span style="color:#DBD7CAEE"> pygame</span><span style="color:#666666">.</span><span style="color:#C99076">MOUSEBUTTONDOWN</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number">150</span> <span style="color:#4D9375">                if</span><span style="color:#DBD7CAEE"> next_level_button</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">image</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">get_rect</span><span style="color:#666666">(</span><span style="color:#BD976A">topleft</span><span style="color:#666666">=</span><span style="color:#DBD7CAEE">next_level_button</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">location</span><span style="color:#666666">).</span><span style="color:#DBD7CAEE">collidepoint</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">mouse</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">get_pos</span><span style="color:#666666">()):</span></span>
+<span class="line"><span class="line-number">151</span> <span style="color:#4D9375">                    return</span><span style="color:#4D9375"> True</span></span>
+<span class="line"><span class="line-number">152</span> <span style="color:#4D9375">                elif</span><span style="color:#DBD7CAEE"> main_menu</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">image</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">get_rect</span><span style="color:#666666">(</span><span style="color:#BD976A">topleft</span><span style="color:#666666">=</span><span style="color:#DBD7CAEE">main_menu</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">location</span><span style="color:#666666">).</span><span style="color:#DBD7CAEE">collidepoint</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">mouse</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">get_pos</span><span style="color:#666666">()):</span></span>
+<span class="line"><span class="line-number">153</span> <span style="color:#4D9375">                    return</span><span style="color:#4D9375"> False</span></span>
+<span class="line"><span class="line-number">154</span> <span style="color:#DBD7CAEE">        update_window</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">objects</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number">155</span> </span>
+<span class="line"><span class="line-number">156</span> <span style="color:#CB7676">def</span><span style="color:#80A665"> failure</span><span style="color:#666666">():</span></span>
+<span class="line"><span class="line-number">157</span> <span style="color:#DBD7CAEE">    running </span><span style="color:#666666">=</span><span style="color:#4D9375"> True</span></span>
+<span class="line"><span class="line-number">158</span> <span style="color:#DBD7CAEE">    failure </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> Actor</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ART/failure.png</span><span style="color:#C98A7D77">"</span><span style="color:#666666">,</span><span style="color:#666666"> [</span><span style="color:#4C9A91">0</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 100</span><span style="color:#666666">])</span></span>
+<span class="line"><span class="line-number">159</span> <span style="color:#DBD7CAEE">    retry </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> Actor</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ART/retry.png</span><span style="color:#C98A7D77">"</span><span style="color:#666666">,</span><span style="color:#666666"> [</span><span style="color:#4C9A91">480</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 550</span><span style="color:#666666">])</span></span>
+<span class="line"><span class="line-number">160</span> <span style="color:#DBD7CAEE">    main_menu </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> Actor</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ART/mainmenubutton.png</span><span style="color:#C98A7D77">"</span><span style="color:#666666">,</span><span style="color:#666666"> [</span><span style="color:#4C9A91">460</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 640</span><span style="color:#666666">])</span></span>
+<span class="line"><span class="line-number">161</span> <span style="color:#DBD7CAEE">    objects </span><span style="color:#666666">=</span><span style="color:#666666"> [</span><span style="color:#DBD7CAEE">failure</span><span style="color:#666666">,</span><span style="color:#DBD7CAEE"> retry</span><span style="color:#666666">,</span><span style="color:#DBD7CAEE"> main_menu</span><span style="color:#666666">]</span></span>
+<span class="line"><span class="line-number">162</span> <span style="color:#4D9375">    while</span><span style="color:#DBD7CAEE"> running</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number">163</span> <span style="color:#4D9375">        for</span><span style="color:#DBD7CAEE"> event </span><span style="color:#4D9375">in</span><span style="color:#DBD7CAEE"> pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">event</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">get</span><span style="color:#666666">():</span></span>
+<span class="line"><span class="line-number">164</span> <span style="color:#4D9375">            if</span><span style="color:#DBD7CAEE"> event</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">type </span><span style="color:#CB7676">==</span><span style="color:#DBD7CAEE"> pygame</span><span style="color:#666666">.</span><span style="color:#C99076">QUIT</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number">165</span> <span style="color:#DBD7CAEE">                pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">quit</span><span style="color:#666666">()</span></span>
+<span class="line"><span class="line-number">166</span> <span style="color:#4D9375">            if</span><span style="color:#DBD7CAEE"> event</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">type </span><span style="color:#CB7676">==</span><span style="color:#DBD7CAEE"> pygame</span><span style="color:#666666">.</span><span style="color:#C99076">MOUSEBUTTONDOWN</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number">167</span> <span style="color:#4D9375">                if</span><span style="color:#DBD7CAEE"> retry</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">image</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">get_rect</span><span style="color:#666666">(</span><span style="color:#BD976A">topleft</span><span style="color:#666666">=</span><span style="color:#DBD7CAEE">retry</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">location</span><span style="color:#666666">).</span><span style="color:#DBD7CAEE">collidepoint</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">mouse</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">get_pos</span><span style="color:#666666">()):</span></span>
+<span class="line"><span class="line-number">168</span> <span style="color:#4D9375">                    return</span><span style="color:#4D9375"> True</span></span>
+<span class="line"><span class="line-number">169</span> <span style="color:#4D9375">                elif</span><span style="color:#DBD7CAEE"> main_menu</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">image</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">get_rect</span><span style="color:#666666">(</span><span style="color:#BD976A">topleft</span><span style="color:#666666">=</span><span style="color:#DBD7CAEE">main_menu</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">location</span><span style="color:#666666">).</span><span style="color:#DBD7CAEE">collidepoint</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">mouse</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">get_pos</span><span style="color:#666666">()):</span></span>
+<span class="line"><span class="line-number">170</span> <span style="color:#4D9375">                    return</span><span style="color:#4D9375"> False</span></span>
+<span class="line"><span class="line-number">171</span> <span style="color:#DBD7CAEE">        update_window</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">objects</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number">172</span> </span>
+<span class="line"><span class="line-number">173</span> <span style="color:#CB7676">def</span><span style="color:#80A665"> make_level</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">actors</span><span style="color:#666666">,</span><span style="color:#DBD7CAEE"> background</span><span style="color:#666666">):</span></span>
+<span class="line"><span class="line-number">174</span> <span style="color:#DBD7CAEE">    rocket </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> Player</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ART/rocket.png</span><span style="color:#C98A7D77">"</span><span style="color:#666666">,</span><span style="color:#666666"> [</span><span style="color:#4C9A91">0</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 10</span><span style="color:#666666">],</span><span style="color:#666666"> [</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ART/rocket.png</span><span style="color:#C98A7D77">"</span><span style="color:#666666">,</span><span style="color:#C98A7D77"> "</span><span style="color:#C98A7D">ART/rocket2.png</span><span style="color:#C98A7D77">"</span><span style="color:#666666">,</span><span style="color:#C98A7D77"> "</span><span style="color:#C98A7D">ART/rocket3.png</span><span style="color:#C98A7D77">"</span><span style="color:#666666">])</span></span>
+<span class="line"><span class="line-number">175</span> <span style="color:#DBD7CAEE">    ui </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> Actor</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ART/ui.png</span><span style="color:#C98A7D77">"</span><span style="color:#666666">,</span><span style="color:#666666"> [</span><span style="color:#4C9A91">0</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 600</span><span style="color:#666666">])</span></span>
+<span class="line"><span class="line-number">176</span> </span>
+<span class="line"><span class="line-number">177</span> <span style="color:#DBD7CAEE">    originals </span><span style="color:#666666">=</span><span style="color:#666666"> []</span></span>
+<span class="line"><span class="line-number">178</span> <span style="color:#DBD7CAEE">    moveables </span><span style="color:#666666">=</span><span style="color:#666666"> []</span></span>
+<span class="line"><span class="line-number">179</span> <span style="color:#4D9375">    for</span><span style="color:#DBD7CAEE"> actor </span><span style="color:#4D9375">in</span><span style="color:#DBD7CAEE"> actors</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number">180</span> <span style="color:#DBD7CAEE">        new </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> copy</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">copy</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">actor</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number">181</span> <span style="color:#4D9375">        if</span><span style="color:#DBD7CAEE"> new</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">can_move</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number">182</span> <span style="color:#DBD7CAEE">            new</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">image </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">transform</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">scale</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">new</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">image</span><span style="color:#666666">,</span><span style="color:#C99076"> UI_SIZE</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number">183</span> <span style="color:#DBD7CAEE">            moveables</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">append</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">new</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number">184</span> <span style="color:#4D9375">        else</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number">185</span> <span style="color:#DBD7CAEE">            originals</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">append</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">new</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number">186</span> </span>
+<span class="line"><span class="line-number">187</span> <span style="color:#DBD7CAEE">    objects </span><span style="color:#666666">=</span><span style="color:#666666"> [</span><span style="color:#DBD7CAEE">background</span><span style="color:#666666">]</span><span style="color:#CB7676"> +</span><span style="color:#DBD7CAEE"> originals </span><span style="color:#CB7676">+</span><span style="color:#666666"> [</span><span style="color:#DBD7CAEE">rocket</span><span style="color:#666666">]</span><span style="color:#CB7676"> +</span><span style="color:#666666"> [</span><span style="color:#DBD7CAEE">ui</span><span style="color:#666666">]</span><span style="color:#CB7676"> +</span><span style="color:#DBD7CAEE"> moveables</span></span>
+<span class="line"><span class="line-number">188</span> </span>
+<span class="line"><span class="line-number">189</span> <span style="color:#DBD7CAEE">    launching </span><span style="color:#666666">=</span><span style="color:#4D9375"> False</span></span>
+<span class="line"><span class="line-number">190</span> <span style="color:#DBD7CAEE">    designing </span><span style="color:#666666">=</span><span style="color:#4D9375"> True</span></span>
+<span class="line"><span class="line-number">191</span> <span style="color:#DBD7CAEE">    has_selected </span><span style="color:#666666">=</span><span style="color:#4D9375"> False</span></span>
+<span class="line"><span class="line-number">192</span> <span style="color:#DBD7CAEE">    running </span><span style="color:#666666">=</span><span style="color:#4D9375"> True</span></span>
+<span class="line"><span class="line-number">193</span> <span style="color:#DBD7CAEE">    retry </span><span style="color:#666666">=</span><span style="color:#4D9375"> False</span></span>
+<span class="line"><span class="line-number">194</span> <span style="color:#DBD7CAEE">    next_level </span><span style="color:#666666">=</span><span style="color:#4D9375"> False</span></span>
+<span class="line"><span class="line-number">195</span> <span style="color:#4D9375">    while</span><span style="color:#DBD7CAEE"> running</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number">196</span> <span style="color:#4D9375">        for</span><span style="color:#DBD7CAEE"> event </span><span style="color:#4D9375">in</span><span style="color:#DBD7CAEE"> pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">event</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">get</span><span style="color:#666666">():</span></span>
+<span class="line"><span class="line-number">197</span> <span style="color:#4D9375">            if</span><span style="color:#DBD7CAEE"> event</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">type </span><span style="color:#CB7676">==</span><span style="color:#DBD7CAEE"> pygame</span><span style="color:#666666">.</span><span style="color:#C99076">QUIT</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number">198</span> <span style="color:#DBD7CAEE">                pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">quit</span><span style="color:#666666">()</span></span>
+<span class="line"><span class="line-number">199</span> </span>
+<span class="line"><span class="line-number">200</span> <span style="color:#4D9375">            if</span><span style="color:#DBD7CAEE"> event</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">type </span><span style="color:#CB7676">==</span><span style="color:#DBD7CAEE"> pygame</span><span style="color:#666666">.</span><span style="color:#C99076">MOUSEBUTTONDOWN</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number">201</span> <span style="color:#DBD7CAEE">                has_selected </span><span style="color:#666666">=</span><span style="color:#4D9375"> True</span></span>
+<span class="line"><span class="line-number">202</span> <span style="color:#4D9375">            elif</span><span style="color:#DBD7CAEE"> event</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">type </span><span style="color:#CB7676">==</span><span style="color:#DBD7CAEE"> pygame</span><span style="color:#666666">.</span><span style="color:#C99076">MOUSEBUTTONUP</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number">203</span> <span style="color:#DBD7CAEE">                has_selected </span><span style="color:#666666">=</span><span style="color:#4D9375"> False</span></span>
+<span class="line"><span class="line-number">204</span> <span style="color:#4D9375">            if</span><span style="color:#DBD7CAEE"> event</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">type </span><span style="color:#CB7676">==</span><span style="color:#DBD7CAEE"> pygame</span><span style="color:#666666">.</span><span style="color:#C99076">MOUSEMOTION</span><span style="color:#CB7676"> and</span><span style="color:#DBD7CAEE"> designing</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number">205</span> <span style="color:#DBD7CAEE">                mouse_pos </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">mouse</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">get_pos</span><span style="color:#666666">()</span></span>
+<span class="line"><span class="line-number">206</span> </span>
+<span class="line"><span class="line-number">207</span> <span style="color:#4D9375">        if</span><span style="color:#DBD7CAEE"> designing</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number">208</span> <span style="color:#DBD7CAEE">            keys </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">key</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">get_pressed</span><span style="color:#666666">()</span></span>
+<span class="line"><span class="line-number">209</span> <span style="color:#4D9375">            if</span><span style="color:#DBD7CAEE"> keys</span><span style="color:#666666">[</span><span style="color:#DBD7CAEE">pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">K_w</span><span style="color:#666666">]:</span></span>
+<span class="line"><span class="line-number">210</span> <span style="color:#DBD7CAEE">                rocket</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">location</span><span style="color:#666666">[</span><span style="color:#4C9A91">1</span><span style="color:#666666">]</span><span style="color:#666666"> -=</span><span style="color:#C99076"> VEL</span></span>
+<span class="line"><span class="line-number">211</span> <span style="color:#4D9375">            elif</span><span style="color:#DBD7CAEE"> keys</span><span style="color:#666666">[</span><span style="color:#DBD7CAEE">pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">K_s</span><span style="color:#666666">]:</span></span>
+<span class="line"><span class="line-number">212</span> <span style="color:#DBD7CAEE">                rocket</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">location</span><span style="color:#666666">[</span><span style="color:#4C9A91">1</span><span style="color:#666666">]</span><span style="color:#666666"> +=</span><span style="color:#C99076"> VEL</span></span>
+<span class="line"><span class="line-number">213</span> <span style="color:#4D9375">            if</span><span style="color:#DBD7CAEE"> keys</span><span style="color:#666666">[</span><span style="color:#DBD7CAEE">pygame</span><span style="color:#666666">.</span><span style="color:#C99076">K_SPACE</span><span style="color:#666666">]:</span></span>
+<span class="line"><span class="line-number">214</span> <span style="color:#DBD7CAEE">                designing </span><span style="color:#666666">=</span><span style="color:#4D9375"> False</span></span>
+<span class="line"><span class="line-number">215</span> <span style="color:#DBD7CAEE">                launching </span><span style="color:#666666">=</span><span style="color:#4D9375"> True</span></span>
+<span class="line"><span class="line-number">216</span> <span style="color:#4D9375">            if</span><span style="color:#DBD7CAEE"> has_selected</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number">217</span> <span style="color:#4D9375">                for</span><span style="color:#DBD7CAEE"> actor </span><span style="color:#4D9375">in</span><span style="color:#666666"> (</span><span style="color:#DBD7CAEE">moveables</span><span style="color:#666666">):</span></span>
+<span class="line"><span class="line-number">218</span> <span style="color:#4D9375">                    if</span><span style="color:#DBD7CAEE"> actor</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">image</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">get_rect</span><span style="color:#666666">(</span><span style="color:#BD976A">topleft</span><span style="color:#666666">=</span><span style="color:#DBD7CAEE">actor</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">location</span><span style="color:#666666">).</span><span style="color:#DBD7CAEE">collidepoint</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">mouse</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">get_pos</span><span style="color:#666666">())</span><span style="color:#CB7676"> and</span><span style="color:#DBD7CAEE"> actor</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">can_move</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number">219</span> <span style="color:#DBD7CAEE">                        actor</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">has_gravity </span><span style="color:#666666">=</span><span style="color:#4D9375"> True</span></span>
+<span class="line"><span class="line-number">220</span> <span style="color:#DBD7CAEE">                        actor</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">image </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">transform</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">scale</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">actor</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">image</span><span style="color:#666666">,</span><span style="color:#DBD7CAEE"> actor</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">original_size</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number">221</span> <span style="color:#DBD7CAEE">                        actor</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">location </span><span style="color:#666666">=</span><span style="color:#666666"> (</span><span style="color:#DBD7CAEE">mouse_pos</span><span style="color:#666666">[</span><span style="color:#4C9A91">0</span><span style="color:#666666">]</span><span style="color:#CB7676"> -</span><span style="color:#DBD7CAEE"> actor</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">radius</span><span style="color:#666666">[</span><span style="color:#4C9A91">0</span><span style="color:#666666">],</span><span style="color:#DBD7CAEE"> mouse_pos</span><span style="color:#666666">[</span><span style="color:#4C9A91">1</span><span style="color:#666666">]</span><span style="color:#CB7676"> -</span><span style="color:#DBD7CAEE"> actor</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">radius</span><span style="color:#666666">[</span><span style="color:#4C9A91">1</span><span style="color:#666666">])</span></span>
+<span class="line"><span class="line-number">222</span> <span style="color:#DBD7CAEE">                        actor</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">rect </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">Rect</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">actor</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">location</span><span style="color:#666666">[</span><span style="color:#4C9A91">0</span><span style="color:#666666">],</span><span style="color:#DBD7CAEE"> actor</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">location</span><span style="color:#666666">[</span><span style="color:#4C9A91">1</span><span style="color:#666666">],</span><span style="color:#DBD7CAEE"> actor</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">radius</span><span style="color:#666666">[</span><span style="color:#4C9A91">0</span><span style="color:#666666">]</span><span style="color:#CB7676">*</span><span style="color:#4C9A91">2</span><span style="color:#666666">,</span><span style="color:#DBD7CAEE"> actor</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">radius</span><span style="color:#666666">[</span><span style="color:#4C9A91">1</span><span style="color:#666666">]</span><span style="color:#CB7676">*</span><span style="color:#4C9A91">2</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number">223</span> </span>
+<span class="line"><span class="line-number">224</span> <span style="color:#4D9375">        if</span><span style="color:#DBD7CAEE"> launching</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number">225</span> <span style="color:#DBD7CAEE">            update_gravity</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">rocket</span><span style="color:#666666">,</span><span style="color:#DBD7CAEE"> originals </span><span style="color:#CB7676">+</span><span style="color:#DBD7CAEE"> moveables</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number">226</span> <span style="color:#DBD7CAEE">            rocket</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">location</span><span style="color:#666666">[</span><span style="color:#4C9A91">0</span><span style="color:#666666">]</span><span style="color:#666666"> +=</span><span style="color:#DBD7CAEE"> rocket</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">velocity</span><span style="color:#666666">[</span><span style="color:#4C9A91">0</span><span style="color:#666666">]</span></span>
+<span class="line"><span class="line-number">227</span> <span style="color:#DBD7CAEE">            rocket</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">location</span><span style="color:#666666">[</span><span style="color:#4C9A91">1</span><span style="color:#666666">]</span><span style="color:#666666"> +=</span><span style="color:#DBD7CAEE"> rocket</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">velocity</span><span style="color:#666666">[</span><span style="color:#4C9A91">1</span><span style="color:#666666">]</span></span>
+<span class="line"><span class="line-number">228</span> </span>
+<span class="line"><span class="line-number">229</span> <span style="color:#DBD7CAEE">            check </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> check_collision</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">rocket</span><span style="color:#666666">,</span><span style="color:#DBD7CAEE"> originals </span><span style="color:#CB7676">+</span><span style="color:#DBD7CAEE"> moveables</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number">230</span> </span>
+<span class="line"><span class="line-number">231</span> <span style="color:#4D9375">            if</span><span style="color:#DBD7CAEE"> check </span><span style="color:#CB7676">==</span><span style="color:#4C9A91"> 1</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number">232</span> <span style="color:#DBD7CAEE">                objects</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">remove</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">rocket</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number">233</span> <span style="color:#DBD7CAEE">                update_window</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">objects</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number">234</span> <span style="color:#DBD7CAEE">                running </span><span style="color:#666666">=</span><span style="color:#4D9375"> False</span></span>
+<span class="line"><span class="line-number">235</span> <span style="color:#DBD7CAEE">                retry </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> failure</span><span style="color:#666666">()</span></span>
+<span class="line"><span class="line-number">236</span> <span style="color:#4D9375">            elif</span><span style="color:#DBD7CAEE"> check </span><span style="color:#CB7676">==</span><span style="color:#4C9A91"> 2</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number">237</span> <span style="color:#DBD7CAEE">                next_level </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> success</span><span style="color:#666666">()</span></span>
+<span class="line"><span class="line-number">238</span> <span style="color:#DBD7CAEE">                running </span><span style="color:#666666">=</span><span style="color:#4D9375"> False</span></span>
+<span class="line"><span class="line-number">239</span> </span>
+<span class="line"><span class="line-number">240</span> <span style="color:#DBD7CAEE">        update_window</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">objects</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number">241</span> <span style="color:#4D9375">    if</span><span style="color:#DBD7CAEE"> retry</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number">242</span> <span style="color:#4D9375">        return</span><span style="color:#4C9A91"> 0</span></span>
+<span class="line"><span class="line-number">243</span> <span style="color:#4D9375">    if</span><span style="color:#CB7676"> not</span><span style="color:#DBD7CAEE"> retry </span><span style="color:#CB7676">and</span><span style="color:#CB7676"> not</span><span style="color:#DBD7CAEE"> next_level</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number">244</span> <span style="color:#4D9375">        return</span><span style="color:#4C9A91"> 1</span></span>
+<span class="line"><span class="line-number">245</span> <span style="color:#4D9375">    else</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number">246</span> <span style="color:#4D9375">        return</span><span style="color:#4C9A91"> 2</span></span>
+<span class="line"><span class="line-number">247</span> </span>
+<span class="line"><span class="line-number">248</span> <span style="color:#CB7676">def</span><span style="color:#80A665"> main</span><span style="color:#666666">():</span></span>
+<span class="line"><span class="line-number">249</span> <span style="color:#DBD7CAEE">    running </span><span style="color:#666666">=</span><span style="color:#4D9375"> True</span></span>
+<span class="line"><span class="line-number">250</span> <span style="color:#DBD7CAEE">    levels </span><span style="color:#666666">=</span><span style="color:#666666"> []</span></span>
+<span class="line"><span class="line-number">251</span> <span style="color:#4D9375">    for</span><span style="color:#DBD7CAEE"> i </span><span style="color:#4D9375">in</span><span style="color:#B8A965"> range</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">num_levels</span><span style="color:#666666">):</span></span>
+<span class="line"><span class="line-number">252</span> <span style="color:#DBD7CAEE">        levels</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">append</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">level</span><span style="color:#C98A7D77">"</span><span style="color:#CB7676"> +</span><span style="color:#B8A965"> str</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">i</span><span style="color:#CB7676">+</span><span style="color:#4C9A91">1</span><span style="color:#666666">))</span></span>
+<span class="line"><span class="line-number">253</span> <span style="color:#4D9375">    while</span><span style="color:#DBD7CAEE"> running</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number">254</span> <span style="color:#DBD7CAEE">        clock </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">time</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">Clock</span><span style="color:#666666">()</span></span>
+<span class="line"><span class="line-number">255</span> <span style="color:#DBD7CAEE">        clock</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">tick</span><span style="color:#666666">(</span><span style="color:#C99076">FPS</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number">256</span> </span>
+<span class="line"><span class="line-number">257</span> <span style="color:#DBD7CAEE">        level_data </span><span style="color:#666666">=</span><span style="color:#666666"> {</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">level1</span><span style="color:#C98A7D77">"</span><span style="color:#666666">:</span><span style="color:#666666"> [[</span><span style="color:#DBD7CAEE">make_target</span><span style="color:#666666">([</span><span style="color:#4C9A91">950</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 250</span><span style="color:#666666">])],</span><span style="color:#DBD7CAEE"> Actor</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ART/spacebackground.jpg</span><span style="color:#C98A7D77">"</span><span style="color:#666666">,</span><span style="color:#666666"> [</span><span style="color:#4C9A91">0</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 0</span><span style="color:#666666">])],</span></span>
+<span class="line"><span class="line-number">258</span> <span style="color:#C98A7D77">                      "</span><span style="color:#C98A7D">level2</span><span style="color:#C98A7D77">"</span><span style="color:#666666">:</span><span style="color:#666666"> [[</span><span style="color:#DBD7CAEE">make_target</span><span style="color:#666666">([</span><span style="color:#4C9A91">950</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 100</span><span style="color:#666666">]),</span><span style="color:#DBD7CAEE"> make_astroids</span><span style="color:#666666">([</span><span style="color:#4C9A91">400</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 450</span><span style="color:#666666">]),</span><span style="color:#DBD7CAEE"> make_astroids</span><span style="color:#666666">([</span><span style="color:#4C9A91">450</span><span style="color:#666666">,</span><span style="color:#CB7676">-</span><span style="color:#4C9A91">100</span><span style="color:#666666">])],</span><span style="color:#DBD7CAEE"> Actor</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ART/spacebackground.jpg</span><span style="color:#C98A7D77">"</span><span style="color:#666666">,</span><span style="color:#666666"> [</span><span style="color:#4C9A91">0</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 0</span><span style="color:#666666">])],</span></span>
+<span class="line"><span class="line-number">259</span> <span style="color:#C98A7D77">                      "</span><span style="color:#C98A7D">level3</span><span style="color:#C98A7D77">"</span><span style="color:#666666">:</span><span style="color:#666666"> [</span></span>
+<span class="line"><span class="line-number">260</span> <span style="color:#666666">                          [</span><span style="color:#DBD7CAEE">make_target</span><span style="color:#666666">([</span><span style="color:#4C9A91">950</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 300</span><span style="color:#666666">]),</span><span style="color:#DBD7CAEE"> make_astroids</span><span style="color:#666666">([</span><span style="color:#4C9A91">650</span><span style="color:#666666">,</span><span style="color:#4C9A91">160</span><span style="color:#666666">]),</span><span style="color:#DBD7CAEE"> make_redplanet</span><span style="color:#666666">([</span><span style="color:#4C9A91">100</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 610</span><span style="color:#666666">]),</span><span style="color:#DBD7CAEE"> </span></span>
+<span class="line"><span class="line-number">261</span> <span style="color:#DBD7CAEE">                           make_redplanet</span><span style="color:#666666">([</span><span style="color:#4C9A91">400</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 610</span><span style="color:#666666">])],</span><span style="color:#DBD7CAEE"> Actor</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ART/spacebackground.jpg</span><span style="color:#C98A7D77">"</span><span style="color:#666666">,</span><span style="color:#666666"> [</span><span style="color:#4C9A91">0</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 0</span><span style="color:#666666">])],</span></span>
+<span class="line"><span class="line-number">262</span> <span style="color:#C98A7D77">                      "</span><span style="color:#C98A7D">level4</span><span style="color:#C98A7D77">"</span><span style="color:#666666">:</span><span style="color:#666666"> [</span></span>
+<span class="line"><span class="line-number">263</span> <span style="color:#666666">                          [</span><span style="color:#DBD7CAEE">make_target</span><span style="color:#666666">([</span><span style="color:#4C9A91">950</span><span style="color:#666666">,</span><span style="color:#4C9A91">50</span><span style="color:#666666">]),</span><span style="color:#DBD7CAEE"> make_astroids</span><span style="color:#666666">([</span><span style="color:#4C9A91">300</span><span style="color:#666666">,</span><span style="color:#4C9A91">0</span><span style="color:#666666">]),</span><span style="color:#DBD7CAEE"> make_astroids</span><span style="color:#666666">([</span><span style="color:#4C9A91">700</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 400</span><span style="color:#666666">]),</span><span style="color:#DBD7CAEE"> </span></span>
+<span class="line"><span class="line-number">264</span> <span style="color:#DBD7CAEE">                           make_redplanet</span><span style="color:#666666">([</span><span style="color:#4C9A91">100</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 610</span><span style="color:#666666">]),</span><span style="color:#DBD7CAEE"> make_redplanet</span><span style="color:#666666">([</span><span style="color:#4C9A91">400</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 610</span><span style="color:#666666">])],</span><span style="color:#DBD7CAEE"> Actor</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ART/spacebackground.jpg</span><span style="color:#C98A7D77">"</span><span style="color:#666666">,</span><span style="color:#666666"> [</span><span style="color:#4C9A91">0</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 0</span><span style="color:#666666">])],</span></span>
+<span class="line"><span class="line-number">265</span> <span style="color:#C98A7D77">                      "</span><span style="color:#C98A7D">level5</span><span style="color:#C98A7D77">"</span><span style="color:#666666">:</span><span style="color:#666666"> [</span></span>
+<span class="line"><span class="line-number">266</span> <span style="color:#666666">                          [</span><span style="color:#DBD7CAEE">make_target</span><span style="color:#666666">([</span><span style="color:#4C9A91">950</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 300</span><span style="color:#666666">]),</span><span style="color:#DBD7CAEE"> make_portal</span><span style="color:#666666">([</span><span style="color:#4C9A91">400</span><span style="color:#666666">,</span><span style="color:#4C9A91">100</span><span style="color:#666666">],[</span><span style="color:#4C9A91">800</span><span style="color:#666666">,</span><span style="color:#4C9A91">500</span><span style="color:#666666">]),</span><span style="color:#DBD7CAEE"> </span></span>
+<span class="line"><span class="line-number">267</span> <span style="color:#DBD7CAEE">                           make_astroids</span><span style="color:#666666">([</span><span style="color:#4C9A91">500</span><span style="color:#666666">,</span><span style="color:#4C9A91">0</span><span style="color:#666666">]),</span><span style="color:#DBD7CAEE"> make_astroids</span><span style="color:#666666">([</span><span style="color:#4C9A91">700</span><span style="color:#666666">,</span><span style="color:#4C9A91">400</span><span style="color:#666666">])],</span><span style="color:#DBD7CAEE"> Actor</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ART/spacebackground.jpg</span><span style="color:#C98A7D77">"</span><span style="color:#666666">,</span><span style="color:#666666"> [</span><span style="color:#4C9A91">0</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 0</span><span style="color:#666666">])],</span></span>
+<span class="line"><span class="line-number">268</span> <span style="color:#C98A7D77">                      "</span><span style="color:#C98A7D">level6</span><span style="color:#C98A7D77">"</span><span style="color:#666666">:</span><span style="color:#666666"> [[</span><span style="color:#DBD7CAEE">make_target</span><span style="color:#666666">([</span><span style="color:#4C9A91">200</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 450</span><span style="color:#666666">]),</span><span style="color:#DBD7CAEE"> make_astroids</span><span style="color:#666666">([</span><span style="color:#4C9A91">100</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 200</span><span style="color:#666666">]),</span><span style="color:#DBD7CAEE"> make_astroids</span><span style="color:#666666">([</span><span style="color:#4C9A91">110</span><span style="color:#666666">,</span><span style="color:#4C9A91">400</span><span style="color:#666666">]),</span><span style="color:#DBD7CAEE"> </span></span>
+<span class="line"><span class="line-number">269</span> <span style="color:#DBD7CAEE">                                  make_portal</span><span style="color:#666666">([</span><span style="color:#4C9A91">800</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 400</span><span style="color:#666666">],[</span><span style="color:#4C9A91">500</span><span style="color:#666666">,</span><span style="color:#4C9A91">50</span><span style="color:#666666">]),</span><span style="color:#DBD7CAEE"> make_redplanet</span><span style="color:#666666">([</span><span style="color:#4C9A91">100</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 610</span><span style="color:#666666">]),</span><span style="color:#DBD7CAEE"> make_redplanet</span><span style="color:#666666">([</span><span style="color:#4C9A91">400</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 610</span><span style="color:#666666">])],</span><span style="color:#DBD7CAEE"> Actor</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">ART/spacebackground.jpg</span><span style="color:#C98A7D77">"</span><span style="color:#666666">,</span><span style="color:#666666"> [</span><span style="color:#4C9A91">0</span><span style="color:#666666">,</span><span style="color:#4C9A91"> 0</span><span style="color:#666666">])]</span></span>
+<span class="line"><span class="line-number">270</span> <span style="color:#666666">                      }</span></span>
+<span class="line"><span class="line-number">271</span> </span>
+<span class="line"><span class="line-number">272</span> <span style="color:#DBD7CAEE">        pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">mixer</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">music</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">load</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">MUSIC/menu.mp3</span><span style="color:#C98A7D77">"</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number">273</span> <span style="color:#DBD7CAEE">        pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">mixer</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">music</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">play</span><span style="color:#666666">(</span><span style="color:#CB7676">-</span><span style="color:#4C9A91">1</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number">274</span> <span style="color:#DBD7CAEE">        i </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> start_menu</span><span style="color:#666666">()</span></span>
+<span class="line"><span class="line-number">275</span> </span>
+<span class="line"><span class="line-number">276</span> <span style="color:#DBD7CAEE">        pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">mixer</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">music</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">load</span><span style="color:#666666">(</span><span style="color:#C98A7D77">"</span><span style="color:#C98A7D">MUSIC/level.mp3</span><span style="color:#C98A7D77">"</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number">277</span> <span style="color:#DBD7CAEE">        pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">mixer</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">music</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">play</span><span style="color:#666666">(</span><span style="color:#CB7676">-</span><span style="color:#4C9A91">1</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number">278</span> <span style="color:#4D9375">        while</span><span style="color:#DBD7CAEE"> i </span><span style="color:#CB7676">&#x3C;</span><span style="color:#666666"> (</span><span style="color:#B8A965">len</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">levels</span><span style="color:#666666">)):</span></span>
+<span class="line"><span class="line-number">279</span> <span style="color:#DBD7CAEE">            data </span><span style="color:#666666">=</span><span style="color:#DBD7CAEE"> level_data</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">get</span><span style="color:#666666">(</span><span style="color:#DBD7CAEE">levels</span><span style="color:#666666">[</span><span style="color:#DBD7CAEE">i</span><span style="color:#666666">])</span></span>
+<span class="line"><span class="line-number">280</span> <span style="color:#B8A965">            next</span><span style="color:#666666"> =</span><span style="color:#DBD7CAEE"> make_level</span><span style="color:#666666">(</span><span style="color:#CB7676">*</span><span style="color:#DBD7CAEE">data</span><span style="color:#666666">)</span></span>
+<span class="line"><span class="line-number">281</span> <span style="color:#4D9375">            if</span><span style="color:#B8A965"> next</span><span style="color:#CB7676"> ==</span><span style="color:#4C9A91"> 0</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number">282</span> <span style="color:#DBD7CAEE">                i </span><span style="color:#666666">-=</span><span style="color:#4C9A91"> 1</span></span>
+<span class="line"><span class="line-number">283</span> <span style="color:#4D9375">            elif</span><span style="color:#B8A965"> next</span><span style="color:#CB7676"> ==</span><span style="color:#4C9A91"> 1</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number">284</span> <span style="color:#4D9375">                break</span></span>
+<span class="line"><span class="line-number">285</span> <span style="color:#DBD7CAEE">            i </span><span style="color:#666666">+=</span><span style="color:#4C9A91"> 1</span></span>
+<span class="line"><span class="line-number">286</span> <span style="color:#4D9375">            if</span><span style="color:#B8A965"> next</span><span style="color:#CB7676"> ==</span><span style="color:#4C9A91"> 2</span><span style="color:#CB7676"> and</span><span style="color:#DBD7CAEE"> i </span><span style="color:#CB7676">==</span><span style="color:#DBD7CAEE"> num_levels</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number">287</span> <span style="color:#DBD7CAEE">                end_screen</span><span style="color:#666666">()</span></span>
+<span class="line"><span class="line-number">288</span> <span style="color:#DBD7CAEE">    pygame</span><span style="color:#666666">.</span><span style="color:#DBD7CAEE">quit</span><span style="color:#666666">()</span></span>
+<span class="line"><span class="line-number">289</span> </span>
+<span class="line"><span class="line-number">290</span> </span>
+<span class="line"><span class="line-number">291</span> <span style="color:#4D9375">if</span><span style="color:#B8A965"> __name__</span><span style="color:#CB7676"> ==</span><span style="color:#C98A7D77"> "</span><span style="color:#C98A7D">__main__</span><span style="color:#C98A7D77">"</span><span style="color:#666666">:</span></span>
+<span class="line"><span class="line-number">292</span> <span style="color:#DBD7CAEE">    main</span><span style="color:#666666">()</span></span></code></pre>
+				</div>
+			</div>
+
+			<div style="width: 100%; z-index: 1;">
+				<div class="nav-buttons">
+	<a class="nav-button" href="/src/ALongTimeAgo/DemoReel.html">
+		<img class="chev-left" src="/assets/Home/chevron-left.png">
+		<span>Demo Reel</span>
+	</a>
+	<a class="nav-button" href="/src/ALongTimeAgo/TheRule.html">
+		<span>The Rule</span>
+		<img class="chev-right" src="/assets/Home/chevron-right.png">
+	</a>
+</div>
+
+<style>
+	.nav-buttons {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		padding: 3%;
+	}
+
+	.nav-button {
+		white-space: nowrap;
+		text-decoration: none;
+		color: rgb(255, 255, 255);
+		font-size: clamp(24px, 2.5vw, 36px);
+		display: flex;
+		align-items: center;
+		transition: all 0.3s ease;
+	}
+	.nav-button:hover {
+		opacity: 0.7;
+	}
+	.nav-button img {
+		height: clamp(36px, 3.5vw, 48px);
+		padding: 0 5%;
+	}
+	.nav-button span {
+		transform: translateY(-0.08em);
+	}
+
+	.chev-left,
+	.chev-right {
+		transition: all 0.3s ease;
+	}
+
+	.nav-button:hover .chev-left {
+		animation: bounceLeft 1.6s ease-in-out infinite;
+	}
+
+	.nav-button:hover .chev-right {
+		animation: bounceRight 1.6s ease-in-out infinite;
+	}
+
+	@keyframes bounceLeft {
+		0%	{ transform: translateX(0); }
+		25%	{ transform: translateX(-16%); }
+		40%	{ transform: translateX(-5%); }
+		65%	{ transform: translateX(-12%); }
+		85%	{ transform: translateX(-3%); }
+		100%	{ transform: translateX(0); }
+	}
+
+	@keyframes bounceRight {
+		0%	{ transform: translateX(0); }
+		25%	{ transform: translateX(16%); }
+		40%	{ transform: translateX(5%); }
+		65%	{ transform: translateX(12%); }
+		85%	{ transform: translateX(3%); }
+		100%	{ transform: translateX(0); }
+	}
+</style>
+			</div>
+		</section>
+	</main>
+
+	<footer class="footer">
+    	<nav>
+		<div class="copyright">
+			<span style="--i:0">&copy; &nbsp;</span>
+			<span style="--i:1">2</span>
+			<span style="--i:2">0</span>
+			<span style="--i:3">2</span>
+			<span style="--i:4">6 &nbsp;</span>
+			<span style="--i:5">A</span>
+			<span style="--i:6">L</span>
+			<span style="--i:7">E</span>
+			<span style="--i:8">X</span>
+			<span style="--i:9">A</span>
+			<span style="--i:10">N</span>
+			<span style="--i:11">D</span>
+			<span style="--i:12">E</span>
+			<span style="--i:13">R &nbsp;</span>
+			<span style="--i:14">S</span>
+			<span style="--i:15">U</span>
+		</div>
+	<div class="social-media">
+		<a href="https://sualexander.itch.io" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/itch.png');">
+		</a>
+		<a href="https://github.com/sualexander" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/github.png');">
+		</a>
+		<a href="https://www.youtube.com/@alexandersu9397" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/youtube.png');">
+		</a>
+		<a href="https://www.linkedin.com/in/alexander-su-b9701824a" target="_blank" rel="noopener noreferrer">
+			<img style="mask-image: url('/assets/Home/linkedin.png');">
+		</a>
+		</div>
+	</nav>
+</footer>
+
+<script>
+	document.querySelectorAll('.social-media img').forEach(img => {
+		const computedStyle = window.getComputedStyle(img);
+		const maskImage = computedStyle.maskImage;
+		const imageUrl = maskImage.replace(/^url\(['"](.+)['"]\)$/, '$1');
+
+		const temp = new Image();
+		temp.src = imageUrl;
+		temp.onload = () => {
+			const aspectRatio = temp.naturalWidth / temp.naturalHeight;
+			img.style.width = `${32 * aspectRatio}px`;
+		};
+	});
+</script>
+
+<style>
+	.footer {
+		background-color: #141019b3;
+	}
+
+	.footer nav {
+		height: 80px;
+		padding: 0 3% 0 2%;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.footer .copyright {
+		display: flex;
+		align-items: center;
+	}
+	.footer span {
+		pointer-events: none;
+		position: relative;
+		display: inline-block;
+		font-size: 16px;
+		font-weight: 400;
+		color: #fff;
+		animation: flip 10s infinite;
+		animation-delay: calc(0.08s * var(--i))
+	}
+	@keyframes flip {
+		0%,80% { transform: rotateY(360deg) }
+	}
+
+	.social-media {
+		display: flex;
+		gap: 2vw;
+		align-items: center;
+	}
+
+	.social-media a {
+		height: 40%;
+		display: flex;
+		position: relative;
+	}
+
+	.social-media img {
+		height: 100%;
+		padding: 15px; /*hack for mask artifacts*/
+		mask-size: contain;
+		mask-repeat: no-repeat;
+		mask-position: center;
+		background: rgb(224, 224, 224);
+		transition: all 0.5s ease;
+	}
+	.social-media img:hover {
+		transform: scale(1.1);
+		background: linear-gradient(to bottom, rgb(0, 200, 255), rgb(146, 13, 255), rgb(0, 200, 255));
+		background-size: 100% 400%;
+		animation: gradientPan2 3s linear infinite;
+	}
+	@keyframes gradientPan2 {
+		0% { background-position: center 0%; }
+		100% { background-position: center 130%; }
+	}
+</style>
+</body>
+</html>
