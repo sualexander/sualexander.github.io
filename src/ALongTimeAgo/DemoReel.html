@@ -28,19 +28,12 @@
 			50% { opacity: 1; }
 		}
 
-		.title-container {
-			position: relative;
-			display: flex;
-			flex-direction: column;
-			align-items: flex-start;
-			gap: 20px;
-		}
 		.title-main {
-			font-size: clamp(60px, 12vw, 160px);
+			font-size: clamp(72px, 14vw, 180px);
 			font-weight: 800;
 			letter-spacing: -0.03em;
 			line-height: 0.9;
-			overflow: hidden;
+			overflow: visible;
 		}
 		.title-main span {
 			display: inline-block;
@@ -58,14 +51,14 @@
 			transform: scaleX(0);
 		}
 		.title-year {
-			font-size: clamp(18px, 3vw, 36px);
+			font-size: clamp(16px, 2.5vw, 28px);
 			font-weight: 300;
 			letter-spacing: 0.3em;
 			opacity: 0;
 			animation: fadeSlideRight 0.6s ease 0.5s forwards;
 		}
 		.title-tagline {
-			font-size: clamp(14px, 2vw, 22px);
+			font-size: clamp(12px, 1.8vw, 20px);
 			font-weight: 400;
 			color: rgba(255, 255, 255, 0.7);
 			letter-spacing: 0.1em;
@@ -73,41 +66,113 @@
 			animation: fadeSlideRight 0.6s ease 0.7s forwards;
 		}
 
-		/* Decorative elements */
 		.corner-accent {
 			position: absolute;
 			width: 60px;
 			height: 60px;
 			border: 2px solid rgba(255, 255, 255, 0.3);
 		}
-		.corner-accent.top-right {
-			top: 40px;
-			right: 40px;
-			border-left: none;
-			border-bottom: none;
-			animation: fadeSlideRight 0.5s ease 0.9s forwards;
-			opacity: 0;
-		}
 		.corner-accent.bottom-left {
 			bottom: 40px;
 			left: 40px;
 			border-right: none;
 			border-top: none;
+			animation: fadeSlideRight 0.5s ease 0.9s forwards;
+			opacity: 0;
+		}
+		.corner-accent.bottom-right {
+			bottom: 40px;
+			right: 40px;
+			border-left: none;
+			border-top: none;
 			animation: fadeSlideRight 0.5s ease 1s forwards;
 			opacity: 0;
 		}
 
-		.floating-dot {
-			position: absolute;
-			width: 8px;
-			height: 8px;
-			background: white;
-			border-radius: 50%;
-			animation: pulse 2s ease-in-out infinite;
+		/* Custom Audio Player */
+		.audio-player {
+			display: flex;
+			align-items: center;
+			gap: 16px;
+			background: linear-gradient(135deg, rgba(26, 15, 10, 0.9), rgba(140, 58, 42, 0.9));
+			border: 2px solid #e8956a;
+			border-radius: 50px;
+			padding: 12px 24px;
+			width: 100%;
+			max-width: 500px;
+			box-shadow: 0 0 20px rgba(232, 149, 106, 0.3), inset 0 0 20px rgba(0, 0, 0, 0.3);
 		}
-		.floating-dot:nth-child(1) { top: 30%; right: 15%; animation-delay: 0s; }
-		.floating-dot:nth-child(2) { top: 60%; right: 25%; animation-delay: 0.5s; }
-		.floating-dot:nth-child(3) { bottom: 25%; right: 10%; animation-delay: 1s; }
+		.play-btn {
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			background: linear-gradient(135deg, #c95d3d, #e8956a);
+			border: none;
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			transition: all 0.3s ease;
+			box-shadow: 0 0 15px rgba(201, 93, 61, 0.5);
+			flex-shrink: 0;
+		}
+		.play-btn:hover {
+			transform: scale(1.1);
+			box-shadow: 0 0 25px rgba(232, 149, 106, 0.7);
+		}
+		.play-btn svg {
+			width: 20px;
+			height: 20px;
+			fill: white;
+			margin-left: 3px;
+		}
+		.play-btn.playing svg {
+			margin-left: 0;
+		}
+		.audio-progress-container {
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+			gap: 6px;
+		}
+		.audio-progress {
+			width: 100%;
+			height: 6px;
+			background: rgba(255, 255, 255, 0.2);
+			border-radius: 3px;
+			cursor: pointer;
+			overflow: hidden;
+		}
+		.audio-progress-bar {
+			height: 100%;
+			background: linear-gradient(90deg, #c95d3d, #e8956a);
+			border-radius: 3px;
+			width: 0%;
+			transition: width 0.1s linear;
+			box-shadow: 0 0 10px rgba(232, 149, 106, 0.5);
+		}
+		.audio-time {
+			display: flex;
+			justify-content: space-between;
+			font-size: 12px;
+			color: rgba(255, 255, 255, 0.7);
+			font-family: monospace;
+			pointer-events: none;
+		}
+		.audio-volume {
+			width: 60px;
+			height: 4px;
+			background: rgba(255, 255, 255, 0.2);
+			border-radius: 2px;
+			cursor: pointer;
+			overflow: hidden;
+		}
+		.audio-volume-bar {
+			height: 100%;
+			background: #e8956a;
+			border-radius: 2px;
+			width: 100%;
+		}
 	</style>
   <link rel="stylesheet" crossorigin href="/assets/baseStyle-BDs3jilJ.css">
 </head>
@@ -248,39 +313,49 @@
 </script>
 
 	<main>
-		<section class="section" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); min-height: 800px;">
-			<div class="corner-accent top-right"></div>
+		<section class="section" style="background: linear-gradient(135deg, #1a0f0a 0%, #8c3a2a 40%, #c95d3d 70%, #e8956a 100%); min-height: 800px;">
 			<div class="corner-accent bottom-left"></div>
-			<div class="floating-dot"></div>
-			<div class="floating-dot"></div>
-			<div class="floating-dot"></div>
+			<div class="corner-accent bottom-right"></div>
 
-			<div class="title-container" style="padding: 0 6vw;">
+			<div style="padding: 0 6vw; display: flex; flex-direction: column; align-items: flex-start; gap: 16px;">
 				<p class="title-year">2022</p>
 				<h1 class="title-main">
 					<span>Demo</span><br>
 					<span>Reel</span>
 				</h1>
 				<div class="title-line"></div>
-				<p class="title-tagline">A COLLECTION OF CREATIVE WORKS</p>
+				<p class="title-tagline">LOGIC PROJECTS THROUGH THE YEARS</p>
 			</div>
 		</section>
 
-		<section class="section" style="background-color: rgb(104, 49, 33); min-height: 600px; flex-direction: column;">
-			<div class="section-text" style="flex-direction: column; gap: 30px;">
-				<p>A collection of stuff stuff things and stuff and more stuff and things</p>
-				<audio controls style="width: 100%; max-width: 500px;">
+		<section class="section" style="background-image: url('/assets/ALongTimeAgo/DemoReel/Screenshot.jpg'); min-height: 800px; flex-direction: column; justify-content: space-between;">
+			<div class="section-overlay" style="background-color: #551b0b4d;"></div>
+			<div class="section-text" style="flex-direction: column; width: clamp(400px, 70vw, 1200px); gap: 60px; text-align: center; padding: 200px 0; text-shadow: 0 2px 8px rgba(0,0,0,1);">
+				<p style="font-size: 1.3em">
+					This is just a curation of highlights from both my personal experiments and projects, capturing the era right up until I stopped using Logic for music creation.
+					It's mostly a blend of electronica and orchestral with sprinkles of more acoustic and synthwave inspired textures thrown in.
+					Overall, these tracks are all steeped in a definite cinematic vibe, which I've since moved away from towards something more intimate and personal.
+				</p>
+
+				<audio id="audioPlayer" style="display: none;">
 					<source src="/assets/ALongTimeAgo/DemoReel/DemoReel.mp3" type="audio/mpeg">
-					Your browser does not support the audio element.
 				</audio>
-			</div>
-		</section>
 
-		<section class="section" style="background-image: url('/assets/ALongTimeAgo/DemoReel/Screenshot.jpg'); min-height: 800px">
-			<div class="section-overlay" style="--overlay: 0.4"></div>
-
-			<div class="section-text">
-				Logic was cool for a while
+				<div class="audio-player">
+					<button class="play-btn" id="playBtn">
+						<svg viewBox="0 0 24 24" id="playIcon"><polygon points="5,3 19,12 5,21"/></svg>
+						<svg viewBox="0 0 24 24" id="pauseIcon" style="display: none;"><rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/></svg>
+					</button>
+					<div class="audio-progress-container">
+						<div class="audio-progress" id="progressContainer">
+							<div class="audio-progress-bar" id="progressBar"></div>
+						</div>
+						<div class="audio-time">
+							<span id="currentTime">0:00</span>
+							<span id="duration">0:00</span>
+						</div>
+					</div>
+				</div>
 			</div>
 
 			<div style="width: 100%; z-index: 1;">
@@ -472,5 +547,59 @@
 		100% { background-position: center 130%; }
 	}
 </style>
+
+	<script>
+		const audio = document.getElementById('audioPlayer');
+		const playBtn = document.getElementById('playBtn');
+		const playIcon = document.getElementById('playIcon');
+		const pauseIcon = document.getElementById('pauseIcon');
+		const progressBar = document.getElementById('progressBar');
+		const progressContainer = document.getElementById('progressContainer');
+		const currentTimeEl = document.getElementById('currentTime');
+		const durationEl = document.getElementById('duration');
+
+		function formatTime(seconds) {
+			const mins = Math.floor(seconds / 60);
+			const secs = Math.floor(seconds % 60);
+			return `${mins}:${secs.toString().padStart(2, '0')}`;
+		}
+
+		playBtn.addEventListener('click', () => {
+			if (audio.paused) {
+				audio.play();
+				playIcon.style.display = 'none';
+				pauseIcon.style.display = 'block';
+				playBtn.classList.add('playing');
+			} else {
+				audio.pause();
+				playIcon.style.display = 'block';
+				pauseIcon.style.display = 'none';
+				playBtn.classList.remove('playing');
+			}
+		});
+
+		audio.addEventListener('timeupdate', () => {
+			const progress = (audio.currentTime / audio.duration) * 100;
+			progressBar.style.width = `${progress}%`;
+			currentTimeEl.textContent = formatTime(audio.currentTime);
+		});
+
+		audio.addEventListener('loadedmetadata', () => {
+			durationEl.textContent = formatTime(audio.duration);
+		});
+
+		audio.addEventListener('ended', () => {
+			playIcon.style.display = 'block';
+			pauseIcon.style.display = 'none';
+			playBtn.classList.remove('playing');
+			progressBar.style.width = '0%';
+		});
+
+		progressContainer.addEventListener('click', (e) => {
+			const rect = progressContainer.getBoundingClientRect();
+			const percent = (e.clientX - rect.left) / rect.width;
+			audio.currentTime = percent * audio.duration;
+		});
+	</script>
 </body>
 </html>
